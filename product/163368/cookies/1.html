@@ -3,95 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clean Glowing Website</title>
+  <title>Neon Glow Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
     :root {
       --main-color: #7800d2;
+      --glow: 0 0 15px var(--main-color), 0 0 30px var(--main-color);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #111;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at center, #1a0033, #000);
       color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--glow);
       text-align: center;
+      max-width: 90%;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       color: var(--main-color);
-      text-shadow: 0 0 15px var(--main-color);
+      text-shadow: var(--glow);
+      margin-bottom: 30px;
     }
 
-    .box {
-      background-color: #1e1e1e;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(120, 0, 210, 0.3);
-    }
-
-    .copy-container {
-      margin-top: 20px;
+    .input-wrap {
       display: flex;
-      align-items: center;
       gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     input[type="text"] {
-      padding: 10px;
+      padding: 12px 20px;
       font-size: 1rem;
-      border-radius: 5px;
-      border: none;
+      border: 2px solid var(--main-color);
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      outline: none;
       width: 300px;
+      box-shadow: inset 0 0 10px var(--main-color);
     }
 
     button {
-      padding: 10px 20px;
       background-color: var(--main-color);
-      border: none;
       color: white;
+      border: none;
+      padding: 12px 20px;
       font-size: 1rem;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: box-shadow 0.3s ease;
+      box-shadow: var(--glow);
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
     }
 
     button:hover {
-      box-shadow: 0 0 10px var(--main-color), 0 0 20px var(--main-color);
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--main-color), 0 0 50px var(--main-color);
     }
 
     .copied-msg {
-      margin-top: 10px;
-      color: lightgreen;
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #00ff90;
+      animation: fadeInOut 2s ease forwards;
       display: none;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>Glow Tutorial Site</h1>
-    <div class="copy-container">
+  <div class="card">
+    <h1>Neon Tutorial Launcher</h1>
+    <div class="input-wrap">
       <input type="text" value="https://your-tutorial-link.com" id="copyText" readonly />
-      <button onclick="copyToClipboard()">Copy</button>
+      <button onclick="copyToClipboard()">📋 Copy</button>
     </div>
-    <div class="copied-msg" id="copiedMsg">Copied to clipboard!</div>
+    <div class="copied-msg" id="copiedMsg">✅ Copied to clipboard!</div>
   </div>
 
   <script>
     function copyToClipboard() {
       const text = document.getElementById("copyText");
       text.select();
-      text.setSelectionRange(0, 99999); // For mobile
-      navigator.clipboard.writeText(text.value);
-      const msg = document.getElementById("copiedMsg");
-      msg.style.display = "block";
-      setTimeout(() => msg.style.display = "none", 2000);
+      text.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(text.value).then(() => {
+        const msg = document.getElementById("copiedMsg");
+        msg.style.display = "block";
+        msg.classList.remove("fadeInOut");
+        void msg.offsetWidth; // reflow trick
+        msg.classList.add("fadeInOut");
+        setTimeout(() => msg.style.display = "none", 2000);
+      });
     }
   </script>
 </body>
