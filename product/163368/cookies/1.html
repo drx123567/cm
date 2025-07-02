@@ -15,148 +15,179 @@
       --border: #333;
       --radius: 12px;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family:'Inter',sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      display:flex;
-      justify-content:center;
-      padding:40px 20px;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
     }
+
     .card {
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      max-width:800px; width:100%;
-      padding:30px;
-      box-shadow:0 4px 20px rgba(0,0,0,0.5);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 100%;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
+
     h1 {
-      font-size:1.9rem;
-      margin-bottom:15px;
-      color:var(--main);
-      text-align:center;
+      font-size: 1.9rem;
+      margin-bottom: 15px;
+      color: var(--main);
+      text-align: center;
     }
-    .step { margin-bottom:15px; line-height:1.6; }
+
+    .step {
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
     .step span {
-      display:inline-block;
-      width:75px;
-      font-weight:600;
-      color:var(--main);
+      display: inline-block;
+      width: 75px;
+      font-weight: 600;
+      color: var(--main);
     }
-    a { color:#00d9ff; text-decoration:none; }
-    a:hover { text-decoration:underline; }
+
+    a {
+      color: #00d9ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
     .images {
-      display:flex; gap:20px;
-      justify-content:center;
-      margin:25px 0;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin: 25px 0;
     }
+
     .images img {
-      width:160px;
-      height:auto;
-      border:2px solid var(--border);
-      border-radius:var(--radius);
+      width: 160px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
       transition: transform 0.2s;
     }
+
     .images img:hover {
       transform: scale(1.05);
-      border-color:var(--main);
+      border-color: var(--main);
     }
+
     .img-full {
-      margin-top:20px;
-      border:2px solid var(--border);
-      border-radius:var(--radius);
-      overflow:hidden;
+      margin-top: 20px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
     }
+
     .img-full img {
-      width:100%;
-      height:auto;
-      display:block;
+      width: 100%;
+      display: block;
     }
+
     .copy-box {
-      margin-top:30px;
-      text-align:center;
-      border-top:1px solid var(--border);
-      padding-top:20px;
+      margin-top: 30px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
     }
+
     .copy-box button {
-      background:var(--main);
-      color:#fff;
-      padding:12px 22px;
-      border:none;
-      border-radius:8px;
-      cursor:pointer;
-      font-size:1rem;
-      transition:background 0.3s;
+      background: var(--main);
+      color: #fff;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
     }
-    .copy-box button:hover { background:#5e00a8; }
+
+    .copy-box button:hover {
+      background: #5e00a8;
+    }
+
     .tooltip {
-      margin-top:10px;
-      font-size:.95rem;
-      color:lightgreen;
-      display:none;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: lightgreen;
+      display: none;
     }
-    .tooltip.active { display:block; }
+
+    .tooltip.active {
+      display: block;
+    }
+
     .update {
-      margin-top:25px;
-      font-size:.9rem;
-      text-align:center;
-      color:var(--sub);
+      margin-top: 25px;
+      font-size: 0.9rem;
+      text-align: center;
+      color: var(--sub);
     }
   </style>
 </head>
 <body>
+  <div class="card">
+    <h1>📦 ChatGPT Cookie Tutorial</h1>
 
-<div class="card">
-  <h1>📦 ChatGPT Cookie Tutorial</h1>
-  <div class="step"><span>Step 1:</span> Install <a href="https://chrome.google.com/webstore/detail/cookie-editor" target="_blank">Cookie Editor</a></div>
-  <div class="step"><span>Step 2:</span> Open <a href="https://chat.openai.com" target="_blank">ChatGPT</a></div>
-  <div class="step"><span>Step 3:</span> Launch the extension</div>
-  <div class="step"><span>Step 4:</span> Use the buttons below</div>
+    <div class="step"><span>Step 1:</span> Install <a href="https://chrome.google.com/webstore/detail/cookie-editor" target="_blank">Cookie Editor</a></div>
+    <div class="step"><span>Step 2:</span> Open <a href="https://chat.openai.com" target="_blank">ChatGPT</a></div>
+    <div class="step"><span>Step 3:</span> Launch the extension</div>
+    <div class="step"><span>Step 4:</span> Use the buttons below</div>
 
-  <div class="images">
-    <img src="https://i.imgur.com/33xUdip.png" alt="Delete All"/>
-    <img src="https://i.imgur.com/gegrFYj.png" alt="Import"/>
+    <div class="images">
+      <img src="https://i.imgur.com/33xUdip.png" alt="Delete All" />
+      <img src="https://i.imgur.com/gegrFYj.png" alt="Import" />
+    </div>
+
+    <div class="step">You should see something like this:</div>
+    <div class="img-full">
+      <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Editor Preview" />
+    </div>
+
+    <div class="copy-box">
+      <p>Click the button to copy full cookie JSON:</p>
+      <button onclick="copyClipboard()">Copy from Pastebin</button>
+      <div class="tooltip" id="tooltip">Copied!</div>
+    </div>
+
+    <div class="update" id="lastUpdate">Last update: </div>
   </div>
 
-  <div class="step">You should see something like this:</div>
-  <div class="img-full">
-    <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Preview"/>
-  </div>
+  <script>
+    function copyClipboard() {
+      fetch('https://pastebin.com/raw/gxKgejZz')
+        .then(res => res.text())
+        .then(data => {
+          navigator.clipboard.writeText(data).then(() => {
+            const tip = document.getElementById('tooltip');
+            tip.classList.add('active');
+            setTimeout(() => tip.classList.remove('active'), 2000);
+          });
+        })
+        .catch(err => {
+          alert("Failed to fetch from Pastebin.");
+          console.error(err);
+        });
+    }
 
-  <div class="copy-box">
-    <p>Click to copy full cookie data:</p>
-    <button onclick="copyClipboard()">Copy Cookies</button>
-    <div class="tooltip" id="tooltip">Copied!</div>
-  </div>
-
-  <div class="update" id="lastUpdate">Last update: </div>
-</div>
-
-<script>
-  let cookieJSON = '';
-
-  fetch('https://pastebin.com/raw/gxKgejZz')
-    .then(res => res.text())
-    .then(text => cookieJSON = text)
-    .catch(err => {
-      cookieJSON = 'Failed to load cookies.';
-      console.error('Error fetching Pastebin:', err);
-    });
-
-  function copyClipboard() {
-    if (!cookieJSON) return;
-    navigator.clipboard.writeText(cookieJSON)
-      .then(() => {
-        const tip = document.getElementById('tooltip');
-        tip.classList.add('active');
-        setTimeout(() => tip.classList.remove('active'), 2000);
-      });
-  }
-
-  document.getElementById('lastUpdate').innerText = 'Last update: ' + new Date().toLocaleDateString();
-</script>
-
+    document.getElementById('lastUpdate').innerText =
+      'Last update: ' + new Date().toLocaleDateString();
+  </script>
 </body>
 </html>
