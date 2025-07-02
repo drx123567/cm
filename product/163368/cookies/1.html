@@ -15,13 +15,7 @@
       --border: #333;
       --radius: 12px;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
@@ -30,7 +24,6 @@
       justify-content: center;
       padding: 40px 20px;
     }
-
     .card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -40,73 +33,61 @@
       padding: 30px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
-
     h1 {
       font-size: 1.9rem;
       margin-bottom: 15px;
       color: var(--main);
       text-align: center;
     }
-
     .step {
       margin-bottom: 15px;
       line-height: 1.6;
     }
-
     .step span {
       display: inline-block;
       width: 75px;
       font-weight: 600;
       color: var(--main);
     }
-
     a {
       color: #00d9ff;
       text-decoration: none;
     }
-
     a:hover {
       text-decoration: underline;
     }
-
     .images {
       display: flex;
       gap: 20px;
       justify-content: center;
       margin: 25px 0;
     }
-
     .images img {
       width: 160px;
       border: 2px solid var(--border);
       border-radius: var(--radius);
       transition: transform 0.2s;
     }
-
     .images img:hover {
       transform: scale(1.05);
       border-color: var(--main);
     }
-
     .img-full {
       margin-top: 20px;
       border: 2px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
     }
-
     .img-full img {
       width: 100%;
       display: block;
     }
-
     .copy-box {
       margin-top: 30px;
       text-align: center;
       border-top: 1px solid var(--border);
       padding-top: 20px;
     }
-
     .copy-box button {
       background: var(--main);
       color: #fff;
@@ -117,22 +98,18 @@
       font-size: 1rem;
       transition: background 0.3s;
     }
-
     .copy-box button:hover {
       background: #5e00a8;
     }
-
     .tooltip {
       margin-top: 10px;
       font-size: 0.95rem;
       color: lightgreen;
       display: none;
     }
-
     .tooltip.active {
       display: block;
     }
-
     .update {
       margin-top: 25px;
       font-size: 0.9rem;
@@ -161,7 +138,7 @@
     </div>
 
     <div class="copy-box">
-      <p>Click the button to copy full cookie JSON from Pastebin:</p>
+      <p>Click the button to copy full cookie JSON:</p>
       <button onclick="copyFromPastebin()">Copy Cookies</button>
       <div class="tooltip" id="tooltip">Copied!</div>
     </div>
@@ -171,24 +148,26 @@
 
   <script>
     function copyFromPastebin() {
-      fetch('https://pastebin.com/raw/gxKgejZz')
-        .then(response => {
-          if (!response.ok) throw new Error('Failed to fetch pastebin content.');
-          return response.text();
+      const corsProxy = "https://corsproxy.io/?";
+      const pastebinRawURL = "https://pastebin.com/raw/gxKgejZz";
+
+      fetch(corsProxy + encodeURIComponent(pastebinRawURL))
+        .then(res => res.text())
+        .then(data => {
+          navigator.clipboard.writeText(data).then(() => {
+            const tip = document.getElementById('tooltip');
+            tip.classList.add('active');
+            setTimeout(() => tip.classList.remove('active'), 2000);
+          });
         })
-        .then(text => navigator.clipboard.writeText(text))
-        .then(() => {
-          const tip = document.getElementById('tooltip');
-          tip.classList.add('active');
-          setTimeout(() => tip.classList.remove('active'), 2000);
-        })
-        .catch(error => {
-          alert("Error copying from Pastebin.");
-          console.error(error);
+        .catch(err => {
+          alert("Failed to fetch or copy content.");
+          console.error(err);
         });
     }
 
-    document.getElementById('lastUpdate').innerText = 'Last update: ' + new Date().toLocaleDateString();
+    document.getElementById('lastUpdate').innerText =
+      'Last update: ' + new Date().toLocaleDateString();
   </script>
 </body>
 </html>
