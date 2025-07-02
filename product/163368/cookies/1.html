@@ -163,7 +163,7 @@
           navigator.clipboard.writeText(data).then(() => {
             const tip = document.getElementById('tooltip');
             tip.classList.add('active');
-            setTimeout(() => tip.classList.remove('active'), 2000);
+            setTimeout(() => tip.classList.remove('active'), 5000);
           });
         })
         .catch(err => {
