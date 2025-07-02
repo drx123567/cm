@@ -161,8 +161,8 @@
     </div>
 
     <div class="copy-box">
-      <p>Click the button to copy full cookie JSON:</p>
-      <button onclick="copyClipboard()">Copy from Pastebin</button>
+      <p>Click the button to copy full cookie JSON from Pastebin:</p>
+      <button onclick="copyFromPastebin()">Copy Cookies</button>
       <div class="tooltip" id="tooltip">Copied!</div>
     </div>
 
@@ -170,24 +170,25 @@
   </div>
 
   <script>
-    function copyClipboard() {
+    function copyFromPastebin() {
       fetch('https://pastebin.com/raw/gxKgejZz')
-        .then(res => res.text())
-        .then(data => {
-          navigator.clipboard.writeText(data).then(() => {
-            const tip = document.getElementById('tooltip');
-            tip.classList.add('active');
-            setTimeout(() => tip.classList.remove('active'), 2000);
-          });
+        .then(response => {
+          if (!response.ok) throw new Error('Failed to fetch pastebin content.');
+          return response.text();
         })
-        .catch(err => {
-          alert("Failed to fetch from Pastebin.");
-          console.error(err);
+        .then(text => navigator.clipboard.writeText(text))
+        .then(() => {
+          const tip = document.getElementById('tooltip');
+          tip.classList.add('active');
+          setTimeout(() => tip.classList.remove('active'), 2000);
+        })
+        .catch(error => {
+          alert("Error copying from Pastebin.");
+          console.error(error);
         });
     }
 
-    document.getElementById('lastUpdate').innerText =
-      'Last update: ' + new Date().toLocaleDateString();
+    document.getElementById('lastUpdate').innerText = 'Last update: ' + new Date().toLocaleDateString();
   </script>
 </body>
 </html>
