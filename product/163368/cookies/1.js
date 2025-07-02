@@ -49,7 +49,7 @@ document.addEventListener('keydown', function (e) {
 
     /*function copyFromSite() {
       const corsProxy = "https://corsproxy.io/?";
-      const sourceURL = "https://cheap-market.cc/product/163368/cookies/gxKgejZz";
+      const sourceURL = "https://cheap-market.cc/product/163368/cookies/";
 
       fetch(corsProxy + encodeURIComponent(sourceURL))
         .then(res => res.text())
