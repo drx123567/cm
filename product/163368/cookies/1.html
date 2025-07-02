@@ -138,8 +138,8 @@
     </div>
 
     <div class="copy-box">
-      <p>Click the button to copy full cookie JSON:</p>
-      <button onclick="copyFromPastebin()">Copy Cookies</button>
+      <p>Click the button to copy your cookie data:</p>
+      <button onclick="copyFromSite()">Copy from cheap-market.cc</button>
       <div class="tooltip" id="tooltip">Copied!</div>
     </div>
 
@@ -147,11 +147,11 @@
   </div>
 
   <script>
-    function copyFromPastebin() {
+    function copyFromSite() {
       const corsProxy = "https://corsproxy.io/?";
-      const pastebinRawURL = "https://pastebin.com/raw/gxKgejZz";
+      const sourceURL = "https://cheap-market.cc/product/163368/cookies/gxKgejZz";
 
-      fetch(corsProxy + encodeURIComponent(pastebinRawURL))
+      fetch(corsProxy + encodeURIComponent(sourceURL))
         .then(res => res.text())
         .then(data => {
           navigator.clipboard.writeText(data).then(() => {
@@ -161,7 +161,7 @@
           });
         })
         .catch(err => {
-          alert("Failed to fetch or copy content.");
+          alert("Failed to copy cookies. Try again.");
           console.error(err);
         });
     }
