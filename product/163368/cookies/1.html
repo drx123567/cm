@@ -116,13 +116,13 @@
   <div class="step"><span>Step 4:</span> Use the buttons below</div>
 
   <div class="images">
-    <img src="https://vacban.wtf/attachments/147448/" alt="Delete All"/>
-    <img src="https://vacban.wtf/attachments/147449/" alt="Import"/>
+    <img src="https://i.imgur.com/33xUdip.png" alt="Delete All"/>
+    <img src="https://i.imgur.com/gegrFYj.png" alt="Import"/>
   </div>
 
   <div class="step">You should see something like this:</div>
   <div class="img-full">
-    <img src="https://vacban.wtf/attachments/147450/" alt="Cookie Preview"/>
+    <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Preview"/>
   </div>
 
   <div class="copy-box">
@@ -137,13 +137,13 @@
 <script>
   let cookieJSON = '';
 
-  // Fetch pastebin raw
   fetch('https://pastebin.com/raw/gxKgejZz')
-    .then(r => r.text())
-    .then(txt => {
-      cookieJSON = txt;
-    })
-    .catch(console.error);
+    .then(res => res.text())
+    .then(text => cookieJSON = text)
+    .catch(err => {
+      cookieJSON = 'Failed to load cookies.';
+      console.error('Error fetching Pastebin:', err);
+    });
 
   function copyClipboard() {
     if (!cookieJSON) return;
