@@ -2,126 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neon Glow Site</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cool Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --main-color: #7800d2;
-      --glow: 0 0 15px var(--main-color), 0 0 30px var(--main-color);
+      --primary: #7800d2;
+      --bg: #f8f8ff;
+      --text: #2b2b2b;
+      --card-bg: white;
+      --border-radius: 16px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at center, #1a0033, #000);
-      color: white;
-      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      min-height: 100vh;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 40px;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow: var(--glow);
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 30px;
+      max-width: 500px;
+      width: 100%;
       text-align: center;
-      max-width: 90%;
     }
 
     h1 {
-      font-size: 2.5rem;
-      color: var(--main-color);
-      text-shadow: var(--glow);
-      margin-bottom: 30px;
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 10px;
     }
 
-    .input-wrap {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    input[type="text"] {
-      padding: 12px 20px;
+    p {
+      margin-bottom: 20px;
       font-size: 1rem;
-      border: 2px solid var(--main-color);
-      border-radius: 8px;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: white;
-      outline: none;
-      width: 300px;
-      box-shadow: inset 0 0 10px var(--main-color);
     }
 
-    button {
-      background-color: var(--main-color);
+    .button-copy {
+      background-color: var(--primary);
       color: white;
+      padding: 12px 20px;
       border: none;
-      padding: 12px 20px;
+      border-radius: 12px;
       font-size: 1rem;
-      border-radius: 8px;
       cursor: pointer;
-      box-shadow: var(--glow);
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      transition: background-color 0.3s ease;
     }
 
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px var(--main-color), 0 0 50px var(--main-color);
+    .button-copy:hover {
+      background-color: #5e00a8;
     }
 
-    .copied-msg {
-      margin-top: 15px;
+    .update {
+      margin-top: 25px;
       font-size: 0.9rem;
-      color: #00ff90;
-      animation: fadeInOut 2s ease forwards;
+      color: #666;
+    }
+
+    .tooltip {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: green;
       display: none;
     }
 
-    @keyframes fadeInOut {
-      0% { opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; }
+    .tooltip.active {
+      display: inline-block;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Neon Tutorial Launcher</h1>
-    <div class="input-wrap">
-      <input type="text" value="https://your-tutorial-link.com" id="copyText" readonly />
-      <button onclick="copyToClipboard()">📋 Copy</button>
-    </div>
-    <div class="copied-msg" id="copiedMsg">✅ Copied to clipboard!</div>
+    <h1>Copy this to Clipboard</h1>
+    <p>Click the button to copy a secret code:</p>
+    <button class="button-copy" onclick="copyText()">Copy Code</button>
+    <div class="tooltip" id="tooltip">Copied!</div>
+    <div class="update" id="lastUpdate">Last update: </div>
   </div>
 
   <script>
-    function copyToClipboard() {
-      const text = document.getElementById("copyText");
-      text.select();
-      text.setSelectionRange(0, 99999);
-      navigator.clipboard.writeText(text.value).then(() => {
-        const msg = document.getElementById("copiedMsg");
-        msg.style.display = "block";
-        msg.classList.remove("fadeInOut");
-        void msg.offsetWidth; // reflow trick
-        msg.classList.add("fadeInOut");
-        setTimeout(() => msg.style.display = "none", 2000);
+    function copyText() {
+      const textToCopy = "SECRET-CODE-123";
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const tooltip = document.getElementById("tooltip");
+        tooltip.classList.add("active");
+        setTimeout(() => tooltip.classList.remove("active"), 2000);
       });
     }
+
+    // Set today's date
+    const updateDate = new Date().toLocaleDateString();
+    document.getElementById("lastUpdate").innerText = `Last update: ${updateDate}`;
   </script>
 </body>
 </html>
