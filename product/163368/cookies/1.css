@@ -4,3 +4,18 @@ body {
     -moz-user-select: none;    /* Firefox */
     -ms-user-select: none;     /* IE/Edge */
 }
+
+
+#cookieBox {
+  font-family: monospace;
+  background-color: #121212;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #eee;
+  padding: 10px;
+  font-size: 14px;
+  resize: vertical;
+  margin-top: 15px;
+  width: 100%;
+  display: none; /* hidden by default */
+}
