@@ -19,3 +19,10 @@ body {
   width: 100%;
   display: none; /* hidden by default */
 }
+
+
+@media (min-width: 768px) {
+  #cookieBox {
+    display: none !important;
+  }
+}
