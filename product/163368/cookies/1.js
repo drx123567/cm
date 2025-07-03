@@ -48,38 +48,50 @@ function copyFromSite() {
   fetch(corsProxy + encodeURIComponent(sourceURL))
     .then(res => res.text())
     .then(data => {
-      // Create a hidden <textarea> as fallback
-      const textarea = document.createElement("textarea");
-      textarea.value = data;
-      textarea.setAttribute("readonly", "");
-      textarea.style.position = "absolute";
-      textarea.style.left = "-9999px";
-      document.body.appendChild(textarea);
-
-      // Try modern clipboard API
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(data).then(() => {
-          showCopiedTooltip();
-          document.body.removeChild(textarea);
-        }).catch(() => {
-          // fallback
-          textarea.select();
-          document.execCommand("copy");
-          showCopiedTooltip();
-          document.body.removeChild(textarea);
-        });
-      } else {
-        // fallback
-        textarea.select();
-        document.execCommand("copy");
-        showCopiedTooltip();
-        document.body.removeChild(textarea);
-      }
+      copyToClipboard(data);
     })
     .catch(err => {
-      alert("❌ Failed to copy cookies. Try again.");
+      alert("❌ Failed to fetch cookies. Try again.");
       console.error(err);
     });
+}
+
+function copyToClipboard(text) {
+  // Try navigator.clipboard first
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => {
+      showCopiedTooltip();
+    }).catch(() => {
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+
+  // Move it off-screen
+  textarea.style.position = "fixed";
+  textarea.style.top = "-9999px";
+  textarea.style.left = "-9999px";
+
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+
+  try {
+    const success = document.execCommand('copy');
+    if (success) showCopiedTooltip();
+    else alert("❌ Copy failed. Try manually.");
+  } catch (err) {
+    alert("❌ Copy not supported on this device.");
+    console.error(err);
+  }
+
+  document.body.removeChild(textarea);
 }
 
 function showCopiedTooltip() {
@@ -87,6 +99,7 @@ function showCopiedTooltip() {
   tip.classList.add('active');
   setTimeout(() => tip.classList.remove('active'), 5000);
 }
+
 
 
 
