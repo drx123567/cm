@@ -48,47 +48,29 @@ function copyFromSite() {
   fetch(corsProxy + encodeURIComponent(sourceURL))
     .then(res => res.text())
     .then(data => {
-      forceMobileCopy(data);
+      const textarea = document.getElementById("cookieBox");
+      textarea.style.display = "block";
+      textarea.value = data;
+      textarea.focus();
+      textarea.select();
+
+      try {
+        const success = document.execCommand("copy");
+        if (success) {
+          showCopiedTooltip();
+        } else {
+          alert("⚠️ Copied to the box. Long-press and copy it manually.");
+        }
+      } catch (err) {
+        alert("⚠️ Copied to the box. Long-press and copy it manually.");
+      }
     })
     .catch(err => {
-      alert("❌ Failed to fetch cookies.");
+      alert("❌ Failed to load cookies.");
       console.error(err);
     });
 }
 
-function forceMobileCopy(text) {
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-
-  // Add styling to make it visible but offscreen
-  textarea.setAttribute('readonly', '');
-  textarea.style.position = 'absolute';
-  textarea.style.left = '-9999px';
-
-  document.body.appendChild(textarea);
-  textarea.select();
-  textarea.setSelectionRange(0, 99999); // For mobile Safari
-
-  try {
-    const successful = document.execCommand('copy');
-    if (successful) {
-      showCopiedTooltip();
-    } else {
-      alert("❌ Copy failed. Long-press and copy manually.");
-    }
-  } catch (err) {
-    alert("❌ Copy not supported.");
-    console.error(err);
-  }
-
-  document.body.removeChild(textarea);
-}
-
-function showCopiedTooltip() {
-  const tip = document.getElementById('tooltip');
-  tip.classList.add('active');
-  setTimeout(() => tip.classList.remove('active'), 5000);
-}
 
 
 
