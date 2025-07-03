@@ -58,11 +58,15 @@ function copyFromSite() {
         alert("⚠️ Tap and hold to copy the cookies.");
       } else {
         // PC: Auto copy
-        navigator.clipboard.writeText(data).then(() => {
-          showCopiedTooltip();
-        }).catch(() => {
-          alert("❌ Clipboard failed. Try again.");
-        });
+navigator.clipboard.writeText(data)
+  .then(() => {
+    showCopiedTooltip();
+    return; // ✅ This prevents falling into .catch()
+  })
+  .catch(() => {
+    showTextarea(data);
+    alert("⚠️ Clipboard failed. You can copy it manually.");
+  });
       }
     })
     .catch(err => {
