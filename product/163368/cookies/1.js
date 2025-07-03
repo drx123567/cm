@@ -48,27 +48,31 @@ function copyFromSite() {
   fetch(corsProxy + encodeURIComponent(sourceURL))
     .then(res => res.text())
     .then(data => {
-      const textarea = document.getElementById("cookieBox");
-      textarea.style.display = "block";
-      textarea.value = data;
-      textarea.focus();
-      textarea.select();
-
-      try {
-        const success = document.execCommand("copy");
-        if (success) {
+      if (isMobile()) {
+        // Show textarea for manual copy
+        const textarea = document.getElementById("cookieBox");
+        textarea.style.display = "block";
+        textarea.value = data;
+        textarea.focus();
+        textarea.select();
+        alert("⚠️ Tap and hold to copy the cookies.");
+      } else {
+        // PC: Auto copy
+        navigator.clipboard.writeText(data).then(() => {
           showCopiedTooltip();
-        } else {
-          alert("⚠️ Copied to the box. Long-press and copy it manually.");
-        }
-      } catch (err) {
-        alert("⚠️ Copied to the box. Long-press and copy it manually.");
+        }).catch(() => {
+          alert("❌ Clipboard failed. Try again.");
+        });
       }
     })
     .catch(err => {
-      alert("❌ Failed to load cookies.");
+      alert("❌ Failed to fetch cookies.");
       console.error(err);
     });
+}
+
+function isMobile() {
+  return /Mobi|Android|iPhone/i.test(navigator.userAgent);
 }
 
 
