@@ -48,46 +48,36 @@ function copyFromSite() {
   fetch(corsProxy + encodeURIComponent(sourceURL))
     .then(res => res.text())
     .then(data => {
-      copyToClipboard(data);
+      forceMobileCopy(data);
     })
     .catch(err => {
-      alert("❌ Failed to fetch cookies. Try again.");
+      alert("❌ Failed to fetch cookies.");
       console.error(err);
     });
 }
 
-function copyToClipboard(text) {
-  // Try navigator.clipboard first
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(text).then(() => {
-      showCopiedTooltip();
-    }).catch(() => {
-      fallbackCopy(text);
-    });
-  } else {
-    fallbackCopy(text);
-  }
-}
-
-function fallbackCopy(text) {
+function forceMobileCopy(text) {
   const textarea = document.createElement("textarea");
   textarea.value = text;
 
-  // Move it off-screen
-  textarea.style.position = "fixed";
-  textarea.style.top = "-9999px";
-  textarea.style.left = "-9999px";
+  // Add styling to make it visible but offscreen
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'absolute';
+  textarea.style.left = '-9999px';
 
   document.body.appendChild(textarea);
-  textarea.focus();
   textarea.select();
+  textarea.setSelectionRange(0, 99999); // For mobile Safari
 
   try {
-    const success = document.execCommand('copy');
-    if (success) showCopiedTooltip();
-    else alert("❌ Copy failed. Try manually.");
+    const successful = document.execCommand('copy');
+    if (successful) {
+      showCopiedTooltip();
+    } else {
+      alert("❌ Copy failed. Long-press and copy manually.");
+    }
   } catch (err) {
-    alert("❌ Copy not supported on this device.");
+    alert("❌ Copy not supported.");
     console.error(err);
   }
 
@@ -99,6 +89,7 @@ function showCopiedTooltip() {
   tip.classList.add('active');
   setTimeout(() => tip.classList.remove('active'), 5000);
 }
+
 
 
 
