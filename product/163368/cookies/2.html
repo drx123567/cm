@@ -2,208 +2,163 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>www.cheap-market.cc</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="1.css">
+  <script src="1.js"></script>
   <style>
     :root {
-      --main-color: #6C5CE7;
-      --bg-color: #f5f6fa;
-      --card-bg: #ffffff;
-      --text-color: #2d3436;
-      --subtext-color: #636e72;
-      --border-color: #dfe6e9;
-      --hover-color: #a29bfe;
-      --radius: 10px;
-      --shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      --main: #7800d2;
+      --bg: #0f0f1a;
+      --card: #1e1e2e;
+      --text: #eaeaea;
+      --sub: #888;
+      --border: #333;
+      --radius: 12px;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
+      background: var(--bg);
+      color: var(--text);
       display: flex;
       justify-content: center;
       padding: 40px 20px;
     }
-
     .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       max-width: 800px;
       width: 100%;
       padding: 30px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
-
     h1 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      color: var(--main-color);
+      font-size: 1.9rem;
+      margin-bottom: 15px;
+      color: var(--main);
       text-align: center;
     }
-
     .step {
-      margin-bottom: 16px;
+      margin-bottom: 15px;
       line-height: 1.6;
-      font-size: 1rem;
     }
-
     .step span {
+      display: inline-block;
+      width: 75px;
       font-weight: 600;
-      color: var(--main-color);
-      margin-right: 5px;
+      color: var(--main);
     }
-
     a {
-      color: var(--main-color);
+      color: #00d9ff;
       text-decoration: none;
     }
-
     a:hover {
       text-decoration: underline;
     }
-
     .images {
       display: flex;
       gap: 20px;
       justify-content: center;
       margin: 25px 0;
     }
-
+    .copy-text {
+      font-size: 0.95rem;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
     .images img {
       width: 160px;
-      border: 1px solid var(--border-color);
+      border: 2px solid var(--border);
       border-radius: var(--radius);
-      transition: transform 0.2s ease;
+      transition: transform 0.2s;
     }
-
     .images img:hover {
       transform: scale(1.05);
-      border-color: var(--hover-color);
+      border-color: var(--main);
     }
-
     .img-full {
       margin-top: 20px;
+      border: 2px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
     }
-
     .img-full img {
       width: 100%;
       display: block;
     }
-
     .copy-box {
       margin-top: 30px;
       text-align: center;
-      border-top: 1px solid var(--border-color);
+      border-top: 1px solid var(--border);
       padding-top: 20px;
     }
-
-    .copy-text {
-      font-size: 0.95rem;
-      color: var(--subtext-color);
-      margin-bottom: 10px;
-    }
-
     .copy-box button {
-      background: var(--main-color);
-      color: white;
+      background: var(--main);
+      color: #fff;
+      padding: 12px 22px;
+      margin-bottom: 12px;
       border: none;
-      padding: 12px 24px;
-      font-size: 1rem;
       border-radius: 8px;
       cursor: pointer;
+      font-size: 1rem;
       transition: background 0.3s;
     }
-
     .copy-box button:hover {
-      background: var(--hover-color);
+      background: #5e00a8;
     }
-
     .tooltip {
       margin-top: 10px;
-      font-size: 0.9rem;
-      color: green;
+      font-size: 0.95rem;
+      color: lightgreen;
       display: none;
     }
-
     .tooltip.active {
       display: block;
     }
-
-    #cookieBox {
-      width: 100%;
-      height: 150px;
-      margin-top: 15px;
-      padding: 10px;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      resize: none;
-      font-family: monospace;
-      display: none;
-    }
-
     .update {
       margin-top: 25px;
       font-size: 0.9rem;
       text-align: center;
-      color: var(--subtext-color);
+      color: var(--sub);
     }
   </style>
-  <script>
-    function copyFromSite() {
-      const textArea = document.getElementById("cookieBox");
-      textArea.style.display = 'block';
-      textArea.value = "Your cookie data here..."; // Placeholder
-      textArea.select();
-      document.execCommand("copy");
-
-      const tooltip = document.getElementById("tooltip");
-      tooltip.classList.add("active");
-      setTimeout(() => tooltip.classList.remove("active"), 2500);
-    }
-
-    window.onload = () => {
-      document.getElementById('lastUpdate').innerText += new Date().toLocaleString();
-    };
-  </script>
 </head>
 <body>
   <div class="card">
     <h1>🍪 ChatGPT Login Tutorial + Cookies</h1>
 
-    <div class="step"><span>Step 1:</span> Download this extension: <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank">Cookie Editor</a></div>
-    <div class="step"><span>Step 2:</span> Go to <a href="https://chatgpt.com" target="_blank">ChatGPT</a></div>
-    <div class="step"><span>Step 3:</span> Open the extension</div>
-    <div class="step"><span>Step 4:</span> Click "Delete All", then "Import"</div>
+    <div class="step"><span>Step 1:</span> Download this Extension: <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank">Cookie Editor</a></div>
+    <div class="step"><span>Step 2:</span> Go to: <a href="https://chatgpt.com" target="_blank">ChatGPT</a></div>
+    <div class="step"><span>Step 3:</span> Open the Cookie Editor Extension</div>
+    <div class="step"><span>Step 4:</span> Press "Delete All" and then "Import"</div>
 
     <div class="images">
       <img src="https://i.imgur.com/33xUdip.png" alt="Delete All" />
       <img src="https://i.imgur.com/gegrFYj.png" alt="Import" />
     </div>
 
-    <div class="step">You should see this after importing cookies:</div>
+    <div class="step">Then it should Look like this after u added the Cookies:</div>
     <div class="img-full">
       <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Editor Preview" />
     </div>
 
-    <div class="copy-box">
-      <p class="copy-text">Click below to copy your cookies:</p>
-      <button onclick="copyFromSite()">📋 Copy Cookies to Clipboard</button>
-      <div class="tooltip" id="tooltip">✅ Cookies copied to clipboard!</div>
-      <textarea id="cookieBox"></textarea>
-    </div>
-
-    <div class="update" id="lastUpdate">Updated and Checked at: </div>
+<div class="copy-box">
+  <p class="copy-text">Click below the Button to Copy your Cookies:</p>
+  <button onclick="copyFromSite()">📋 Copy Cookies to Clipboard</button>
+  <div class="tooltip" id="tooltip">
+    ✅ Successfully Copied the Cookies into yours Clipboard! Have fun and Leave a Feedback 💕
   </div>
+
+  <!-- ✅ Correct placement: inside .copy-box -->
+  <textarea id="cookieBox" style="width:100%; height:150px; margin-top:15px; display:none;"></textarea>
+</div>
+
+<div class="update" id="lastUpdate">Updated and Checked at: </div>
+
+  <script>
+  </script>
 </body>
 </html>
