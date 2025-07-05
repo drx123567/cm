@@ -16,6 +16,11 @@ document.addEventListener('keydown', function (e) {
 });
 
 
+function logout() {
+  localStorage.removeItem("savedCode");
+  document.getElementById("mainContent").style.display = "none";
+  document.getElementById("loginOverlay").style.display = "flex";
+}
 
 
 
