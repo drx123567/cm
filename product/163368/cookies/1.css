@@ -65,7 +65,7 @@ body {
 }
 
 .custom-checkbox input:checked + .checkmark {
-  background-color: #7800d2;
+  background-color: #0f0f1a;
   border-color: #7800d2;
 }
 
