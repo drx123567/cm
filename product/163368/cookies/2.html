@@ -191,6 +191,10 @@
     font-size: 0.95rem;
   }
 
+#notifyBar.show {
+  display: block;
+}
+  
   /* Login overlay */
   .login-overlay {
     position: fixed;
@@ -306,6 +310,26 @@
   }
 </style>
 </head>
+
+
+
+<div id="notifyBar" style="
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: crimson;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  z-index: 10000;
+  transition: transform 0.3s ease;
+"></div>
+
+
+  
 <body>
 
 <!-- 🔐 Clean Login Overlay -->
@@ -374,6 +398,6 @@
 </div>
 
 <!-- JS Logic (you already include this in 1.js) -->
-<script src="1.js"></script>
+<script src="backup123js.js"></script>
 </body>
 </html>
