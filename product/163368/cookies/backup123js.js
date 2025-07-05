@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-function updateTime() {
+/*function updateTime() {
   const now = new Date();
   const formatted = now.toLocaleString(undefined, {
     day: '2-digit',
@@ -226,4 +226,4 @@ function updateTime() {
 document.addEventListener("DOMContentLoaded", () => {
   updateTime(); // Initial run
   setInterval(updateTime, 1000); // Update every 1 second
-});
+});*/
