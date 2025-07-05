@@ -40,20 +40,15 @@ body {
 .custom-checkbox {
   display: flex;
   align-items: center;
-  gap: 10px;
+  cursor: pointer;
   font-size: 0.95rem;
   color: #ccc;
-  cursor: pointer;
+  gap: 10px;
   user-select: none;
-  position: relative;
 }
 
-.custom-checkbox input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+.custom-checkbox input[type="checkbox"] {
+  display: none;
 }
 
 .custom-checkbox .checkmark {
@@ -62,21 +57,20 @@ body {
   background-color: #2a2a3a;
   border: 2px solid #555;
   border-radius: 4px;
-  transition: all 0.2s ease;
-  display: inline-block;
   position: relative;
+  transition: all 0.2s ease;
 }
 
-.custom-checkbox input:checked + .checkmark {
+.custom-checkbox input[type="checkbox"]:checked + .checkmark {
   background-color: #0f0f1a;
   border-color: #7800d2;
 }
 
-.custom-checkbox input:checked + .checkmark::after {
-  content: '';
+.custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+  content: "";
   position: absolute;
-  left: 4.5px;
-  top: 1.5px;
+  top: 2px;
+  left: 5px;
   width: 5px;
   height: 10px;
   border: solid white;
