@@ -131,8 +131,9 @@ async function validateLogin() {
   const messageBox = document.getElementById("loginMessage");
 
   if (!code) {
-    messageBox.textContent = "Please enter your license key!";
-    messageBox.style.color = "orange";
+    //messageBox.textContent = "Please enter your license key!";
+    //messageBox.style.color = "orange";
+    showNotify("⚠️ Please Enter your License Key to Continue."); // 👈 this is the new line
     return;
   }
 
@@ -144,8 +145,9 @@ async function validateLogin() {
     const keys = keysText.split("\n").map(k => k.trim());
 
     if (keys.includes(code)) {
-      messageBox.textContent = "✅ Access granted!";
-      messageBox.style.color = "lightgreen";
+      //messageBox.textContent = "✅ Successfully Logged in!";
+      //messageBox.style.color = "lightgreen";
+      showNotify("✅ Successfully Logged in!"); // 👈 this is the new line
 
       if (remember) {
         localStorage.setItem("savedLicense", code);
@@ -156,8 +158,8 @@ async function validateLogin() {
         document.getElementById("mainContent").style.display = "block";
       }, 800);
     } else {
-      messageBox.textContent = "❌ Invalid license key.";
-      messageBox.style.color = "crimson";
+      //messageBox.textContent = "❌ Invalid license key.";
+      //messageBox.style.color = "crimson";
       showNotify("❌ Invalid License Key. Try again."); // 👈 this is the new line
     }
   } catch (err) {
