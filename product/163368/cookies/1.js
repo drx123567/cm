@@ -109,54 +109,78 @@ function isMobile() {
     }*/
 
 
+// Auto-login if key is remembered
+const remembered = localStorage.getItem("rememberedKey");
+if (remembered) {
+  document.getElementById("loginCode").value = remembered;
+
+  // Optional: auto-login without clicking submit
+  fetch("https://cheap-market.cc/product/163368/cookies/keys2348521109421.txt")
+    .then(res => res.text())
+    .then(data => {
+      const validKeys = data.split("\n").map(k => k.trim());
+      if (validKeys.includes(remembered)) {
+        document.getElementById("loginOverlay").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+      }
+    })
+    .catch(err => {
+      console.warn("Auto-login failed:", err);
+    });
+}
 
 
+////////////////////////////////////////////////////
 
 
+async function validateLogin() {
+  const code = document.getElementById("loginCode").value.trim();
+  const isHuman = document.getElementById("humanCheck").checked;
+  const rememberMe = document.getElementById("rememberCheck")?.checked;
+  const messageBox = document.getElementById("loginMessage");
 
-    // ✅ Validate login
-    async function validateLogin() {
-      const code = document.getElementById("loginCode").value.trim();
-      const isHuman = document.getElementById("humanCheck").checked;
-      const messageBox = document.getElementById("loginMessage");
+  if (!code) {
+    messageBox.style.color = "orange";
+    messageBox.textContent = "Please enter your license key!";
+    return;
+  }
 
-      if (!code) {
-        messageBox.style.color = "orange";
-        messageBox.textContent = "Please enter your license key!";
-        return;
+  if (!isHuman) {
+    messageBox.style.color = "red";
+    messageBox.textContent = "Please confirm you're human!";
+    return;
+  }
+
+  try {
+    const response = await fetch("https://cheap-market.cc/product/163368/cookies/keys2348521109421.txt");
+    if (!response.ok) throw new Error("Fetch failed");
+
+    const keysText = await response.text();
+    const validKeys = keysText.split("\n").map(k => k.trim());
+
+    if (validKeys.includes(code)) {
+      messageBox.style.color = "lightgreen";
+      messageBox.textContent = "✅ Access granted!";
+
+      if (rememberMe) {
+        localStorage.setItem("rememberedKey", code);
       }
 
-      if (!isHuman) {
-        messageBox.style.color = "red";
-        messageBox.textContent = "Please confirm you're human!";
-        return;
-      }
-
-      try {
-        const response = await fetch("https://cheap-market.cc/product/163368/cookies/keys2348521109421.txt");
-        if (!response.ok) throw new Error("Fetch failed");
-
-        const keysText = await response.text();
-        const validKeys = keysText.split("\n").map(k => k.trim());
-
-        if (validKeys.includes(code)) {
-          messageBox.style.color = "lightgreen";
-          messageBox.textContent = "✅ Access granted!";
-
-          setTimeout(() => {
-            document.getElementById("loginOverlay").style.display = "none";
-            document.getElementById("mainContent").style.display = "block";
-          }, 1000);
-        } else {
-          messageBox.style.color = "crimson";
-          messageBox.textContent = "❌ Invalid license key.";
-        }
-      } catch (err) {
-        messageBox.style.color = "red";
-        messageBox.textContent = "⚠️ Could not check key (CORS or connection issue)";
-        console.error(err);
-      }
+      setTimeout(() => {
+        document.getElementById("loginOverlay").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+      }, 1000);
+    } else {
+      messageBox.style.color = "crimson";
+      messageBox.textContent = "❌ Invalid license key.";
     }
+  } catch (err) {
+    messageBox.style.color = "red";
+    messageBox.textContent = "⚠️ Could not check key (CORS or connection issue)";
+    console.error(err);
+  }
+}
+
 
 
 
