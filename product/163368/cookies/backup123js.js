@@ -88,6 +88,14 @@ function isMobile() {
 }
 
 
+function showNotify(message) {
+  const bar = document.getElementById("notifyBar");
+  bar.textContent = message;
+  bar.classList.add("show");
+  setTimeout(() => {
+    bar.classList.remove("show");
+  }, 5000); // Hide after 5 seconds
+}
 
 
 
