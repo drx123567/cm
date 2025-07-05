@@ -180,19 +180,36 @@
 </head>
 <body>
 
-  <!-- 🔐 Login screen -->
-  <div class="login-overlay" id="loginOverlay">
-    <div class="login-box">
-      <h2>Enter License Key</h2>
-      <input type="text" id="loginCode" placeholder="e.g. license-key-123" />
-      <div class="checkbox">
-        <input type="checkbox" id="humanCheck" />
-        <label for="humanCheck">Ich bin ein Mensch</label>
+<!-- 🔐 Login screen (Styled like your screenshot) -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box" style="text-align:center;">
+    <h2 style="color: white; font-size: 1.5rem; font-weight: 600; margin-bottom: 8px;">Enter Access Code</h2>
+    <p style="color: #bbb; font-size: 0.95rem; margin-bottom: 20px;">Please input your access code to proceed.</p>
+    
+    <div style="position: relative; margin-bottom: 16px;">
+      <svg style="position:absolute; left:12px; top:50%; transform:translateY(-50%);" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="#888"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 17a2 2 0 0 1-2-2V7a2 2 0 0 1 4 0v8a2 2 0 0 1-2 2zm6-2V7a6 6 0 0 0-12 0v8a4 4 0 0 0 8 0h4z"/></svg>
+      <input type="text" id="loginCode" placeholder="Enter Access Code" style="padding-left: 40px;" />
+    </div>
+
+    <div class="checkbox" style="justify-content: center; margin-bottom: 20px;">
+      <input type="checkbox" id="humanCheck" />
+      <label for="humanCheck">Ich bin ein Mensch</label>
+      <div style="margin-left: 10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Hcaptcha_logo.svg/120px-Hcaptcha_logo.svg.png" alt="hCaptcha" height="30" />
+        <p style="font-size: 0.7rem; color: #888;">Privatsphäre – Bedingungen</p>
       </div>
-      <button onclick="validateLogin()">Submit</button>
-      <div class="message" id="loginMessage"></div>
+    </div>
+
+    <button onclick="validateLogin()">Submit</button>
+
+    <div class="message" id="loginMessage"></div>
+
+    <div class="update" style="margin-top: 16px; font-size: 0.9rem; color: #888;">
+      <a href="#" style="color: #ccc; text-decoration: none;">Forgotten Access Code?</a>
     </div>
   </div>
+</div>
+
 
   <!-- 🌐 Page content -->
   <div class="card" id="mainContent" style="display:none">
