@@ -388,9 +388,28 @@
     <textarea id="cookieBox" style="width:100%; height:150px; margin-top:15px; display:none;"></textarea>
   </div>
 
-  <div class="update" id="lastUpdate">Updated and Checked at: <span id="dateNow"></span></div>
+<div class="update" id="lastUpdate">
+  Updated and Checked at: <span id="dateNow">Loading...</span>
 </div>
 
+
+<script>
+  async function fetchLastUpdate() {
+    try {
+      const res = await fetch("https://cheap-market.cc/product/163368/cookies/date");
+      if (!res.ok) throw new Error("Network response failed");
+
+      const dateText = await res.text();
+      document.getElementById("dateNow").textContent = dateText.trim();
+    } catch (err) {
+      console.error("❌ Failed to fetch date:", err);
+      document.getElementById("dateNow").textContent = "Unavailable";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", fetchLastUpdate);
+</script>
+  
 <script src="1.js"></script>
   
 </body>
