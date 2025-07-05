@@ -40,56 +40,48 @@ body {
 .custom-checkbox {
   display: flex;
   align-items: center;
-  position: relative;
-  padding-left: 28px;
+  gap: 10px;
   cursor: pointer;
   font-size: 0.95rem;
   color: #ccc;
-  user-select: none;
+  position: relative;
 }
 
 .custom-checkbox input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
-  height: 0;
-  width: 0;
 }
 
 .custom-checkbox .checkmark {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
   height: 18px;
   width: 18px;
   background-color: #2a2a3a;
   border: 2px solid #555;
   border-radius: 4px;
-  transition: background 0.2s ease;
+  display: inline-block;
+  transition: all 0.2s ease;
+  position: relative;
 }
 
-.custom-checkbox input:checked ~ .checkmark {
+.custom-checkbox input:checked + .checkmark {
   background-color: #7800d2;
   border-color: #7800d2;
 }
 
-.custom-checkbox .checkmark:after {
-  content: "";
+.custom-checkbox input:checked + .checkmark::after {
+  content: '';
   position: absolute;
-  display: none;
-}
-
-.custom-checkbox input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.custom-checkbox .checkmark:after {
   left: 5px;
-  top: 1px;
+  top: 1.5px;
   width: 4px;
-  height: 9px;
+  height: 8px;
   border: solid white;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+
+.label-text {
+  user-select: none;
+}
+
