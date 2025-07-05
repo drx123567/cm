@@ -17,9 +17,12 @@ document.addEventListener('keydown', function (e) {
 
 
 function logout() {
-  localStorage.removeItem("savedCode");
-  document.getElementById("mainContent").style.display = "none";
+  localStorage.removeItem("savedLicense"); // correct key name
   document.getElementById("loginOverlay").style.display = "flex";
+  document.getElementById("mainContent").style.display = "none";
+  document.getElementById("loginCode").value = "";
+  document.getElementById("rememberCheck").checked = false;
+  document.getElementById("loginMessage").textContent = "";
 }
 
 
