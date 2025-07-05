@@ -121,25 +121,24 @@
       color: var(--sub);
     }
 
-    /* 🔐 LOGIN OVERLAY */
+    /* Login overlay */
     .login-overlay {
       position: fixed;
       top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: #0f0f1ae6;
+      width: 100%; height: 100%;
+      background: #0f0f1ad0;
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1000;
     }
     .login-box {
-      background: #1e1e2e;
+      background: var(--card);
       padding: 30px;
       border-radius: 12px;
-      width: 90%;
       max-width: 400px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      width: 90%;
+      box-shadow: 0 0 20px black;
       text-align: center;
     }
     .login-box input[type="text"] {
@@ -147,15 +146,16 @@
       padding: 12px;
       border-radius: 8px;
       border: none;
-      margin: 10px 0;
-      background-color: #2e2e3e;
+      background: #2e2e3e;
       color: white;
       font-size: 1rem;
+      margin-bottom: 12px;
     }
     .login-box .checkbox {
       display: flex;
       align-items: center;
       margin-bottom: 15px;
+      justify-content: left;
     }
     .login-box .checkbox input {
       margin-right: 10px;
@@ -163,26 +163,26 @@
     .login-box button {
       width: 100%;
       padding: 12px;
-      border: none;
-      border-radius: 8px;
       background: linear-gradient(to right, #7800d2, #b000d2);
       color: white;
       font-size: 1rem;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
     }
     .login-box .message {
-      margin-top: 10px;
-      font-size: 0.9rem;
+      margin-top: 12px;
+      font-size: 0.95rem;
     }
   </style>
 </head>
 <body>
 
-  <!-- 🔐 LOGIN SCREEN -->
+  <!-- 🔐 Login screen -->
   <div class="login-overlay" id="loginOverlay">
     <div class="login-box">
-      <h2>Enter Access Code</h2>
-      <input type="text" id="loginCode" placeholder="e.g. ChocolateChip123" />
+      <h2>Enter License Key</h2>
+      <input type="text" id="loginCode" placeholder="e.g. license-key-123" />
       <div class="checkbox">
         <input type="checkbox" id="humanCheck" />
         <label for="humanCheck">Ich bin ein Mensch</label>
@@ -192,7 +192,7 @@
     </div>
   </div>
 
-  <!-- 🍪 ORIGINAL CONTENT -->
+  <!-- 🌐 Page content -->
   <div class="card" id="mainContent" style="display:none">
     <h1>🍪 ChatGPT Login Tutorial + Cookies</h1>
     <div class="step"><span>Step 1:</span> Download this Extension: <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank">Cookie Editor</a></div>
@@ -210,59 +210,71 @@
     <div class="copy-box">
       <p class="copy-text">Click below the Button to Copy your Cookies:</p>
       <button onclick="copyFromSite()">📋 Copy Cookies to Clipboard</button>
-      <div class="tooltip" id="tooltip">
-        ✅ Successfully Copied the Cookies into yours Clipboard! Have fun and Leave a Feedback 💕
-      </div>
+      <div class="tooltip" id="tooltip">✅ Successfully Copied the Cookies into yours Clipboard! Have fun and Leave a Feedback 💕</div>
       <textarea id="cookieBox" style="width:100%; height:150px; margin-top:15px; display:none;"></textarea>
     </div>
-    <div class="update" id="lastUpdate">Updated and Checked at: </div>
+    <div class="update" id="lastUpdate">Updated and Checked at: <span id="dateNow"></span></div>
   </div>
 
   <script>
-    const validCodes = ["ChocolateChip123", "SugarCookie42", "MacaronMagic"];
+    // ✅ Update time
+    document.getElementById("dateNow").textContent = new Date().toLocaleString('de-DE');
 
-    function validateLogin() {
-      const code = document.getElementById('loginCode').value.trim();
-      const isHuman = document.getElementById('humanCheck').checked;
-      const message = document.getElementById('loginMessage');
+    // ✅ Validate login
+    async function validateLogin() {
+      const code = document.getElementById("loginCode").value.trim();
+      const isHuman = document.getElementById("humanCheck").checked;
+      const messageBox = document.getElementById("loginMessage");
 
       if (!code) {
-        message.style.color = "orange";
-        message.textContent = "Please enter an access code!";
+        messageBox.style.color = "orange";
+        messageBox.textContent = "Please enter your license key!";
         return;
       }
+
       if (!isHuman) {
-        message.style.color = "red";
-        message.textContent = "Please confirm you're human!";
-        return;
-      }
-      if (!validCodes.includes(code)) {
-        message.style.color = "crimson";
-        message.textContent = "Invalid code. Try again.";
+        messageBox.style.color = "red";
+        messageBox.textContent = "Please confirm you're human!";
         return;
       }
 
-      // ✅ Success
-      message.style.color = "lightgreen";
-      message.textContent = "Access granted. Welcome!";
+      try {
+        const response = await fetch("https://cheap-market.cc/product/163368/cookies/keys2348521109421.txt");
+        if (!response.ok) throw new Error("Fetch failed");
 
-      setTimeout(() => {
-        document.getElementById('loginOverlay').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-      }, 1000);
+        const keysText = await response.text();
+        const validKeys = keysText.split("\n").map(k => k.trim());
+
+        if (validKeys.includes(code)) {
+          messageBox.style.color = "lightgreen";
+          messageBox.textContent = "✅ Access granted!";
+
+          setTimeout(() => {
+            document.getElementById("loginOverlay").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+          }, 1000);
+        } else {
+          messageBox.style.color = "crimson";
+          messageBox.textContent = "❌ Invalid license key.";
+        }
+      } catch (err) {
+        messageBox.style.color = "red";
+        messageBox.textContent = "⚠️ Could not check key (CORS or connection issue)";
+        console.error(err);
+      }
     }
 
     function copyFromSite() {
-      const cookieData = "ChocolateChip123 = 🍪 Approved by ChatGPT!";
-      const cookieBox = document.getElementById("cookieBox");
-      const tooltip = document.getElementById("tooltip");
+      const data = "🍪 ChocolateChip123 = Authenticated Cookie Example";
+      const box = document.getElementById("cookieBox");
+      const tip = document.getElementById("tooltip");
 
-      cookieBox.style.display = "block";
-      cookieBox.value = cookieData;
-      cookieBox.select();
+      box.style.display = "block";
+      box.value = data;
+      box.select();
       document.execCommand("copy");
 
-      tooltip.classList.add("active");
+      tip.classList.add("active");
     }
   </script>
 </body>
