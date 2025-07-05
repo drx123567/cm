@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>www.cheap-market.cc</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="1.css">
-  <script src="1.js"></script>
   <style>
     :root {
       --main: #7800d2;
@@ -22,8 +20,6 @@
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
-      display: flex;
-      justify-content: center;
       padding: 40px 20px;
     }
     .card {
@@ -31,7 +27,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       max-width: 800px;
-      width: 100%;
+      margin: auto;
       padding: 30px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
@@ -124,41 +120,150 @@
       text-align: center;
       color: var(--sub);
     }
+
+    /* 🔐 LOGIN OVERLAY */
+    .login-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0f0f1ae6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .login-box {
+      background: #1e1e2e;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+    .login-box input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      margin: 10px 0;
+      background-color: #2e2e3e;
+      color: white;
+      font-size: 1rem;
+    }
+    .login-box .checkbox {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .login-box .checkbox input {
+      margin-right: 10px;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(to right, #7800d2, #b000d2);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .login-box .message {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>🍪 ChatGPT Login Tutorial + Cookies</h1>
 
+  <!-- 🔐 LOGIN SCREEN -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <h2>Enter Access Code</h2>
+      <input type="text" id="loginCode" placeholder="e.g. ChocolateChip123" />
+      <div class="checkbox">
+        <input type="checkbox" id="humanCheck" />
+        <label for="humanCheck">Ich bin ein Mensch</label>
+      </div>
+      <button onclick="validateLogin()">Submit</button>
+      <div class="message" id="loginMessage"></div>
+    </div>
+  </div>
+
+  <!-- 🍪 ORIGINAL CONTENT -->
+  <div class="card" id="mainContent" style="display:none">
+    <h1>🍪 ChatGPT Login Tutorial + Cookies</h1>
     <div class="step"><span>Step 1:</span> Download this Extension: <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank">Cookie Editor</a></div>
     <div class="step"><span>Step 2:</span> Go to: <a href="https://chatgpt.com" target="_blank">ChatGPT</a></div>
     <div class="step"><span>Step 3:</span> Open the Cookie Editor Extension</div>
     <div class="step"><span>Step 4:</span> Press "Delete All" and then "Import"</div>
-
     <div class="images">
       <img src="https://i.imgur.com/33xUdip.png" alt="Delete All" />
       <img src="https://i.imgur.com/gegrFYj.png" alt="Import" />
     </div>
-
     <div class="step">Then it should Look like this after u added the Cookies:</div>
     <div class="img-full">
       <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Editor Preview" />
     </div>
-
-<div class="copy-box">
-  <p class="copy-text">Click below the Button to Copy your Cookies:</p>
-  <button onclick="copyFromSite()">📋 Copy Cookies to Clipboard</button>
-  <div class="tooltip" id="tooltip">
-    ✅ Successfully Copied the Cookies into yours Clipboard! Have fun and Leave a Feedback 💕
+    <div class="copy-box">
+      <p class="copy-text">Click below the Button to Copy your Cookies:</p>
+      <button onclick="copyFromSite()">📋 Copy Cookies to Clipboard</button>
+      <div class="tooltip" id="tooltip">
+        ✅ Successfully Copied the Cookies into yours Clipboard! Have fun and Leave a Feedback 💕
+      </div>
+      <textarea id="cookieBox" style="width:100%; height:150px; margin-top:15px; display:none;"></textarea>
+    </div>
+    <div class="update" id="lastUpdate">Updated and Checked at: </div>
   </div>
 
-  <!-- ✅ Correct placement: inside .copy-box -->
-  <textarea id="cookieBox" style="width:100%; height:150px; margin-top:15px; display:none;"></textarea>
-</div>
-
-<div class="update" id="lastUpdate">Updated and Checked at: </div>
-
   <script>
+    const validCodes = ["ChocolateChip123", "SugarCookie42", "MacaronMagic"];
+
+    function validateLogin() {
+      const code = document.getElementById('loginCode').value.trim();
+      const isHuman = document.getElementById('humanCheck').checked;
+      const message = document.getElementById('loginMessage');
+
+      if (!code) {
+        message.style.color = "orange";
+        message.textContent = "Please enter an access code!";
+        return;
+      }
+      if (!isHuman) {
+        message.style.color = "red";
+        message.textContent = "Please confirm you're human!";
+        return;
+      }
+      if (!validCodes.includes(code)) {
+        message.style.color = "crimson";
+        message.textContent = "Invalid code. Try again.";
+        return;
+      }
+
+      // ✅ Success
+      message.style.color = "lightgreen";
+      message.textContent = "Access granted. Welcome!";
+
+      setTimeout(() => {
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+      }, 1000);
+    }
+
+    function copyFromSite() {
+      const cookieData = "ChocolateChip123 = 🍪 Approved by ChatGPT!";
+      const cookieBox = document.getElementById("cookieBox");
+      const tooltip = document.getElementById("tooltip");
+
+      cookieBox.style.display = "block";
+      cookieBox.value = cookieData;
+      cookieBox.select();
+      document.execCommand("copy");
+
+      tooltip.classList.add("active");
+    }
   </script>
 </body>
 </html>
