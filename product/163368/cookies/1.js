@@ -110,6 +110,67 @@ function isMobile() {
 
 
 
+
+
+
+
+    // ✅ Validate login
+    async function validateLogin() {
+      const code = document.getElementById("loginCode").value.trim();
+      const isHuman = document.getElementById("humanCheck").checked;
+      const messageBox = document.getElementById("loginMessage");
+
+      if (!code) {
+        messageBox.style.color = "orange";
+        messageBox.textContent = "Please enter your license key!";
+        return;
+      }
+
+      if (!isHuman) {
+        messageBox.style.color = "red";
+        messageBox.textContent = "Please confirm you're human!";
+        return;
+      }
+
+      try {
+        const response = await fetch("https://cheap-market.cc/product/163368/cookies/keys2348521109421.txt");
+        if (!response.ok) throw new Error("Fetch failed");
+
+        const keysText = await response.text();
+        const validKeys = keysText.split("\n").map(k => k.trim());
+
+        if (validKeys.includes(code)) {
+          messageBox.style.color = "lightgreen";
+          messageBox.textContent = "✅ Access granted!";
+
+          setTimeout(() => {
+            document.getElementById("loginOverlay").style.display = "none";
+            document.getElementById("mainContent").style.display = "block";
+          }, 1000);
+        } else {
+          messageBox.style.color = "crimson";
+          messageBox.textContent = "❌ Invalid license key.";
+        }
+      } catch (err) {
+        messageBox.style.color = "red";
+        messageBox.textContent = "⚠️ Could not check key (CORS or connection issue)";
+        console.error(err);
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function updateTime() {
   const now = new Date();
   const formatted = now.toLocaleString(undefined, {
