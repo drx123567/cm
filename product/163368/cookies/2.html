@@ -231,16 +231,20 @@
     box-shadow: 0 0 0 2px #7800d2;
   }
 
-  .checkbox {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-    justify-content: center;
-    color: #ccc;
-    font-size: 0.95rem;
-  }
+.checkbox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #ccc;
+}
 
+  .checkbox input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.1);
+}
+  
   .login-box button {
     width: 100%;
     padding: 12px;
@@ -286,10 +290,13 @@
   <input type="text" id="loginCode" placeholder="Enter Access Code" autocomplete="off" autocorrect="off" spellcheck="false" />
 </div>
 
-    <div class="checkbox">
-      <input type="checkbox" id="rememberCheck" />
-      <label for="rememberCheck">Remember Me</label>
-    </div>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" id="rememberCheck" />
+    <span>Remember Me</span>
+  </label>
+</div>
+
 
     <button onclick="validateLogin()">Login</button>
 
