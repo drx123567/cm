@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>www.cheap-market.cc</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="1.css">
 <style>
     :root {
@@ -220,13 +221,23 @@
     }
 
     .input-icon {
-      position: absolute;
-      top: 50%;
-      left: 12px;
-      transform: translateY(-50%);
-      pointer-events: none;
+    position: relative;
+    width: 100%;
     }
 
+.input-icon .icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+  .input-icon input {
+  padding-left: 36px;
+}
     .checkbox {
       display: flex;
       align-items: center;
@@ -279,10 +290,7 @@
     <p class="login-desc">Please input your access code to proceed.</p>
 
     <div class="input-wrapper">
-      <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24" fill="#888">
-        <path d="M0 0h24v24H0V0z" fill="none"/>
-        <path d="M12 17a2 2 0 0 1-2-2V7a2 2 0 0 1 4 0v8a2 2 0 0 1-2 2zm6-2V7a6 6 0 0 0-12 0v8a4 4 0 0 0 8 0h4z"/>
-      </svg>
+      <i class="fas fa-key input-icon"></i>
       <input type="text" id="loginCode" placeholder="Enter Access Code" autocomplete="off" autocorrect="off" spellcheck="false" />
     </div>
 
@@ -300,6 +308,7 @@
     </div>
   </div>
 </div>
+
 
 
 
