@@ -158,6 +158,7 @@ async function validateLogin() {
     } else {
       messageBox.textContent = "❌ Invalid license key.";
       messageBox.style.color = "crimson";
+      showNotify("❌ Invalid License Key. Try again."); // 👈 this is the new line
     }
   } catch (err) {
     messageBox.textContent = "⚠️ Connection or CORS error.";
