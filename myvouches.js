@@ -44,7 +44,7 @@ const getData = async (slug) => {
                 name.textContent = `@${item.discord_name} `;
                 const discordId = document.createElement('a');
                 //discordId.href = `https://lookup.guru//${item.discord_id}`;
-                discordId.href = `https://discordlookup.com//user//${item.discord_id}`;
+                discordId.href = `https://discordlookup.com/user/${item.discord_id}`;
                 discordId.target = "_blank";
                 discordId.className = "discord_id";
                 discordId.textContent = `(${item.discord_id})`;
