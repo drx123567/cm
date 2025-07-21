@@ -12,18 +12,18 @@ const getData = async (slug) => {
             // Count the number of vouches
             const vouchesCount = data.length;
 
-            const title = document.createElement('p');
-            title.className = "vouches-title";
+            //const title = document.createElement('p');
+            //title.className = "vouches-title";
             // Update the text content with the count
-            title.textContent = `Showing ${vouchesCount} vouches scrapped21 from my `;
+            //title.textContent = `Showing ${vouchesCount} vouches scrapped21 from my `;
             // Create a link to the MyVouches page for the specific slug
-            const link = document.createElement('a');
-            link.href = `https://myvouch.es/${slug}`;
-            link.textContent = 'MyVouches Profile';
-            link.className = "vouches-profile";
-            link.target = "_blank";
-            title.appendChild(link);
-            dataContainer.parentNode.insertBefore(title, dataContainer);
+            //const link = document.createElement('a');
+            //link.href = `https://myvouch.es/${slug}`;
+            //link.textContent = 'MyVouches Profile';
+            //link.className = "vouches-profile";
+            //link.target = "_blank";
+            //title.appendChild(link);
+            //dataContainer.parentNode.insertBefore(title, dataContainer);
 
             dataContainer.innerHTML = '';
             dataContainer.className = "swiper-container swiper mySwiper";
