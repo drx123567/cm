@@ -112,7 +112,7 @@ const getData = async (slug) => {
         loop: true,
         grabCursor: true,
         autoplay: {
-          delay: 1500,
+          delay: 2000,
           disableOnInteraction: false,
         },
         breakpoints: {
