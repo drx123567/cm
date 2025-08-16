@@ -8,11 +8,11 @@ const getData = async (slug) => {
     .then(data => {
       const dataContainer = document.getElementById('vouchesContainer');
 
-      // sort newest → oldest
+      // newest → oldest
       data.sort((a, b) => new Date(b.date) - new Date(a.date));
 
       dataContainer.innerHTML = '';
-      dataContainer.className = "swiper-container swiper mySwiper";
+      dataContainer.className = "swiper swiper-container mySwiper"; // both, for CSS compat
 
       const wrapper = document.createElement('div');
       wrapper.className = "swiper-wrapper";
@@ -30,6 +30,9 @@ const getData = async (slug) => {
         const avatar = document.createElement('img');
         avatar.className = "card-img";
         avatar.src = item.discord_avatar;
+        avatar.loading = "lazy";          // perf
+        avatar.decoding = "async";
+        avatar.width = 48; avatar.height = 48;
 
         const name = document.createElement('p');
         name.className = "username";
@@ -39,6 +42,7 @@ const getData = async (slug) => {
         // discordId.href = `https://lookup.guru//${item.discord_id}`;
         discordId.href = `https://id.rappytv.com/${item.discord_id}`;
         discordId.target = "_blank";
+        discordId.rel = "noopener noreferrer"; // safety
         discordId.className = "discord_id";
         discordId.textContent = `(${item.discord_id})`;
 
@@ -77,37 +81,32 @@ const getData = async (slug) => {
           const proofLink = document.createElement('a');
           proofLink.className = "proof-link";
           proofLink.target = "_blank";
+          proofLink.rel = "noopener noreferrer";
           proofLink.href = item.proof;
           proofLink.textContent = "View proof";
           card.appendChild(proofLink);
         }
 
-        // formatted date like "Aug 14, 2025"
+        // keep your original structure: div > span
         const timestamp = document.createElement('div');
         timestamp.className = "text-end data-timestamp";
+        const timestampText = document.createElement('span');
 
-        const timeEl = document.createElement('time');
         const dt = new Date(item.date);
-        if (!isNaN(dt)) {
-          timeEl.dateTime = dt.toISOString();
-          timeEl.textContent = dt.toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-          });
-        } else {
-          timeEl.textContent = item.date || '';
-        }
-        timestamp.appendChild(timeEl);
+        timestampText.textContent = isNaN(dt)
+          ? (item.date || '')
+          : dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        // e.g., "Aug 14, 2025"
+
+        timestamp.appendChild(timestampText);
         card.appendChild(timestamp);
 
         itemDiv.appendChild(card);
         wrapper.appendChild(itemDiv);
-      }); // ← close forEach BEFORE appending wrapper / initializing Swiper
+      });
 
       dataContainer.appendChild(wrapper);
 
-      // your current swiper settings (kept as-is)
       var swiper = new Swiper(".mySwiper", {
         slidesPerView: 1,
         loop: true,
@@ -118,10 +117,11 @@ const getData = async (slug) => {
         },
         breakpoints: {
           700: { slidesPerView: 2, spaceBetween: 30 },
-          1200: { slidesPerView: 3, spaceBetween: 30 }
+          1200:{ slidesPerView: 3, spaceBetween: 30 }
         },
       });
     });
 };
 
+// don't forget to call it
 getData(window.slug);
