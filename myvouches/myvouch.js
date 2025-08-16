@@ -3,126 +3,125 @@ var Swiper=function(){"use strict";function e(e){return null!==e&&"object"==type
 
 // MyVouches
 const getData = async (slug) => {
-    return await fetch(`https://myvouch.es/api/vouches/${slug}`)
-        .then(response => response.json())
-        .then(data => {
+  return await fetch(`https://myvouch.es/api/vouches/${slug}`)
+    .then(response => response.json())
+    .then(data => {
+      const dataContainer = document.getElementById('vouchesContainer');
 
-            const dataContainer = document.getElementById('vouchesContainer');
+      // sort newest → oldest
+      data.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-            // Count the number of vouches
-            const vouchesCount = data.length;
+      dataContainer.innerHTML = '';
+      dataContainer.className = "swiper-container swiper mySwiper";
 
-            //const title = document.createElement('p');
-            //title.className = "vouches-title";
-            // Update the text content with the count
-            //title.textContent = `Showing ${vouchesCount} vouches scrapped21 from my `;
-            // Create a link to the MyVouches page for the specific slug
-            //const link = document.createElement('a');
-            //link.href = `https://myvouch.es/${slug}`;
-            //link.textContent = 'MyVouches Profile';
-            //link.className = "vouches-profile";
-            //link.target = "_blank";
-            //title.appendChild(link);
-            //dataContainer.parentNode.insertBefore(title, dataContainer);
+      const wrapper = document.createElement('div');
+      wrapper.className = "swiper-wrapper";
 
-            data.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            dataContainer.innerHTML = '';
-            dataContainer.className = "swiper-container swiper mySwiper";
-            const wrapper = document.createElement('div');
-            wrapper.className = "swiper-wrapper";
-            data.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = "swiper-slide";
-                const card = document.createElement('div');
-                card.className = "vouches-card";
-                const cardBody = document.createElement('div');
-                cardBody.className = "card-body";
-                const avatar = document.createElement('img');
-                avatar.className = "card-img";
-                avatar.src = item.discord_avatar;
-                const name = document.createElement('p');
-                name.className = "username";
-                name.textContent = `@${item.discord_name} `;
-                const discordId = document.createElement('a');
-                //discordId.href = `https://lookup.guru//${item.discord_id}`;
-                discordId.href = `https://id.rappytv.com/${item.discord_id}`;
-                discordId.target = "_blank";
-                discordId.className = "discord_id";
-                discordId.textContent = `(${item.discord_id})`;
-                cardBody.appendChild(avatar)
-                cardBody.appendChild(name);
-                cardBody.appendChild(discordId);
-                card.appendChild(cardBody);
+      data.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = "swiper-slide";
 
-                const stars = document.createElement('div');
+        const card = document.createElement('div');
+        card.className = "vouches-card";
 
-                for (let i = 1; i <= item.stars; i++) {
-                    const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                    star.setAttribute('viewBox', '0 0 51 48');
-                    star.setAttribute('width', '16px');
-                    star.setAttribute('height', '16px');
-                    star.setAttribute('fill', '#ff765e');
-                    star.innerHTML = '<polygon points="25,1 31,17 48,18 35,29 38,46 25,38 12,46 15,29 2,18 19,17"/>';
+        const cardBody = document.createElement('div');
+        cardBody.className = "card-body";
 
-                    stars.appendChild(star);
-                }
-                for (let i = 1; i <= 5 - item.stars; i++) {
-                    const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                    star.setAttribute('viewBox', '0 0 51 48');
-                    star.setAttribute('width', '16px');
-                    star.setAttribute('height', '16px');
-                    star.setAttribute('fill', 'lightgray');
-                    star.innerHTML = '<polygon points="25,1 31,17 48,18 35,29 38,46 25,38 12,46 15,29 2,18 19,17"/>';
-                    stars.appendChild(star);
-                }
-                card.appendChild(stars);
+        const avatar = document.createElement('img');
+        avatar.className = "card-img";
+        avatar.src = item.discord_avatar;
 
-                const content = document.createElement('p');
-                content.className = "text-white description";
-                content.textContent = item.content;
-                card.appendChild(content);
+        const name = document.createElement('p');
+        name.className = "username";
+        name.textContent = `@${item.discord_name} `;
 
-                if (item.proof != null) {
-                    const proofLink = document.createElement('a');
-                    proofLink.className = "proof-link";
-                    proofLink.target = "_blank";
-                    proofLink.href = item.proof;
-                    proofLink.textContent = "View proof";
-                    card.appendChild(proofLink);
-                }
+        const discordId = document.createElement('a');
+        // discordId.href = `https://lookup.guru//${item.discord_id}`;
+        discordId.href = `https://id.rappytv.com/${item.discord_id}`;
+        discordId.target = "_blank";
+        discordId.className = "discord_id";
+        discordId.textContent = `(${item.discord_id})`;
 
-                const timestamp = document.createElement('div');
-                timestamp.className = "text-end data-timestamp";
-                const timestampText = document.createElement('span');
-                timestampText.textContent = item.date;
-                timestamp.appendChild(timestampText);
-                card.appendChild(timestamp);
+        cardBody.appendChild(avatar);
+        cardBody.appendChild(name);
+        cardBody.appendChild(discordId);
+        card.appendChild(cardBody);
 
-                itemDiv.appendChild(card);
-                wrapper.appendChild(itemDiv);
-            });
-            dataContainer.appendChild(wrapper);
-            var swiper = new Swiper(".mySwiper", {
-                slidesPerView: 1,
-                loop: true,
-                grabCursor: true,
-                autoplay: {
-                    delay: 1500,
-                    disableOnInteraction: true,
-                },
-                breakpoints: {
-                    700: {
-                        slidesPerView: 2,
-                        spaceBetween: 30
-                    },
-                    1200: {
-                        slidesPerView: 3,
-                        spaceBetween: 30
-                    }
-                },
-            });
-        });
-}
+        const stars = document.createElement('div');
+        for (let i = 1; i <= item.stars; i++) {
+          const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          star.setAttribute('viewBox', '0 0 51 48');
+          star.setAttribute('width', '16px');
+          star.setAttribute('height', '16px');
+          star.setAttribute('fill', '#ff765e');
+          star.innerHTML = '<polygon points="25,1 31,17 48,18 35,29 38,46 25,38 12,46 15,29 2,18 19,17"/>';
+          stars.appendChild(star);
+        }
+        for (let i = 1; i <= 5 - item.stars; i++) {
+          const star = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          star.setAttribute('viewBox', '0 0 51 48');
+          star.setAttribute('width', '16px');
+          star.setAttribute('height', '16px');
+          star.setAttribute('fill', 'lightgray');
+          star.innerHTML = '<polygon points="25,1 31,17 48,18 35,29 38,46 25,38 12,46 15,29 2,18 19,17"/>';
+          stars.appendChild(star);
+        }
+        card.appendChild(stars);
+
+        const content = document.createElement('p');
+        content.className = "text-white description";
+        content.textContent = item.content;
+        card.appendChild(content);
+
+        if (item.proof != null) {
+          const proofLink = document.createElement('a');
+          proofLink.className = "proof-link";
+          proofLink.target = "_blank";
+          proofLink.href = item.proof;
+          proofLink.textContent = "View proof";
+          card.appendChild(proofLink);
+        }
+
+        // formatted date like "Aug 14, 2025"
+        const timestamp = document.createElement('div');
+        timestamp.className = "text-end data-timestamp";
+
+        const timeEl = document.createElement('time');
+        const dt = new Date(item.date);
+        if (!isNaN(dt)) {
+          timeEl.dateTime = dt.toISOString();
+          timeEl.textContent = dt.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+          });
+        } else {
+          timeEl.textContent = item.date || '';
+        }
+        timestamp.appendChild(timeEl);
+        card.appendChild(timestamp);
+
+        itemDiv.appendChild(card);
+        wrapper.appendChild(itemDiv);
+      }); // ← close forEach BEFORE appending wrapper / initializing Swiper
+
+      dataContainer.appendChild(wrapper);
+
+      // your current swiper settings (kept as-is)
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        loop: true,
+        grabCursor: true,
+        autoplay: {
+          delay: 1500,
+          disableOnInteraction: true,
+        },
+        breakpoints: {
+          700: { slidesPerView: 2, spaceBetween: 30 },
+          1200: { slidesPerView: 3, spaceBetween: 30 }
+        },
+      });
+    });
+};
 
 getData(window.slug);
