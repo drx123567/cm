@@ -114,7 +114,7 @@ const getData = async (slug) => {
         grabCursor: true,
         autoplay: {
           delay: 1500,
-          disableOnInteraction: true,
+          disableOnInteraction: false,
         },
         breakpoints: {
           700: { slidesPerView: 2, spaceBetween: 30 },
