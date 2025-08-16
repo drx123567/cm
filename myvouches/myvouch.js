@@ -25,6 +25,8 @@ const getData = async (slug) => {
             //title.appendChild(link);
             //dataContainer.parentNode.insertBefore(title, dataContainer);
 
+            data.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
             dataContainer.innerHTML = '';
             dataContainer.className = "swiper-container swiper mySwiper";
             const wrapper = document.createElement('div');
@@ -106,8 +108,8 @@ const getData = async (slug) => {
                 loop: true,
                 grabCursor: true,
                 autoplay: {
-                    delay: 2500,
-                    disableOnInteraction: false,
+                    delay: 1500,
+                    disableOnInteraction: true,
                 },
                 breakpoints: {
                     700: {
