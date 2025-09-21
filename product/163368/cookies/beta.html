@@ -3,255 +3,291 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Your Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
-    :root{
-      --main: #7c3aed;
-      --main-2:#22d3ee;
-      --bg: #0b0c10;
-      --card: #121621;
-      --card-2:#0e121b;
-      --text: #e9ecf1;
-      --sub: #9aa3b2;
-      --border: #252a3a;
-      --radius: 14px;
-      --shadow: 0 12px 34px rgba(0,0,0,.45);
-      --ok:#10b981;
-      --err:#ef4444;
+    :root {
+      --main: #7800d2;
+      --bg: #0f0f1a;
+      --card: #1e1e2e;
+      --text: #eaeaea;
+      --sub: #888;
+      --border: #333;
+      --radius: 12px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(900px 560px at 80% -10%, rgba(124,58,237,.18), transparent 60%),
-        radial-gradient(760px 480px at -10% 10%, rgba(34,211,238,.14), transparent 60%),
-        #0b0c10;
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       padding: 40px 20px;
     }
 
-    .card{
-      background: linear-gradient(180deg, var(--card) 0%, var(--card-2) 100%);
+    .card {
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      max-width: 980px;
+      max-width: 800px;
       margin: auto;
-      padding: 28px;
-      box-shadow: var(--shadow);
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
-    header.app{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px }
-    .brand{ display:flex; align-items:center; gap:12px; font-weight:700 }
-    .brand small{ display:block; font-weight:600; color:var(--sub) }
-
-    h1{
-      font-size: 1.7rem;
-      margin: 6px 0 10px;
-      color: var(--text);
-    }
-    .lead{ color:var(--sub); margin-top:0 }
-
-    .step{
-      margin-bottom: 14px;
-      line-height: 1.6;
-      border:1px solid var(--border);
-      background:#0e121b;
-      padding:14px;
-      border-radius: 12px;
-    }
-    .step span{
-      display:inline-flex; align-items:center; gap:8px;
-      min-width: 90px; font-weight: 700; color: var(--main);
-      text-transform: uppercase; letter-spacing:.3px;
-    }
-    a{ color:#8b5cf6; text-decoration:none }
-    a:hover{ text-decoration:underline }
-
-    .images{
-      display:flex; gap:16px; flex-wrap:wrap; justify-content:flex-start;
-      margin:18px 0;
-    }
-    .images img{
-      width:180px; aspect-ratio: 4/3; object-fit:cover;
-      border: 1px solid var(--border); border-radius: 12px;
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-    .images img:hover{ transform: translateY(-2px) scale(1.01); box-shadow:0 8px 22px rgba(0,0,0,.35) }
-
-    .img-full{
-      margin-top: 16px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      background:#0c0f16;
-    }
-    .img-full img{ width:100%; display:block }
-
-    .copy-box{
-      margin-top: 18px;
-      text-align: left;
-      border-top: 1px dashed var(--border);
-      padding-top: 18px;
-    }
-    .copy-text{ color:var(--sub); margin-bottom: 12px }
-
-    textarea#cookieBox{
-      width:100%; height:160px; resize:vertical;
-      background:#0c0f16; color:#e6ebf5; border:1px solid var(--border);
-      border-radius:12px; padding:12px 14px; font-family: ui-monospace, Menlo, Consolas, monospace; line-height:1.45;
-      display:block;
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 15px;
+      color: var(--main);
+      text-align: center;
     }
 
-    .btn{
-      appearance:none; border:1px solid var(--border); background:#182033; color:var(--text);
-      padding:12px 16px; border-radius: 10px; cursor:pointer; font-weight:600;
-      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+    .step { margin-bottom: 15px; line-height: 1.6; }
+
+    .step span {
+      display: inline-block;
+      width: 75px;
+      font-weight: 600;
+      color: var(--main);
     }
-    .btn:hover{ background:#1b2440 }
-    .btn:active{ transform: translateY(1px) }
-    .btn.primary{ background: linear-gradient(90deg, var(--main), #a855f7); border-color:transparent }
-    .btn.danger{ background:#2a1518; border-color:#3a1a1f; color:#ffc7c7 }
-    .actions{ display:flex; gap:10px; flex-wrap:wrap }
 
-    .update{ margin-top:12px; color:var(--sub); text-align:left }
+    a { color: #00d9ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    /* Top notification bar (repurposed as toast anchor) */
-    .notify-bar{
+    .images {
+      display: flex; gap: 20px; justify-content: center; margin: 25px 0;
+    }
+
+    @keyframes fadeInDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    .notify-bar {
       position: fixed;
+      top: 20px;
       left: 50%;
-      bottom: 26px;
-      transform: translateX(-50%) translateY(10px);
-      background: #0f1422;
+      transform: translateX(-50%);
+      background: #1e1e2e;
       color: white;
-      padding: 12px 16px;
-      border-radius: 10px;
-      border:1px solid var(--border);
-      box-shadow: var(--shadow);
-      font-size: 0.95rem;
+      padding: 12px 24px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      font-size: 1rem;
       z-index: 10000;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition: opacity 0.4s ease-in-out;
     }
-    .notify-bar.show{
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
+    .notify-bar.show { opacity: 1; pointer-events: auto; }
+    #notifyBar.show { display: block; }
+
+    .copy-text { font-size: 0.95rem; color: #ccc; margin-bottom: 15px; }
+
+    .images img {
+      width: 160px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      transition: transform 0.2s;
+    }
+    .images img:hover { transform: scale(1.05); border-color: var(--main); }
+
+    .img-full {
+      margin-top: 20px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .img-full img { width: 100%; display: block; }
+
+    .copy-box {
+      margin-top: 30px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
     }
 
-    .logout-container{ text-align:right; margin-bottom:10px }
+    .copy-box button {
+      background: var(--main);
+      color: #fff;
+      padding: 12px 22px;
+      margin-bottom: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+    .copy-box button:hover { background: #5e00a8; }
+
+    .tooltip {
+      margin-top: 10px; font-size: 0.95rem; color: lightgreen; display: none;
+    }
+    .tooltip.active { display: block; }
+
+    .update {
+      margin-top: 25px; font-size: 0.9rem; text-align: center; color: var(--sub);
+    }
+
+    .logout-container { text-align: right; margin-bottom: 15px; }
+    .logout-container button {
+      background: crimson; color: white; padding: 10px 18px; border: none; border-radius: 8px; cursor: pointer; font-size: 0.95rem;
+    }
 
     /* Login overlay */
-    .login-overlay{
-      position: fixed; inset: 0; display:grid; place-items:center; z-index: 9999;
-      background: radial-gradient(600px 300px at 20% 10%, rgba(124,58,237,.20), transparent 60%),
-                  radial-gradient(600px 300px at 80% 90%, rgba(34,211,238,.14), transparent 60%),
-                  rgba(6,8,12,.84);
-      backdrop-filter: blur(6px);
+    .login-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 15, 26, 0.9);
+      z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
     }
-    .login-box{
-      background: linear-gradient(180deg, #15192a, #0f1422);
-      padding: 26px;
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      width: 92%;
-      max-width: 420px;
-      border:1px solid var(--border);
-      text-align: left;
-      animation: pop .16s ease-out both;
-    }
-    @keyframes pop{ from{ transform:scale(.98); opacity:0 } to{ transform:scale(1); opacity:1 } }
-    .login-title{ font-size: 1.45rem; margin-bottom: 6px }
-    .login-desc{ font-size: 0.98rem; color: var(--sub); margin-bottom: 14px }
-    .input-icon{ position:relative; width:100%; margin-bottom: 14px }
-    .input-icon .icon{ position:absolute; top:50%; left:12px; transform:translateY(-50%); color:#7b8192; font-size:16px }
-    .input-icon input{
-      width:100%; padding: 12px 12px 12px 38px;
-      border:1px solid var(--border); border-radius: 12px;
-      background:#0c0f16; color:white; font-size:1rem; outline:none;
-      transition: border-color .2s ease, box-shadow .2s ease;
-    }
-    .input-icon input:focus{ border-color:#334155; box-shadow:0 0 0 4px rgba(124,58,237,.15) }
-    .checkbox{ margin: 6px 0 2px; color:var(--sub) }
-    .login-box button{ width:100%; margin-top: 10px }
-    .message{ margin-top: 10px; min-height: 20px; font-size: 0.95rem; color: var(--sub) }
 
-    /* Hide main until login */
-    #mainContent{ display:none }
+    .login-box {
+      background: var(--card);
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .login-title { font-size: 1.6rem; color: white; margin-bottom: 10px; }
+    .login-desc { font-size: 0.95rem; color: #bbb; margin-bottom: 20px; }
+
+    .input-icon { position: relative; width: 100%; margin-bottom: 20px; }
+    .input-icon .icon {
+      position: absolute; top: 50%; left: 12px; transform: translateY(-50%);
+      color: #888; font-size: 16px; pointer-events: none;
+    }
+    .input-icon input {
+      width: 100%; padding: 12px 12px 12px 36px;
+      border: 1px solid #333; border-radius: 8px;
+      background: #2a2a3a; color: white; font-size: 1rem;
+      outline: none; transition: border 0.3s, box-shadow 0.3s;
+    }
+    .input-icon input:focus { border-color: white; box-shadow: none; }
+
+    .login-box button {
+      width: 100%; padding: 12px; border: none; border-radius: 8px;
+      background: linear-gradient(to right, #7800d2, #b000d2);
+      color: white; font-size: 1rem; cursor: pointer; transition: background 0.3s;
+    }
+    .login-box button:hover { background: #5e00a8; }
+
+    .message { margin-top: 12px; font-size: 0.95rem; min-height: 20px; }
+
+    .update a { color: #ccc; text-decoration: none; }
+    .update a:hover { text-decoration: underline; }
+
+    /* ---------- Your requested overrides (added verbatim) ---------- */
+    body {
+      user-select: none;
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none;    /* Firefox */
+      -ms-user-select: none;     /* IE/Edge */
+    }
+
+    #cookieBox {
+      font-family: monospace;
+      background-color: #121212;
+      border: 1px solid #333;
+      border-radius: 8px;
+      color: #eee;
+      padding: 10px;
+      font-size: 14px;
+      resize: vertical;
+      margin-top: 15px;
+      width: 100%;
+      display: none; /* hidden by default */
+    }
+
+    @media (min-width: 768px) {
+      #cookieBox { display: none !important; }
+    }
+
+    .checkbox {
+      display: flex; justify-content: flex-start; align-items: center; margin-bottom: 20px;
+    }
+    .custom-checkbox { display: flex; align-items: center; cursor: pointer; font-size: 0.95rem; color: #ccc; gap: 10px; user-select: none; }
+    .custom-checkbox input[type="checkbox"] { display: none; }
+    .custom-checkbox .checkmark {
+      width: 18px; height: 18px; background-color: #2a2a3a; border: 2px solid #555; border-radius: 4px; position: relative; transition: all 0.2s ease;
+    }
+    .custom-checkbox input[type="checkbox"]:checked + .checkmark {
+      background-color: #0f0f1a; border-color: #7800d2;
+    }
+    .custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+      content: ""; position: absolute; top: 50%; left: 50%; width: 5px; height: 10px;
+      border: solid white; border-width: 0 2px 2px 0; transform: translate(-50%, -50%) rotate(45deg);
+    }
+    /* --------------------------------------------------------------- */
   </style>
 </head>
 
 <body>
+  <div id="notifyBar" class="notify-bar" role="status" aria-live="polite"></div>
 
-<div id="notifyBar" class="notify-bar" role="status" aria-live="polite"></div>
+  <!-- Login Overlay -->
+  <div class="login-overlay" id="loginOverlay" aria-modal="true" role="dialog" aria-labelledby="loginTitle">
+    <div class="login-box">
+      <h2 class="login-title" id="loginTitle">Welcome Back</h2>
+      <p class="login-desc">Please enter your license key to continue.</p>
 
-<!-- Login Overlay -->
-<div class="login-overlay" id="loginOverlay" aria-modal="true" role="dialog" aria-labelledby="loginTitle">
-  <div class="login-box">
-    <h2 class="login-title" id="loginTitle">Welcome Back</h2>
-    <p class="login-desc">Please enter your license key to continue.</p>
+      <div class="input-icon">
+        <i class="fas fa-key icon"></i>
+        <input type="text" id="loginCode" placeholder="license-xxxxx-xxxxx" autocomplete="off" autocorrect="off" spellcheck="false" />
+      </div>
 
-    <div class="input-icon">
-      <i class="fas fa-key icon"></i>
-      <input type="text" id="loginCode" placeholder="license-xxxxx-xxxxx" autocomplete="off" autocorrect="off" spellcheck="false" />
-    </div>
+      <div class="checkbox">
+        <label class="custom-checkbox">
+          <input type="checkbox" id="rememberCheck" />
+          <span class="checkmark"></span>
+          <span class="label-text">Remember me</span>
+        </label>
+      </div>
 
-    <div class="checkbox">
-      <label class="custom-checkbox">
-        <input type="checkbox" id="rememberCheck" />
-        <span class="label-text">Remember me</span>
-      </label>
-    </div>
+      <button onclick="validateLogin()">Login</button>
+      <div class="message" id="loginMessage"></div>
 
-    <button class="btn primary" onclick="validateLogin()"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
-    <div class="message" id="loginMessage"></div>
-
-    <p class="update" style="margin-top:10px">Need a license? Replace this with your legitimate purchase link.</p>
-  </div>
-</div>
-
-<!-- Main content -->
-<div class="card" id="mainContent">
-  <div class="logout-container">
-    <div class="actions">
-      <button class="btn" id="lastUpdatedBtn" title="Last updated"><i class="fa-regular fa-clock"></i> <span id="dateNow">—</span></button>
-      <button class="btn danger" onclick="logout()"><i class="fa-solid fa-lock"></i> Logout</button>
+      <div class="update">
+        <!-- Replace with your legit link -->
+        <a href="#" onclick="alert('Replace with your official purchase link');return false;">Don’t have a license key?</a>
+      </div>
     </div>
   </div>
 
-  <header class="app">
-    <div class="brand">
-      <i class="fa-solid fa-shield-halved" style="color:var(--main-2)"></i>
-      <div>Portal <small>Clean • Modern • Accessible</small></div>
+  <!-- Main content -->
+  <div class="card" id="mainContent" style="display:none;">
+    <div class="logout-container">
+      <button onclick="logout()">🔒 Logout</button>
     </div>
-  </header>
 
-  <h1>Quick Start</h1>
-  <p class="lead">Follow these steps to set up your tool. Replace the content with your own lawful guide.</p>
+    <h1>Quick Start Guide</h1>
 
-  <div class="step"><span><i class="fa-solid fa-1"></i> Step 1:</span> Install your required browser extension or helper (if applicable), and describe what it does.</div>
-  <div class="step"><span><i class="fa-solid fa-2"></i> Step 2:</span> Go to your dashboard and sign in with your account.</div>
-  <div class="step"><span><i class="fa-solid fa-3"></i> Step 3:</span> Import your own safe, legal configuration data.</div>
+    <div class="step"><span>Step 1:</span> Install your required helper/extension (if applicable).</div>
+    <div class="step"><span>Step 2:</span> Open your dashboard.</div>
+    <div class="step"><span>Step 3:</span> Import your own **safe, legal** configuration data.</div>
 
-  <div class="images">
-    <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=600&auto=format&fit=crop" alt="Preview 1" />
-    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop" alt="Preview 2" />
-  </div>
-
-  <div class="img-full">
-    <img src="https://images.unsplash.com/photo-1555421689-43cad7100751?q=80&w=1200&auto=format&fit=crop" alt="Full preview" />
-  </div>
-
-  <div class="copy-box">
-    <p class="copy-text">Click the button to copy your <strong>sample data</strong> (placeholder). You’ll see a success pop-up.</p>
-    <div class="actions" style="margin-bottom:10px">
-      <button class="btn primary" onclick="copyFromSite()"><i class="fa-regular fa-clipboard"></i> Copy to Clipboard</button>
+    <div class="images">
+      <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=600&auto=format&fit=crop" alt="Step preview A" />
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop" alt="Step preview B" />
     </div>
-    <textarea id="cookieBox" aria-label="Sample data for copy">{
+
+    <div class="img-full">
+      <img src="https://images.unsplash.com/photo-1555421689-43cad7100751?q=80&w=1200&auto=format&fit=crop" alt="Full preview" />
+    </div>
+
+    <div class="copy-box">
+      <p class="copy-text">Click the button to copy your <strong>sample data</strong>. A success popup will appear.</p>
+      <button onclick="copyFromSite()">📋 Copy to Clipboard</button>
+
+      <div class="tooltip" id="tooltip">✅ Copied to your clipboard!</div>
+
+      <!-- Hidden by your CSS (and hidden on ≥768px). Keep for mobile fallback / programmatic copy. -->
+      <textarea id="cookieBox" aria-label="Sample data">{
   "name": "Your App",
   "exported_at": "2025-09-21T00:00:00Z",
   "data": [
@@ -259,110 +295,102 @@
     {"id": 2, "label": "Example B"}
   ]
 }</textarea>
+    </div>
+
+    <div class="update" id="lastUpdate">
+      Updated and checked at: <span id="dateNow">Loading...</span>
+    </div>
   </div>
 
-  <div class="update" id="lastUpdate">
-    Updated and checked at: <span id="updatedAtText">Loading…</span>
-  </div>
-</div>
-
-<script>
-  // ---------- Helpers ----------
-  const $ = (sel) => document.querySelector(sel);
-
-  function showNotify(msg, isError=false){
-    const bar = $('#notifyBar');
-    bar.textContent = msg || (isError ? 'Something went wrong' : 'Done');
-    bar.style.borderColor = isError ? '#3a1a1f' : 'var(--border)';
-    bar.classList.add('show');
-    clearTimeout(showNotify._t);
-    showNotify._t = setTimeout(()=> bar.classList.remove('show'), 1800);
-  }
-
-  // ---------- Login ----------
-  const KEY_REGEX = /^license-[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}$/;
-
-  function validateLogin(){
-    const input = $('#loginCode');
-    const remember = $('#rememberCheck').checked;
-    const msg = $('#loginMessage');
-
-    const val = (input.value || '').trim();
-    if(!val){
-      msg.textContent = 'Enter your license key.';
-      return;
+  <script>
+    // Simple notify popup using your .notify-bar
+    function showNotify(msg){
+      const el = document.getElementById('notifyBar');
+      el.textContent = msg || 'Done';
+      el.classList.add('show');
+      clearTimeout(showNotify._t);
+      showNotify._t = setTimeout(() => el.classList.remove('show'), 1600);
     }
-    if(!KEY_REGEX.test(val)){
-      msg.textContent = 'Format should look like: license-abc12-xyz34';
-      return;
-    }
-    msg.textContent = '';
 
-    try{
-      if(remember) localStorage.setItem('portal_license', val);
-      else localStorage.removeItem('portal_license');
-    }catch{}
+    // Login validation (format example)
+    const KEY_REGEX = /^license-[a-zA-Z0-9]{5}-[a-zA-Z0-9]{5}$/;
 
-    // Enter app
-    $('#loginOverlay').style.display = 'none';
-    $('#mainContent').style.display = '';
-    showNotify('Logged in');
-    updateTime();
-  }
+    function validateLogin(){
+      const code = document.getElementById('loginCode').value.trim();
+      const msg = document.getElementById('loginMessage');
+      if(!code){ msg.textContent = 'Enter your license key.'; return; }
+      if(!KEY_REGEX.test(code)){ msg.textContent = 'Format: license-abc12-xyz34'; return; }
+      msg.textContent = '';
 
-  function tryAutoLogin(){
-    try{
-      const k = localStorage.getItem('portal_license');
-      if(k && KEY_REGEX.test(k)){
-        $('#loginOverlay').style.display = 'none';
-        $('#mainContent').style.display = '';
-        updateTime();
-      }
-    }catch{}
-  }
-
-  function logout(){
-    try{ localStorage.removeItem('portal_license'); }catch{}
-    location.reload();
-  }
-
-  // ---------- Copy to clipboard ----------
-  async function copyFromSite(){
-    const txt = $('#cookieBox').value;
-    try{
-      await navigator.clipboard.writeText(txt);
-      showNotify('Copied to clipboard');
-    }catch(e){
-      // Fallback
-      const ta = document.createElement('textarea');
-      ta.value = txt;
-      document.body.appendChild(ta);
-      ta.select();
+      // remember?
+      const remember = document.getElementById('rememberCheck').checked;
       try{
-        document.execCommand('copy');
+        if(remember) localStorage.setItem('portal_license', code);
+        else localStorage.removeItem('portal_license');
+      }catch{}
+
+      document.getElementById('loginOverlay').style.display = 'none';
+      document.getElementById('mainContent').style.display = '';
+      updateNow();
+      showNotify('Logged in');
+    }
+
+    function logout(){
+      try{ localStorage.removeItem('portal_license'); }catch{}
+      location.reload();
+    }
+
+    // Copy button: uses Clipboard API with fallback + popup + tooltip toggle
+    async function copyFromSite(){
+      const txt = document.getElementById('cookieBox').value;
+      const tip = document.getElementById('tooltip');
+
+      try{
+        await navigator.clipboard.writeText(txt);
         showNotify('Copied to clipboard');
-      }catch{
-        showNotify('Copy failed', true);
-      }finally{
-        document.body.removeChild(ta);
+        tip.classList.add('active');
+        clearTimeout(copyFromSite._t);
+        copyFromSite._t = setTimeout(()=> tip.classList.remove('active'), 1500);
+      }catch(e){
+        // Fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = txt;
+        document.body.appendChild(ta);
+        ta.select();
+        try{
+          document.execCommand('copy');
+          showNotify('Copied to clipboard');
+          tip.classList.add('active');
+          clearTimeout(copyFromSite._t);
+          copyFromSite._t = setTimeout(()=> tip.classList.remove('active'), 1500);
+        }catch{
+          showNotify('Copy failed');
+        }finally{
+          document.body.removeChild(ta);
+        }
       }
     }
-  }
 
-  // ---------- Last updated ----------
-  function updateTime(){
-    const now = new Date();
-    $('#dateNow').textContent = now.toLocaleString();
-    $('#updatedAtText').textContent = now.toLocaleString();
-  }
+    function updateNow(){
+      document.getElementById('dateNow').textContent = new Date().toLocaleString();
+    }
 
-  // ---------- Init ----------
-  document.addEventListener('DOMContentLoaded', ()=>{
-    // keyboard enter on login
-    $('#loginCode').addEventListener('keydown', (e)=> { if(e.key==='Enter') validateLogin(); });
-    tryAutoLogin();
-    updateTime();
-  });
-</script>
+    // Auto-login if stored
+    (function init(){
+      try{
+        const k = localStorage.getItem('portal_license');
+        if(k && KEY_REGEX.test(k)){
+          document.getElementById('loginOverlay').style.display = 'none';
+          document.getElementById('mainContent').style.display = '';
+        }
+      }catch{}
+      updateNow();
+
+      // Enter with Enter key
+      document.getElementById('loginCode').addEventListener('keydown', e=>{
+        if(e.key==='Enter') validateLogin();
+      });
+    })();
+  </script>
 </body>
 </html>
