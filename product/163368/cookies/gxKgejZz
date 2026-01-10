@@ -1,7 +1,19 @@
 [
     {
         "domain": ".chatgpt.com",
-        "expirationDate": 1775851001.242936,
+        "hostOnly": false,
+        "httpOnly": false,
+        "name": "__cflb",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": true,
+        "storeId": null,
+        "value": "0H28vzvP5FJafnkHxisjP7gwPFCytXteFo6SCJ8R1PH"
+    },
+    {
+        "domain": ".chatgpt.com",
+        "expirationDate": 1775861286.886429,
         "hostOnly": false,
         "httpOnly": true,
         "name": "__Secure-next-auth.session-token",
@@ -10,11 +22,24 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..ypOFyTwMCOCGVLPG.4xhS06cMt2MfC2QYHmXtYN_WCb184DIjjZy2dhUEW2deuNnBy42pufF-te9SkI1sBeZfSDRV_cdaeu_F8f8hl_iUxB6sjKyRJbTuJ9YNlw5m5htuaSAFtzGxQnP_FM7Is1PtBlZufbQKcxGAG0MHyUqxqoUQP7Y8AJHZ66pWpFDiRGbZ2Nzdk0AOoG8cJor7tgJBKP62qEXDEQOVXhhI3HBSpvycL25sf6Vo8Vu7Cuebta1rSVvyuh-u46LnKTLBimm9xboo8dXBqBf9wHpSFRvfNdck4gK2iZY0jsId-On6UuKRTBw4g1hrmVj8xqliM6oaHfvmHT5fj3j3KnzuIoHmIEl4z-6c772-qCmQGEcWgamv38C7irVZ4HzXmuep-WzHUkrRuE82A0OpD4gfCtPo3E6Hao0l7YB882ANcp8dznVILlyp-bC6VjBpNLv5RxD2RX-F-YZmAGuElbdBX8e6tJf7RVMdHED0sd2QGzBryd_t48xyMjFeoBXcPALcEVkGaxuTjMrAfcEqnckDM-d3fWB6qLkIYkLkOQ10cjKRkvFjHhLbKC9wO46aRoS0vGCDfYjTvB4I7TesCFZLUYiu9wgzyFaVdY9v8MsJ9yn9NlHrOxr0P5oIbOvKznfoHABMm0-AX-L3j6PeJfHodtwhpNeRf6WYIN96P_PccnME53edmNAR-OleHkBhM8Lt-z8AAIaSvg6c8pBfCaPRns5GzChmyGoNJC6VlDHojx3PiUBzMpv9Q4LGdQpXNzrcmx0dpVcRHvlQfqQsgoUtynqthMYwjifZ9pxdx5A-zOBJyGBXqMuqzanFEcJwdftmp5D9w_sb8w5Xp2naRbkfgebm6LEjINYaAGNFi6a4O0brwolmOTg5RmrCGfRzoOdDzz9LAaUbT-Sy26DH2Y3vNxvDf4JQyRcsUCE1Yf_riKnNaELMMj76FpnvmlenrHmWJgXewSMKsDrRExYcqsh3y_dXPAGSGfPBYDKT9RN82rh1ngPHjs1_W1dtgMbmhWEgNByocaswu5k7GLT-HaXjKk1w7acMWKkmXx3tPQ7In0pu4eepGDCeszOVRxVwMxs45FsP89Ka2ST1eoVCSv2kSI6-ztfufb7irkv1FnAbDFT3wE7ppvbOovdamNyTPusAU1o8uvst5Ge97OtAk20VXXPYPwg1EZzL9cDvcYMtddLRKQlFjro6GM_paVeLAtvoLtO59s7r9IBlTTC1mToE00pf9ytclX654q6a2mbZDIJmlcYM6GDBZbJzyQMIrogg04KAiKPURouvIIC4jv-aWOXzD96wHhC4CGW_uzt3h8XE_lR1ursLODsqJesvfNnIHgA6mEVCMJTVdIK8MAnyoCnEC8dxTqw27n10qW22svEuOjwtMnyS_9mRlCaHApEXtrgHZq2lb88hQNk5pwRURw2JyRWy9ylz-8DvCuNKnjZFrFhMxOcyQC_Tk5ksre2cIE7ACTpm2SOIUlbZM0LTOHwSAhARmnRAt6jideTFukW4JVv_ytRr9g9InpJ_wzXworl66PTNbztGKQc5swzmMmqgxJq6HYrEk9miuBAMLYbch2weFTFy4EZJMnnEICFdAV2a3yPh1MLYPTEl9gsOr9FP8CqHElmaE22yO3_ltCixr4hlK6wx7xsVoJe1n0Ubq42IzRxMXBR9C7IVEWwUOJkPJ5g0b0F0oiZu45ww_Ii3s6Xv-u5RF3UiMi27KlwpEcYFl0DNSETs1Sx9laxhhOhzi1KKTQSwzj6mLfLFMnDuCG1WCZQh-3DLtlGtBcwTWdGCKSemHiHUTOyXqIph0g492Edai7U9houwwq1IoZu-OwtCrXryqhS8M1R07e-f5Nn1PRRCHVHDjqt1i5-4s_0Z5eGWm2Aj9XUECxb-zg3okGxVAqSmmjbV7MnPHGjxZvrVRSLvKOXQZtdYCLUC1KVF0msws5O6CB0O6l-yGFsTlp39frNyzi3Nlprcv9VjIZL88o-iNadnlzNK6xUCdwThAuNWRdWGcS_ciCK9aS8XSqbyiRbQh0reE45q20whSLEHdnqxxHqIi4O3E6Vr-RbBvH4FM3DcK04_yeJfSHFdk0tos1U0g_MNr5NjfW31pM5NNwIQQ-sinrtI-k6yef8OXFk4d-duhujZzXXupeKgeIw_YMsNZY8V32XwEg_Lian2l8_dGUwaymv0YCBK23nIzkS1CipfDmV1GRjIaGoyyI8sijiZ-UlHATow061nnyjgyjjJzkUQO-KOCSOG52cpCGh349lblGKp1OAtqwNw4vTgUZ9dm2X6U5JJnnmHBwbXWQu7dj9rce6mjvQ7EMzSXF0cSM9P8-tnOU86YB4rkHVnKkHC6fL9HaFNOlvE99jxth16LdQJ9gKFY7EmWmHQEhJ0KRiTAgjIijyObYF64a05chY4vSbMYXrBbDEE5Qd_fmB3l0-t9gqqFP6qXuu7Es_IU3fmeHcsz0WGJLFGzUDypKh_PJUc8nw7Rv4QQVg7GlpeEAuP7P4-0jvQ99hlN90eb_1IsIFiSLN4u7kjavjm8czjP_AygpzXmQtWQysO0tAoYuceYpYzPn9bYxLH_nY_JsRB8TS-iHT6htuI6ShtcK6YllC3mcTfbqcQd-ZBLgXu3169jLE0PeRF37fxXsBWgefbc20YzZNX2klOWRfyfBKwXTfbTxy3W8EAXmrzFu2TvG7laBjLwfDnnloLUaTpLjkrvJoq1GI84ZoYxbMHm8Rq7EFgPpsSOW-oJ6n2-Syan27587mq-yPbhIvGA628yglx7jyFWbOTECTeHqQX6jBisL03Wpt0CfjRTlZ-54cVh-QGzCmcjzfTTTPwxtsNLSprpIdbqEBUAe11OaKSwsdrJd86qhw2QEVf0QROzzkSO75ldR8WzDHFNt1TXSEVgZyiLTUoGfMNr59-Fb4_Xu4_q9a01E3N6XCg_JyNil3nR-MtXqojhk2ICws6VU4I00E4IwaLkweCK4PQXt2KtCuoeZ5Ckkm_ggXAKeNvo-QkuAcInes5VWGWYV77Y6OvPXpLaVJ9WW3CFHmSm3dvryuj173XtVcxJ-RvlUWj0Ud0IahzzDXLMwEXmqlwfewkITQdfIgbNCZxFow4jNcfgIldWLwWPkpkmbDPiKal1pBpL_jhgM2xY4OePQzFLkilb6-xrKfooCxth1rMSIa5sElcfOHqbFEQATJElx8uez0a7X0U1alEHjmbi3u-4o8p7DO-hYYFtWIS0vbDAlzOIffJOdqYKNidJ5eF9k73pF9cY0rwRX1IvbXowCy6dE5sleKqogHMSwEEoTvf6FVIjGF2e8SLJXuHj9GzeFcr2qsovwrvW9k-ENKRjbNzrJNWgFB77xreIumqOn50cyFf2_Aef41JTwT3tGT_DKzD08ZlRhL97zR_i9CktljSLWc-d1uBpj1BbB_jEBeUNI0hKzAsEqW3-YG-LmwDIg5mrnE2UQRWcEzlZZ7ADbq3As_OL_JPKFamimk4tDrAPA3g94ErpcjWO7lHiJurAcKfgdfP_zyyujODrmMRbb-xYUo70iYHG4ktph0zPM1UjpZuzbTHB-pGZqhUE3Ovyj54DU3Ybn-vrVcr9TkINGrypQS4DtCBS29W5GEYGYSaAV9Dtf4jy9MuHRs5HOpIhcfRfxZRSUQtmbJTBbpUJ4D-9Q.vlt8JVVjrW4pS50LBTRgFg"
+        "value": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..icFSxSrCQmrWV3m5.tC4b20Z9VYslALCPyUbWkYpkur0IuQGGT6Hb-Rtss9Pe2eYArelLKm-9ZfCzEPsQAzH9Aq4omGUM-SOhoKIjdEfIyiI0xAnYO16di24xHh22alWVKzi4TUgbL_64g4cwzVIS9IEGoskxLDJXWiXaCvNQyAdOnOz1O2U7hiv1tonOfujpmDswrQMqSSvJf3KzrUXPlAboUbvfTZZ65K63zrbGovz9n-zlVaFSdZ7iLYZFqXyWpMs-3EwacPLtVpEsEKfT_8yvrbM8zQ2f6pElCOALKV4o_xA4H9lTziSJTMzxFKYF7zgq8PV9YtZzj_T746kjq4DrLvmzgAdaoCoFyq87CXKlneYUtBNOlEHfL-R2lpEn6nWLxYaxtq5_MJc1RopLT40TSyUgUGI81OV0SG8R0gJ-6giVlIaYiKVAno4w9-9qbfWJDPBcjc6D_Qp7tThgkazLzKFExY1roHI7jg6pDstooDJDr4bHJHUYyatTXIzS8nsnvWHB5EoZIi-sHiWQ7d6bTEpO7MCXx0JrJ8Gai3vwk9RarNW7aT65VT1K4iY2PqADvMwk6UJhWknvg_LMmxzqi5XNHnprRtNWVAB5iihNejBujcbRH_d2fts9aupwmJm4KknK6qo-tqZshMHFQUSZYF8tzDiGvLfW6ZbhZyyvoE-vzDcM0wDNucZ1mQgr5DVR3f0GtKsCmMWEPSjouwsHkNcq_VBQKnpzcz_xnto7Et1fhnBjrcozPEJmIPCk2ggpwSIMuLQa9Z3jPzHljkSh9zbKohmeEY-ImFdm3qoQ9RakrP3MuacXuTmdON_f1oaFLI-emNEFny14_cEfue-NTwXgDaHRXWZdc-CufA9bQr1gM4EcE80IvxJp-1wuq9wTMRF2c3jsHWeT__cWIbkRoFXX7R-yzJ8qgm4EiGz3s9ZUzpPSu4HVNNm6_eD6FJuUU-JrCkmn8virikLvnpT_OkJZyRFRENARUUIJPSlNsS626wCzQU8fPfQOsUs5jXib41IzJWepQSEbrSuw_cNpAUjEG4_jlVPMdDtoSgOOPbuLFvOXMwpanHINf59GsE_D3CQ8gTpFHE3Ypty9RDp9VJNU12aaP9TMWe0K7CbIK87rxetVoUiAjo5aeJW8OQMKBJqgToqp2psJAUU1E9zOZLSK4uppubY_LVKxROwXJWgkHg1Y4MfEpqANQwzTHS28Doc3OB9sZ3hygVyyJVZkETT2y2oEbqcjhA_XgrbvlCYKKTEo7uG8Krt2iSbQI_XlYzNvoWbZMWwoR63swDij1SATQxRzkB1wL9ZBL444X2TFmnAtSo9orbIuqMue-jJ5BUI52Is2aHP2z0pelHau5JL1iGJuc5NeolPJrA334z2BAMjkS0utLb7XJsO13yGx9La1APCJnwHIJY4SMqCbEHCzU9pMwSThbi62EvHsfiMoL2RV-G_1Ouix0UR8LRL0VXIXf4MxOhceK7TBiEaT4k3WbD6njKu0veWNeBNyHgAejaoGuwsLUm-i3PfnwDJbMJ74Kn-SQ2FZJY8tGKHOZ1NBUQ8G8uYVPboNBJT2sg8bWgWWoBx8ObEArdc7r92JyVw_XKj7H8tExcy-DUYMQz7ACONH9syam33e5nHR4RtTi4cjdL0BQxe6usGBwqv4T5WvFKRQmQcJT7OKV1JJrOm-TvTA4W2g94hp_XmILcq0hettgtXDN0GBy5BeQrbq_PFQkSbW-eAzYRliORvqh-MyXhW6dJF5El2KBrr2AF7CU8kQbkPj26vzzwlUvoCIx7D4JFZnVo_P4iadPBghi9_ZH-iCtjZkVMHTN5v_NkNPLgoHdHL5gXDSn7Q8insNjkHNefe20paJmDI2sLTmL39X129D3crEaH3cXRfan39KaQvcC6aTJvZkeNldnhh1FkmfaDFOYDC_-IoV3_b8unwuRdLBz61yymR1w7EvsUyo7qSIOz7eEgxVGiJXIVBMUdZ3WKjT_ayFOz9bKIb6BMs5obaMYF1TTZxYwVDru3MXhCk2mpUMJdLqclqFCtyFuhavJwq0ljN-F2X87Vl207tNTGaUSQyymlV9Ygfx4bnGn96fW1zY3664gcgMC6O4gBK42GGhFgxtmmZR_wVxS7d6ZxJehCGk4k8aM9TnPQPBINXj4C4HySxkNHSP7oaPo65NCyRaeNFVVjvDTq7wVodcJn6uKJs-3K9GHnxeQ0_GZaFj9lsXHMT6w8tOAhRWX22Bp7b7UBAtlDg3CR_1IGozfcNo5YDQ-5bGYh-0AuHNvNumtcPsqEke5h8M-_Z_h3Y9fC_030T74klOfUkDtaTD8uyIW5A6BPrnMRf4lTnbN8Kv-eWhu5K5DV1nbPxn7Y_LNFtdfHr5pyboyEQpSBtfa_izX6S1esCRSVCxzwh_JUz46peyN6LbR6zNxKt8QzfWyGrv-3uPye9p6hBUaBF6Pmm9NeA7WA8z67d-XK4geBtHyyiz-oT1na5ULZ2Znaa5Ht4TAPLA0tLfV37MMWX0_GcRbdcn1IL-iZhKE-L4RbODyhTlsfLUJo9wkxgl5IhbNiKvdlNYN_bVh2_cg5chfSUmsNapobSOyv_hqG_UcL-dJWXa8bgDJAFtiUwSddlW_5fOVT_fzjxLTtAsgQUN17EGzp2EHPvWOf337pzbwr7rBbez34hNt3stivwxMY7lBBtzAlvvb7FSYwymU58CHtoKj8DpHjchjE9n_PunI8NW9R1SaVDmXyGtSrwAtIbH1zJVwS-vHfXjZZHrp-oMALH7qkD-zHbATe5zXrXdn2MTTcD7zsdI8N11xyYwoN2qkWlXBPFPIdtFdScribKrLz3a_mZ2i8ee2PDWVVtNYh3H1RLxuKVHU8RPWZETPGX7MNiMxtQC-nVCeY40IWYEUbPIlAw7KvTXJukYfJ4vISGKL13sefrAax6FEv1r-2tMZgDqnUBq3rxw7yxY76P3EKYNZ3UquPKvt1AhD67AU1ZBZkmaaFqO77Zm72HSRR2bnP1Qhr6lpvGux7JtU7TcArP-GOcf9JRW0FCt6jEA8f5yaFJZYK5lBOST-dBrPaIipX8M_Rqc7gDZ_JDE63rO1-Ii0qEwRwCHaEqKPDRMrL0zIoJLOErgCGpipZAB0Wb0xrY.6yAr0M3Gz2dDE6EfM_5_8Q"
     },
     {
         "domain": "chatgpt.com",
-        "expirationDate": 1768078296.944799,
+        "expirationDate": 1770677288.076472,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "oai-last-model-config",
+        "path": "/",
+        "sameSite": "lax",
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "%7B%22model%22%3A%22gpt-5-2%22%7D"
+    },
+    {
+        "domain": "chatgpt.com",
+        "expirationDate": 1768088889.304795,
         "hostOnly": true,
         "httpOnly": true,
         "name": "__cflb",
@@ -23,7 +48,7 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "0H28vzvP5FJafnkHxj4GTbDCjk6JXmus2npTuuhnTZm"
+        "value": "0H28vzvP5FJafnkHxj4ZG8HFG1X5V88AMMPnxmjGaHZ"
     },
     {
         "domain": "chatgpt.com",
@@ -41,66 +66,17 @@
         "domain": ".chatgpt.com",
         "hostOnly": false,
         "httpOnly": false,
-        "name": "_ga",
-        "path": "/",
-        "sameSite": null,
-        "secure": false,
-        "session": true,
-        "storeId": null,
-        "value": "GA1.1.1538373818.1766574412"
-    },
-    {
-        "domain": ".chatgpt.com",
-        "hostOnly": false,
-        "httpOnly": false,
         "name": "cf_clearance",
         "path": "/",
         "sameSite": null,
         "secure": true,
         "session": true,
         "storeId": null,
-        "value": "T6lEN0cYkQp1_mDbc25RDJPRB5PjApQM4Zk._asOCaU-1767447920-1.2.1.1-L6Z05VAMkex5QsA61O5H1BwwjFRBezidc2DUW_8CRwf4x25IpBL91zV1dNevA1PXVtJQDBOOmVNuGutihmDsH38AhUThKFHGy8EooOYM_hXwiz.xOdVvO42XJJmjQWttDDpeAl4.bT9mG13hxBzTdvnVxI8OdFRWHBsN_JTmGi3FpriftVNYormH9oPJYaApQuzG5djLwb0DbWnmFvCOwlSSkMNhBQ96.8gvIl_tUz4"
-    },
-    {
-        "domain": ".chatgpt.com",
-        "hostOnly": false,
-        "httpOnly": false,
-        "name": "oai_consent_marketing",
-        "path": "/",
-        "sameSite": null,
-        "secure": false,
-        "session": true,
-        "storeId": null,
-        "value": "false"
+        "value": "f9Vpm4YEjYgNre2ih7soyl.j6Xc7I1RdExJMQzB72S4-1767515100-1.2.1.1-5vHBJmyh2yeNIiR4wU1_masbSrX7H318_s.lxRb1FVBI1dTZrQoxBKm7iTuby6JGUhTkv54Z85.Xuz84YlW8kPguu6n3chl5yMBV6fwjbTfh7bilj1MkM8AJgY_NX.vopqbK4dDoygE0yQKyLZYgcjabU9dGaOPNquntOEQX3pWopooLORL1egr.QO0dRNkSEfGcTEW1yVdwteHVIoe9jJHsBm9G2fON.YR0yJ3wuRY"
     },
     {
         "domain": "chatgpt.com",
-        "expirationDate": 1799611036,
         "hostOnly": true,
-        "httpOnly": false,
-        "name": "_dd_s",
-        "path": "/",
-        "sameSite": "strict",
-        "secure": false,
-        "session": false,
-        "storeId": null,
-        "value": "aid=c13d10c5-48f1-493d-99ed-ddba23f45a7a&rum=0&expire=1768075936401&logs=1&id=9193ea02-2ea1-4f6e-b6ed-43d0714ea184&created=1768074697202"
-    },
-    {
-        "domain": ".chatgpt.com",
-        "hostOnly": false,
-        "httpOnly": false,
-        "name": "_ga_9SHBSK2D9J",
-        "path": "/",
-        "sameSite": null,
-        "secure": false,
-        "session": true,
-        "storeId": null,
-        "value": "GS2.1.s1766574411$o1$g1$t1766574430$j41$l0$h0"
-    },
-    {
-        "domain": ".chatgpt.com",
-        "hostOnly": false,
         "httpOnly": false,
         "name": "oai_consent_analytics",
         "path": "/",
@@ -111,8 +87,45 @@
         "value": "false"
     },
     {
+        "domain": "chatgpt.com",
+        "expirationDate": 1799621287,
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "_dd_s",
+        "path": "/",
+        "sameSite": "strict",
+        "secure": false,
+        "session": false,
+        "storeId": null,
+        "value": "aid=7e93daee-6407-4f43-b0a0-98bafef059f5&rum=0&expire=1768086187347&logs=1&id=86544600-5cb7-46d3-8434-5ec6e3c60a83&created=1768085284270"
+    },
+    {
+        "domain": "chatgpt.com",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "_ga_9SHBSK2D9J",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": true,
+        "storeId": null,
+        "value": "GS2.1.s1765535026$o122$g0$t1765535026$j60$l0$h0"
+    },
+    {
+        "domain": "chatgpt.com",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "_puid",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": true,
+        "storeId": null,
+        "value": "user-ahRZ5uYNAPitrXE9AxCjKfAD:1767515108-1%2B%2BiFvCCxw5mOQ3jL1%2FSJJA3aGYT1A83Kp9dbv1gfK0%3D"
+    },
+    {
         "domain": ".chatgpt.com",
-        "expirationDate": 1768076496.944674,
+        "expirationDate": 1768087083.986707,
         "hostOnly": false,
         "httpOnly": true,
         "name": "__cf_bm",
@@ -121,7 +134,31 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "BAwFB8NJZbfYvCv1wk9eQfu8rWMZPb1N_u5tvuZtFgM-1768074695-1.0.1.1-JBOmuRAS5nnM_vWGb2XPoczTk4MgKieBcev2XBWgNhGzXR5mUtb_pvnnYZMX9vK05mEAmLtbeFUJ15NSPHEB_4LIvcbjawQBTvchEKF3ZDk"
+        "value": "rYrg9O5hrX5h6Be5dA9CLWdanYVhCPfdqFu6nwwFhlA-1768085283-1.0.1.1-TmcAM0kqYkdeztOP50GJURi4AeOlxAhI8OUouPXYLTd51E.hfY2XPco4QBjGxCwJkTbltFUXEEg7IuqqH8Ie975TxgCVeHoBrnMHaS3QHJE"
+    },
+    {
+        "domain": "chatgpt.com",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "oai-sc",
+        "path": "/",
+        "sameSite": null,
+        "secure": true,
+        "session": true,
+        "storeId": null,
+        "value": "0gAAAAABpWm0phNnPIRWMDP7PGPWc_A3gKMDlPXKz07o1U2I_DXpwFwVCP87O8b-qwvILt2Amtaq1hehPSegguL4lOB72uKegopd28rX_LQHj6At2URltUE9NyLTnr8JWEBB_2E6Q1hrhrR15JjfdlTWZx2T8QvUw7kq1ECywT6Zma7wwSktUjVQmX01jzzNYq8bShtPgEYrvpdRJY6PC0qf3uLysGDzv7wjiai5wcqfATy-NrJKP0C4"
+    },
+    {
+        "domain": "chatgpt.com",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "oai-did",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": true,
+        "storeId": null,
+        "value": "e1140e51-6287-46be-b745-8d64876f2416"
     },
     {
         "domain": "chatgpt.com",
@@ -133,7 +170,7 @@
         "secure": false,
         "session": true,
         "storeId": null,
-        "value": "ON_YOUR_MIND%20%7C%20HOW_CAN_I_HELP"
+        "value": "ON_YOUR_MIND%20%7C%20AGENDA_TODAY"
     },
     {
         "domain": ".chatgpt.com",
@@ -145,11 +182,11 @@
         "secure": true,
         "session": true,
         "storeId": null,
-        "value": "oM7GAbYzR6cFsTGExLTtvUXQ88CmVSIU6x59FOEFNuI-1768074647404-0.0.1.1-604800000"
+        "value": "VMHTaACW2K2oDfkXbl6YCIYRxfHvHpcWPCQHYtbjuFM-1768085283092-0.0.1.1-604800000"
     },
     {
         "domain": ".chatgpt.com",
-        "expirationDate": 1799611009.334346,
+        "expirationDate": 1799621288.467373,
         "hostOnly": false,
         "httpOnly": false,
         "name": "oai-sc",
@@ -158,7 +195,7 @@
         "secure": true,
         "session": false,
         "storeId": null,
-        "value": "0gAAAAABpYq8AbIY5IF6wNv_88Jp5MekBsbdl7VUkZF1NVpfGGHHVq8DEmDaqoMrarA7RNXHVyJWU92J8k7LfJ4Q6yH8sMOP-AF9pZa9AFQZZbquGenhIiXYcU9LLy5XFvdTRqx-GTQxsExKgCjd3A5Xe42NuSdP3Gy3CMyzVHzTiaSEnRi3Ex5B5N6ZD-ua4Vg4fIxEa_CzHavuqprgoPE-y-RAHukGqHhTS16PSo64SXqiQjx_lNy0"
+        "value": "0gAAAAABpYtcnTA_IxEy_eLkPIo5Ptg_fK5ZC5GcxDEvEPHzuWVBUw_pW-HpNMXn9Hr-5SJqyHwwR6MR6jf9_TO9Kb-lGkxS_v3fzr-vT8FUUEPzNtMg-g9iEVxTmQo0hRCRbTqy-0b545kJ5ztabtTDzxWjwkA_K7p3wEAXEI9GK_BzzoBul3Z_bFU5kPMSp-B-qyIko6NODfSg1MT7WyC9Rs3MV_pjj4BMU3gV2f1RSwxKSVdPjldc"
     },
     {
         "domain": "chatgpt.com",
@@ -170,19 +207,7 @@
         "secure": false,
         "session": true,
         "storeId": null,
-        "value": "Brijmohan"
-    },
-    {
-        "domain": "chatgpt.com",
-        "hostOnly": true,
-        "httpOnly": false,
-        "name": "_uasid",
-        "path": "/",
-        "sameSite": null,
-        "secure": true,
-        "session": true,
-        "storeId": null,
-        "value": "\"Z0FBQUFBQnBXUjJKb0UwTE1uV1ZrRjBsRnpXdVp1OUxENFNXdUtQQVNEZERqczBGbXdOcnVDa0R1TUpJZVpDc0RhMlpTc1YyR09uYlZnMUxOMVZpMUlwQXBaT0Njdk5QbWx3dVROcHI1ZnN2cDh6d2RkN3QxQ3JGMzFxSFJCcjNGLXZ5YVJTNHF0OTFJandFOFYwZ1k1Q1JqYm5UT29YYkVubzhsUXRjTDV1eFRma3lvdVNWVDJyUWJ3cmlnMkdab3puWC01bTJCaExoalpqcjJNemFXM2ZXVU5pZDFnNHdROC1hLW56NkZacjEyTnBMZnpSbE5UejhFVm1yUXl1RnlUMGxrZmlhTVNfWXpRakxnOU1HZExjend6NUIyZVV6ZmdxVmFOT3p1Q0FCSDh1NmM3NHhNb0pTSWwzTl9DczRMQTQzajJXVVZ2NzR0UjJ6bjV1emtpLTVoOHZVUzItLWpnPT0=\""
+        "value": "Phong"
     },
     {
         "domain": "chatgpt.com",
@@ -194,7 +219,7 @@
         "secure": true,
         "session": true,
         "storeId": null,
-        "value": "be1f3fc07439bbfd11b49cb9769fe9ca57747429e66cf55a4bbcf6b168608398%7Cef1a7343ce752feb8fc4bcb2b571883e29df61d15f8bad01bb341b2c3eb82865"
+        "value": "e42bbdffbef96ca1733215bc2b5ff8e8f357f6fb7be5e43cfa96a86934b15979%7Cf76fa2a43bb0efe78f26feec6c581a38fa4670b2da2d21245b61d6641792a68a"
     },
     {
         "domain": "chatgpt.com",
@@ -209,32 +234,20 @@
         "value": "https%3A%2F%2Fchatgpt.com%2F"
     },
     {
-        "domain": ".chatgpt.com",
-        "hostOnly": false,
+        "domain": "chatgpt.com",
+        "hostOnly": true,
         "httpOnly": false,
-        "name": "__stripe_mid",
+        "name": "_ga",
         "path": "/",
         "sameSite": null,
-        "secure": true,
+        "secure": false,
         "session": true,
         "storeId": null,
-        "value": "1d55df9d-f0fd-4a04-8375-f17bd77b04d210f5a5"
+        "value": "GA1.1.1382127722.1761905420"
     },
     {
         "domain": "chatgpt.com",
         "hostOnly": true,
-        "httpOnly": false,
-        "name": "_umsid",
-        "path": "/",
-        "sameSite": null,
-        "secure": true,
-        "session": true,
-        "storeId": null,
-        "value": "\"Z0FBQUFBQnBXUjJKckUtaWdnWngtWS04XzlOSFRYaHZnVklRVkRYMkRXZTh3ZzBFUUJFQ2tnY2YtTndGMnNJVmtGOWtyNnpXa2lZQVQ3MkZDV1F1clVOT09YYmdlZkluU1BwM0duVVZNQ1pyWm5Pd2s5bVgtNEpWU3d5UFlQQUxIYm01MVdmNnFVanJHbHl1OFYwa1FuQmY4cUp2Wm54aV9OdnlBOFJ3RFlyRDJmaFM0MEpveDJUTXc5OENpNm1RbGR5WEdaeXV5TnFMczNkcW5SdUMzNkhsd0d1SzlBUUJNcFZOX203WjQ0MEItOUMzUkZraEFHVT0=\""
-    },
-    {
-        "domain": ".chatgpt.com",
-        "hostOnly": false,
         "httpOnly": false,
         "name": "oai-allow-ne",
         "path": "/",
@@ -246,7 +259,7 @@
     },
     {
         "domain": "chatgpt.com",
-        "expirationDate": 1770667009.431011,
+        "expirationDate": 1770677288.055944,
         "hostOnly": true,
         "httpOnly": false,
         "name": "oai-client-auth-info",
@@ -255,19 +268,7 @@
         "secure": false,
         "session": false,
         "storeId": null,
-        "value": "%7B%22user%22%3A%7B%22name%22%3A%22Brijmohan%20Kumar%22%2C%22email%22%3A%22brijmohankumar673%40gmail.com%22%2C%22picture%22%3A%22https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fbk.png%22%2C%22connectionType%22%3A2%2C%22timestamp%22%3A1768075009430%7D%2C%22isOptedOut%22%3Afalse%7D"
-    },
-    {
-        "domain": ".chatgpt.com",
-        "hostOnly": false,
-        "httpOnly": false,
-        "name": "oai-did",
-        "path": "/",
-        "sameSite": null,
-        "secure": false,
-        "session": true,
-        "storeId": null,
-        "value": "3b0eb263-5011-4132-b582-6b93af1ee26d"
+        "value": "%7B%22user%22%3A%7B%22name%22%3A%22Phong%20PhapChe%22%2C%22email%22%3A%22hba.phapche%40gmail.com%22%2C%22picture%22%3A%22https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fpp.png%22%2C%22connectionType%22%3A1%2C%22timestamp%22%3A1768085288055%7D%2C%22isOptedOut%22%3Afalse%7D"
     },
     {
         "domain": "chatgpt.com",
@@ -280,5 +281,17 @@
         "session": true,
         "storeId": null,
         "value": "1"
+    },
+    {
+        "domain": "chatgpt.com",
+        "hostOnly": true,
+        "httpOnly": false,
+        "name": "oai_consent_marketing",
+        "path": "/",
+        "sameSite": null,
+        "secure": false,
+        "session": true,
+        "storeId": null,
+        "value": "false"
     }
 ]
