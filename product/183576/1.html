@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Giveaway Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #080808;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .orb {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 380px;
+      padding: 44px 36px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      position: relative;
+    }
+
+    .top {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(124,58,237,0.12);
+      border: 1px solid rgba(124,58,237,0.25);
+      color: #a78bfa;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .sub {
+      color: #555;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .field label {
+      display: block;
+      color: #444;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      letter-spacing: 5px;
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      margin-bottom: 10px;
+    }
+
+    input:focus {
+      border-color: rgba(124,58,237,0.5);
+      background: rgba(124,58,237,0.05);
+    }
+
+    input::placeholder {
+      letter-spacing: 1px;
+      color: #333;
+    }
+
+    .err {
+      font-size: 12px;
+      color: #f87171;
+      min-height: 16px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-unlock {
+      background: #7c3aed;
+      color: #fff;
+    }
+
+    .btn-unlock:hover { background: #6d28d9; }
+    .btn-unlock:active { transform: scale(0.98); }
+
+    .claim-section {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 16px;
+    }
+
+    .ok-label {
+      text-align: center;
+      color: #6ee7b7;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-claim {
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #fff;
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    .btn-claim:hover { opacity: 0.9; }
+    .btn-claim:active { transform: scale(0.98); }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.3); }
+      50% { box-shadow: 0 0 16px 4px rgba(16,185,129,0.15); }
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 24px;
+      color: #2a2a2a;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <div class="orb"></div>
+
+  <div class="card">
+    <div class="top">
+      <div class="pill">🎁 Giveaway</div>
+      <h1>Claim Your Reward</h1>
+      <p class="sub">Enter your access key below to unlock.</p>
+    </div>
+
+    <div class="field">
+      <label>Access Key</label>
+      <input id="keyInput" type="text" placeholder="· · · · · ·" maxlength="20" />
+    </div>
+
+    <div class="err" id="errMsg"></div>
+
+    <button class="btn btn-unlock" onclick="checkKey()">Unlock →</button>
+
+    <div class="claim-section" id="claimSection">
+      <div class="divider"></div>
+      <div class="ok-label">
+        <span>✓</span> Key verified — your reward is ready
+      </div>
+      <button class="btn btn-claim" onclick="claimReward()">🎉 Claim Now</button>
+    </div>
+
+    <div class="footer">One reward per key &nbsp;·&nbsp; Limited availability</div>
+  </div>
+
+  <script>
+    const VALID_KEY = "123";
+    const REDIRECT = "https://netflix.com/?nftoken=BgjXuOvcAxLCAbaj9Kh0EOw2TvlQAPdPC5pVta9f7D7hoygk/ztK9tA678MxFLNWNDQxO+KBNnIaqyK5Fk7qRpFNVeCgmoR1FpvH0HOgkaoX4AucqVmhnZ2IoQ6ej4sBN+yn5cAmxPKWfxFsa95ySAQiSusgdcDHz/5HgQaOLNuUDsSmSr7+3K1wAd2q41K8CmZmKlpiGaYzMEr/G7dysBs9hBt4zI1E4oA0uuoXh296Rpcgxo4SNVOEuwv/OZzLlZ61V+9kaxyNLButGAYiDgoM8hGiV69b18Jkpb3l";
+
+    function checkKey() {
+      const val = document.getElementById("keyInput").value.trim();
+      const err = document.getElementById("errMsg");
+      const claim = document.getElementById("claimSection");
+
+      if (!val) { err.textContent = "Please enter your key."; return; }
+      if (val !== VALID_KEY) { err.textContent = "Invalid key — please try again."; claim.style.display = "none"; return; }
+
+      err.textContent = "";
+      claim.style.display = "block";
+    }
+
+    function claimReward() { window.location.href = REDIRECT; }
+
+    document.getElementById("keyInput").addEventListener("keydown", e => {
+      if (e.key === "Enter") checkKey();
+    });
+  </script>
+</body>
+</html>
