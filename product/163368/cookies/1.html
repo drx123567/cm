@@ -127,10 +127,9 @@ h1{font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-.01em}
 #cookieBox{font-family:'SF Mono',Monaco,Consolas,monospace;background:rgba(0,0,0,.55);border:1px solid var(--gb);border-radius:10px;color:var(--text);padding:12px 14px;font-size:.8rem;resize:vertical;margin-top:16px;width:100%;display:none;min-height:140px}
 @media(min-width:768px){#cookieBox{display:none !important}}
 
-/* Badges */
-.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding-top:18px;border-top:1px solid var(--gb)}
-.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;font-size:.7rem;font-weight:500;color:var(--muted);background:rgba(255,255,255,.03);border:1px solid var(--gb);border-radius:999px}
-.badge i{font-size:.65rem;color:var(--accent)}
+/* Two-column content grid */
+.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+@media(max-width:700px){.content-grid{grid-template-columns:1fr}}
 
 /* Update bar */
 .update-bar{display:inline-flex;align-items:center;gap:7px;margin-top:20px;padding:7px 14px;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.15);border-radius:999px;font-size:.72rem;color:var(--muted)}
@@ -211,49 +210,53 @@ h1{font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-.01em}
         <h1>ChatGPT Cookie Tutorial</h1>
       </div>
 
-      <div class="step">
-        <div class="step-title">Step 1 — Install extension</div>
-        <p class="step-desc">Download <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank">Cookie Editor</a> from the Chrome Web Store.</p>
-      </div>
-      <div class="step">
-        <div class="step-title">Step 2 — Open ChatGPT</div>
-        <p class="step-desc">Navigate to <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> in your browser.</p>
-      </div>
-      <div class="step">
-        <div class="step-title">Step 3 — Open Cookie Editor</div>
-        <p class="step-desc">Click the Cookie Editor icon in your browser toolbar to open it.</p>
-      </div>
-      <div class="step">
-        <div class="step-title">Step 4 — Import cookies</div>
-        <p class="step-desc">Press <strong style="color:var(--text)">Delete All</strong>, then <strong style="color:var(--text)">Import</strong> and paste the cookies you copied below.</p>
-      </div>
+      <div class="content-grid">
 
-      <div class="images">
-        <img src="https://i.imgur.com/33xUdip.png" alt="Delete All" />
-        <img src="https://i.imgur.com/gegrFYj.png" alt="Import" />
-      </div>
+        <!-- Left: steps -->
+        <div class="steps-col">
+          <div class="step">
+            <div class="step-title">Step 1 — Install extension</div>
+            <p class="step-desc">Download <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank">Cookie Editor</a> from the Chrome Web Store.</p>
+          </div>
+          <div class="step">
+            <div class="step-title">Step 2 — Open ChatGPT</div>
+            <p class="step-desc">Navigate to <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> in your browser.</p>
+          </div>
+          <div class="step">
+            <div class="step-title">Step 3 — Open Cookie Editor</div>
+            <p class="step-desc">Click the Cookie Editor icon in your browser toolbar to open it.</p>
+          </div>
+          <div class="step">
+            <div class="step-title">Step 4 — Import cookies</div>
+            <p class="step-desc">Press <strong style="color:var(--text)">Delete All</strong>, then <strong style="color:var(--text)">Import</strong> and paste the cookies copied on the right.</p>
+          </div>
+        </div>
 
-      <p style="font-size:.8rem;color:var(--muted);margin-bottom:10px;">After importing it should look like this:</p>
-      <div class="img-full">
-        <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Editor Preview" />
-      </div>
+        <!-- Right: images + copy -->
+        <div class="media-col">
+          <div class="images">
+            <img src="https://i.imgur.com/33xUdip.png" alt="Delete All" />
+            <img src="https://i.imgur.com/gegrFYj.png" alt="Import" />
+          </div>
 
-      <div class="copy-box">
-        <p class="copy-label">Your cookies</p>
-        <button onclick="copyFromSite()">
-          <i class="fas fa-clipboard"></i> Copy Cookies to Clipboard
-        </button>
-        <div class="tooltip" id="tooltip">✅ Copied! Have fun and leave a review 💚</div>
-        <textarea id="cookieBox"></textarea>
-      </div>
+          <p style="font-size:.75rem;color:var(--muted);margin-bottom:8px;">After importing it should look like this:</p>
+          <div class="img-full">
+            <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Editor Preview" />
+          </div>
 
-      <div class="badges">
-        <span class="badge"><i class="fas fa-shield-halved"></i> Encrypted transfer</span>
-        <span class="badge"><i class="fas fa-bolt"></i> Instant delivery</span>
-        <span class="badge"><i class="fas fa-rotate"></i> Regularly updated</span>
-      </div>
+          <div class="copy-box">
+            <p class="copy-label">Your cookies</p>
+            <button onclick="copyFromSite()">
+              <i class="fas fa-clipboard"></i> Copy Cookies to Clipboard
+            </button>
+            <div class="tooltip" id="tooltip">✅ Copied! Have fun and leave a review 💚</div>
+            <textarea id="cookieBox"></textarea>
+          </div>
+        </div>
 
-      <div style="text-align:center;">
+      </div><!-- /.content-grid -->
+
+      <div style="text-align:center;margin-top:20px;">
         <div class="update-bar">
           <i class="fas fa-circle-check"></i>
           Last verified: <span id="dateNow">Loading…</span>
