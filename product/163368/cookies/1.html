@@ -3,384 +3,210 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>www.cheap-market.cc</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>ChatGPT Cookie Setup - Premium Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-<style>
-  :root {
-    --main: #7800d2;
-    --bg: #0f0f1a;
-    --card: #1e1e2e;
-    --text: #eaeaea;
-    --sub: #888;
-    --border: #333;
-    --radius: 12px;
-  }
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+    :root{--bg:#050505;--card:rgba(12,12,12,0.7);--border:rgba(16,185,129,0.12);--accent:#10b981;--text:#e5e5e5;--muted:#6b7280;--glass:rgba(10,10,10,0.8);--gb:rgba(255,255,255,0.06)}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    padding: 40px 20px;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.6}
 
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    max-width: 800px;
-    margin: auto;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  }
+    #rays-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.5}
+    #rays-canvas{width:100%;height:100%}
 
-  h1 {
-    font-size: 1.9rem;
-    margin-bottom: 15px;
-    color: var(--main);
-    text-align: center;
-  }
+    .navbar-container{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:center;pointer-events:none;transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .navbar{pointer-events:auto;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;width:100%;max-width:1400px;border:1px solid transparent;border-radius:0;background:transparent;backdrop-filter:blur(0);transition:all .4s cubic-bezier(.4,0,.2,1)}
+    .navbar.scrolled{height:52px;width:min(860px,92%);padding:0 24px;border:1px solid var(--gb);border-radius:999px;background:var(--glass);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);margin-top:16px;box-shadow:0 8px 32px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03)}
 
-  .step {
-    margin-bottom: 15px;
-    line-height: 1.6;
-  }
+    .logo{font-size:1rem;font-weight:700;color:var(--accent);letter-spacing:-.01em;text-decoration:none;transition:opacity .2s;display:flex;align-items:center;gap:8px}
+    .logo:hover{opacity:.8}
+    .logo i{font-size:1.2rem}
 
-  .step span {
-    display: inline-block;
-    width: 75px;
-    font-weight: 600;
-    color: var(--main);
-  }
+    .nav-links{display:flex;align-items:center;gap:4px}
+    .nav-link{padding:7px 16px;font-size:.8rem;font-weight:500;color:var(--muted);text-decoration:none;border-radius:999px;transition:all .2s ease}
+    .nav-link:hover,.nav-link.active{color:var(--text)}
+    .nav-link.active{text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--accent)}
 
-  a {
-    color: #00d9ff;
-    text-decoration: none;
-  }
+    main{position:relative;z-index:1;min-height:100vh;padding-top:130px}
+    .container{max-width:1060px;margin:0 auto;padding:0 20px}
 
-  a:hover {
-    text-decoration: underline;
-  }
+    .section-header{text-align:center;margin-bottom:48px;opacity:0;animation:fadeUp .6s ease forwards}
+    .section-title{font-size:1.75rem;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:-.02em}
+    .section-subtitle{font-size:.9rem;color:var(--muted);max-width:500px;margin:0 auto}
 
-  .images {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin: 25px 0;
-  }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
-  .notify-bar {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1e1e2e;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    font-size: 1rem;
-    z-index: 10000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease-in-out;
-    border: 1px solid var(--border);
-  }
+    .content-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
 
-  .notify-bar.show {
-    opacity: 1;
-    pointer-events: auto;
-  }
+    .glass-card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;overflow:hidden;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:border-color .3s ease,box-shadow .3s ease;opacity:0;animation:cardFadeIn .7s ease forwards}
+    .glass-card:nth-child(2){animation-delay:.15s}
+    .glass-card:hover{border-color:rgba(16,185,129,.28);box-shadow:0 0 32px rgba(16,185,129,.07)}
 
-  .copy-text {
-    font-size: 0.95rem;
-    color: #ccc;
-    margin-bottom: 15px;
-  }
+    @keyframes cardFadeIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
-  .images img {
-    width: 160px;
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
-    transition: transform 0.2s;
-  }
+    .glass-card::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(16,185,129,.04) 0%,transparent 40%);pointer-events:none}
+    .glass-card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(16,185,129,.18),transparent);pointer-events:none}
 
-  .images img:hover {
-    transform: scale(1.05);
-    border-color: var(--main);
-  }
+    .card-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+    .card-icon{width:24px;height:24px;color:var(--accent)}
+    .card-title{font-size:1.1rem;font-weight:600;color:var(--text)}
 
-  .img-full {
-    margin-top: 20px;
-    border: 2px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
+    .step{position:relative;padding-left:16px;margin-bottom:22px;opacity:0;animation:stepFadeIn .5s ease forwards}
+    .step:nth-child(2){animation-delay:.2s}
+    .step:nth-child(3){animation-delay:.35s}
+    .step:nth-child(4){animation-delay:.5s}
 
-  .img-full img {
-    width: 100%;
-    display: block;
-  }
+    @keyframes stepFadeIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
 
-  .copy-box {
-    margin-top: 30px;
-    text-align: center;
-    border-top: 1px solid var(--border);
-    padding-top: 20px;
-  }
+    .step::before{content:'';position:absolute;left:0;top:5px;bottom:-16px;width:2px;background:var(--accent);border-radius:2px}
+    .step:last-child::before{bottom:5px}
 
-  .copy-box button {
-    background: var(--main);
-    color: #fff;
-    padding: 12px 22px;
-    margin-bottom: 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.3s;
-    font-weight: 600;
-  }
+    .step-title{font-size:.875rem;font-weight:600;color:var(--accent);margin-bottom:5px}
+    .step-desc{font-size:.8rem;color:var(--muted);line-height:1.65}
 
-  .copy-box button:hover {
-    background: #5e00a8;
-  }
+    .step-buttons{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .btn-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;font-size:.75rem;font-weight:500;color:var(--text);background:transparent;border:1px solid var(--gb);border-radius:999px;cursor:pointer;transition:all .2s ease;text-decoration:none}
+    .btn-pill:hover{border-color:var(--accent);background:rgba(16,185,129,.06);box-shadow:0 0 16px rgba(16,185,129,.12)}
+    .btn-pill svg{width:12px;height:12px}
+    .btn-pill.primary{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.25)}
 
-  .tooltip {
-    margin-top: 10px;
-    font-size: 0.95rem;
-    color: lightgreen;
-    display: none;
-  }
+    .images{display:flex;gap:20px;justify-content:center;margin:25px 0;flex-wrap:wrap}
+    .images img{width:160px;border:2px solid var(--border);border-radius:16px;transition:all .3s ease;cursor:pointer}
+    .images img:hover{transform:scale(1.05);border-color:var(--accent);box-shadow:0 8px 24px rgba(16,185,129,.2)}
 
-  .tooltip.active {
-    display: block;
-  }
+    .img-full{margin-top:20px;border:2px solid var(--border);border-radius:16px;overflow:hidden;opacity:0;animation:cardFadeIn .7s ease .4s forwards}
+    .img-full img{width:100%;display:block}
 
-  .update {
-    margin-top: 25px;
-    font-size: 0.9rem;
-    text-align: center;
-    color: var(--sub);
-  }
+    .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.85);z-index:2000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+    .modal.active{display:flex;opacity:0;animation:fadeIn .3s ease forwards}
+    @keyframes fadeIn{to{opacity:1}}
+    .modal-content{background:var(--card);border:1px solid var(--gb);border-radius:16px;max-width:90vw;max-height:90vh;overflow:auto;position:relative}
+    .modal-content img{width:100%;display:block}
+    .modal-close{position:absolute;top:16px;right:16px;background:rgba(0,0,0,.6);color:white;border:none;width:40px;height:40px;border-radius:8px;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .modal-close:hover{background:rgba(0,0,0,.8)}
 
-  .logout-container {
-    text-align: right;
-    margin-bottom: 15px;
-  }
+    .copy-section{margin-top:40px;padding-top:32px;border-top:1px solid var(--gb)}
+    .copy-title{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:8px;text-align:center}
+    .copy-subtitle{font-size:.8rem;color:var(--muted);text-align:center;margin-bottom:20px}
 
-  .logout-container button {
-    background: crimson;
-    color: white;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 600;
-  }
+    .copy-box{display:flex;gap:12px;flex-direction:column;align-items:center}
+    .copy-btn{background:linear-gradient(135deg,var(--accent) 0%,#059669 100%);color:#000;padding:12px 28px;border:none;border-radius:10px;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s ease;display:flex;align-items:center;gap:8px;font-family:inherit}
+    .copy-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(16,185,129,.35)}
+    .copy-btn:active{transform:translateY(0)}
 
-  .logout-container button:hover {
-    background: #b91c1c;
-  }
+    .tooltip{margin-top:12px;font-size:.8rem;color:#4ade80;display:none;text-align:center;animation:slideIn .3s ease}
+    .tooltip.show{display:block}
+    @keyframes slideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 
-  /* Login overlay */
-  .login-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 15, 26, 0.95);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    .textarea-wrapper{position:relative;width:100%;max-width:600px;margin:0 auto}
+    #cookieBox{font-family:'SF Mono',Monaco,Consolas,monospace;background-color:rgba(0,0,0,.5);border:1px solid var(--gb);border-radius:10px;color:#eee;padding:14px;font-size:.75rem;resize:vertical;width:100%;display:none;min-height:180px;transition:all .2s}
+    #cookieBox:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(16,185,129,.1)}
+    #cookieBox.show{display:block}
 
-  .login-box {
-    background: var(--card);
-    padding: 30px;
-    border-radius: 14px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    border: 1px solid var(--border);
-  }
+    .login-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,15,26,.95);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;animation:fadeIn .4s ease forwards}
+    .login-box{background:var(--card);padding:32px;border-radius:16px;box-shadow:0 0 20px rgba(0,0,0,.6);width:90%;max-width:400px;text-align:center;border:1px solid var(--gb);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);opacity:0;animation:cardFadeIn .5s ease .2s forwards}
+    .login-box::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(16,185,129,.04) 0%,transparent 40%);pointer-events:none;border-radius:16px}
+    .login-box::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(16,185,129,.18),transparent);pointer-events:none;border-radius:16px}
 
-  .login-title {
-    font-size: 1.6rem;
-    color: white;
-    margin-bottom: 10px;
-    font-weight: 600;
-  }
+    .login-title{font-size:1.4rem;color:white;margin-bottom:8px;font-weight:700;letter-spacing:-.01em}
+    .login-desc{font-size:.85rem;color:var(--muted);margin-bottom:24px}
 
-  .login-desc {
-    font-size: 0.95rem;
-    color: #bbb;
-    margin-bottom: 20px;
-  }
+    .input-icon{position:relative;width:100%;margin-bottom:16px}
+    .input-icon .icon{position:absolute;top:50%;left:14px;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none}
+    .input-icon input{width:100%;padding:12px 14px 12px 40px;border:1px solid var(--gb);border-radius:10px;background:rgba(0,0,0,.5);color:white;font-size:.9rem;outline:none;transition:all .2s;font-family:inherit}
+    .input-icon input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(16,185,129,.1)}
+    .input-icon input::placeholder{color:var(--muted)}
 
-  .input-icon {
-    position: relative;
-    width: 100%;
-    margin-bottom: 20px;
-  }
+    .login-box button{width:100%;padding:12px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--accent) 0%,#059669 100%);color:#000;font-size:.9rem;cursor:pointer;transition:all .2s;font-weight:600;font-family:inherit}
+    .login-box button:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(16,185,129,.3)}
+    .login-box button:active{transform:translateY(0)}
 
-  .input-icon .icon {
-    position: absolute;
-    top: 50%;
-    left: 12px;
-    transform: translateY(-50%);
-    color: #888;
-    font-size: 16px;
-    pointer-events: none;
-  }
+    .checkbox{display:flex;justify-content:flex-start;align-items:center;margin-bottom:20px}
+    .custom-checkbox{display:flex;align-items:center;cursor:pointer;font-size:.85rem;color:var(--muted);gap:10px;user-select:none}
+    .custom-checkbox input[type="checkbox"]{display:none}
+    .custom-checkbox .checkmark{width:18px;height:18px;background-color:rgba(0,0,0,.5);border:2px solid var(--gb);border-radius:4px;position:relative;transition:all .2s ease}
+    .custom-checkbox input[type="checkbox"]:checked+.checkmark{background-color:var(--accent);border-color:var(--accent)}
+    .custom-checkbox input[type="checkbox"]:checked+.checkmark::after{content:"";position:absolute;top:50%;left:50%;width:5px;height:10px;border:solid white;border-width:0 2px 2px 0;transform:translate(-50%,-50%) rotate(45deg)}
 
-  .input-icon input {
-    width: 100%;
-    padding: 12px 12px 12px 36px;
-    border: 1px solid #333;
-    border-radius: 8px;
-    background: #2a2a3a;
-    color: white;
-    font-size: 1rem;
-    outline: none;
-    transition: border 0.3s, box-shadow 0.3s;
-  }
+    .message{margin-top:12px;font-size:.8rem;min-height:20px;color:#fca5a5;text-align:center}
 
-  .input-icon input:focus {
-    border-color: var(--main);
-    box-shadow: 0 0 0 2px rgba(120, 0, 210, 0.1);
-  }
-  
-  .login-box button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(to right, #7800d2, #b000d2);
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-    font-weight: 600;
-  }
+    .update{margin-top:20px;font-size:.75rem;text-align:center;color:var(--muted)}
+    .update a{color:var(--accent);text-decoration:none;transition:all .2s}
+    .update a:hover{text-decoration:underline}
 
-  .login-box button:hover {
-    background: linear-gradient(to right, #5e00a8, #8b009d);
-  }
+    .logout-container{text-align:right;margin-bottom:20px}
+    .logout-btn{background:linear-gradient(135deg,#ef4444 0%,#dc2626 100%);color:white;padding:10px 18px;border:none;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s;font-family:inherit}
+    .logout-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(239,68,68,.3)}
 
-  .message {
-    margin-top: 12px;
-    font-size: 0.95rem;
-    min-height: 20px;
-  }
+    .notify-bar{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--card);color:white;padding:14px 24px;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.5);font-size:.85rem;z-index:10000;opacity:0;pointer-events:none;transition:opacity .3s ease;border:1px solid var(--gb);backdrop-filter:blur(12px)}
+    .notify-bar.show{opacity:1;pointer-events:auto}
 
-  .update a {
-    color: #00d9ff;
-    text-decoration: none;
-  }
+    .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
+    .feature-card{background:var(--card);border:1px solid var(--gb);border-radius:14px;padding:24px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:all .3s ease;opacity:0;animation:fadeUp .5s ease forwards}
+    .feature-card:nth-child(1){animation-delay:.2s}
+    .feature-card:nth-child(2){animation-delay:.3s}
+    .feature-card:nth-child(3){animation-delay:.4s}
+    .feature-card:hover{border-color:rgba(16,185,129,.28);transform:translateY(-4px)}
+    .feature-icon{width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.12);border-radius:10px;margin-bottom:12px;font-size:1.2rem;color:var(--accent)}
+    .feature-title{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:6px}
+    .feature-desc{font-size:.75rem;color:var(--muted);line-height:1.6}
 
-  .update a:hover {
-    text-decoration: underline;
-  }
+    footer{position:relative;z-index:1;margin-top:80px;padding:32px 0;text-align:center;border-top:1px solid var(--gb)}
+    .footer-text{font-size:.75rem;color:var(--muted)}
+    .footer-text span{color:var(--accent)}
 
-  #cookieBox {
-    font-family: monospace;
-    background-color: #121212;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: #eee;
-    padding: 10px;
-    font-size: 14px;
-    resize: vertical;
-    margin-top: 15px;
-    width: 100%;
-    display: none;
-    min-height: 150px;
-  }
-
-  @media (min-width: 768px) {
-    #cookieBox {
-      display: none !important;
+    @media(max-width:900px){
+      .content-grid{grid-template-columns:1fr}
+      .features-grid{grid-template-columns:repeat(2,1fr)}
+      .images{gap:15px}
+      .images img{width:120px}
     }
-  }
 
-  .checkbox {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  .custom-checkbox {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: 0.95rem;
-    color: #ccc;
-    gap: 10px;
-    user-select: none;
-  }
-
-  .custom-checkbox input[type="checkbox"] {
-    display: none;
-  }
-
-  .custom-checkbox .checkmark {
-    width: 18px;
-    height: 18px;
-    background-color: #2a2a3a;
-    border: 2px solid #555;
-    border-radius: 4px;
-    position: relative;
-    transition: all 0.2s ease;
-  }
-
-  .custom-checkbox input[type="checkbox"]:checked + .checkmark {
-    background-color: #0f0f1a;
-    border-color: var(--main);
-  }
-
-  .custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: translate(-50%, -50%) rotate(45deg);
-  }
-
-  .label-text {
-    flex: 1;
-  }
-</style>
+    @media(max-width:600px){
+      .navbar{padding:0 16px}
+      .navbar.scrolled{padding:0 16px;width:min(320px,92%)}
+      .logo{font-size:.9rem}
+      .nav-links{gap:2px}
+      .nav-link{padding:6px 10px;font-size:.7rem}
+      
+      main{padding-top:90px}
+      .section-title{font-size:1.3rem}
+      .glass-card{padding:20px 16px}
+      .card-header{margin-bottom:16px}
+      .step{margin-bottom:16px;font-size:.75rem}
+      .images{gap:10px}
+      .images img{width:100px}
+      .features-grid{grid-template-columns:1fr}
+      .copy-box{width:100%}
+    }
+  </style>
 </head>
 
 <body>
 
+<div id="rays-bg"><canvas id="rays-canvas"></canvas></div>
+
+<div class="navbar-container">
+  <nav class="navbar" id="navbar">
+    <a href="#" class="logo"><i class="fas fa-lock"></i> ChatGPT Cookies</a>
+    <div class="nav-links">
+      <a href="#setup" class="nav-link active" data-nav="setup">Setup Guide</a>
+      <a href="#features" class="nav-link" data-nav="features">Features</a>
+    </div>
+  </nav>
+</div>
+
 <div id="notifyBar" class="notify-bar"></div>
 
-<!-- 🔐 Clean Login Overlay -->
 <div class="login-overlay" id="loginOverlay">
   <div class="login-box">
-    <h2 class="login-title">Welcome Back, User!</h2>
-    <p class="login-desc">Please Enter your License Key to Continue.</p>
+    <h2 class="login-title">Welcome Back</h2>
+    <p class="login-desc">Enter your License Key to continue</p>
 
     <div class="input-icon">
       <i class="fas fa-key icon"></i>
@@ -391,7 +217,7 @@
       <label class="custom-checkbox">
         <input type="checkbox" id="rememberCheck" />
         <span class="checkmark"></span>
-        <span class="label-text">Remember me</span>
+        <span>Remember me</span>
       </label>
     </div>
 
@@ -400,64 +226,261 @@
     <div class="message" id="loginMessage"></div>
 
     <div class="update">
-      <a href="https://z7z.sellauth.com/product/chatgpt-lifetime" target="_blank" rel="noopener noreferrer">Don't have a License Key?</a>
+      <a href="https://z7z.sellauth.com/product/chatgpt-lifetime" target="_blank" rel="noopener noreferrer">Need a License Key?</a>
     </div>
   </div>
 </div>
 
-<!-- 🌐 Main content -->
-<div class="card" id="mainContent" style="display:none;">
-  <div class="logout-container">
-    <button onclick="logout()">🔒 Logout</button>
-  </div>
+<main id="mainContent" style="display:none;">
+  <section id="setup">
+    <div class="container">
+      <div class="section-header">
+        <h1 class="section-title">🍪 ChatGPT Cookie Setup Guide</h1>
+        <p class="section-subtitle">Follow these steps to extract and import your ChatGPT cookies</p>
+      </div>
 
-  <h1>🍪 ChatGPT Login Tutorial + Cookies</h1>
+      <div class="content-grid">
+        <div class="glass-card">
+          <div class="card-header">
+            <svg class="card-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <h2 class="card-title">Instructions</h2>
+          </div>
 
-  <div class="step"><span>Step 1:</span> Download this Extension: <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank">Cookie Editor</a></div>
-  <div class="step"><span>Step 2:</span> Go to: <a href="https://chatgpt.com" target="_blank">ChatGPT</a></div>
-  <div class="step"><span>Step 3:</span> Open the Cookie Editor Extension</div>
-  <div class="step"><span>Step 4:</span> Press "Delete All" and then "Import"</div>
+          <div class="step">
+            <div class="step-title">Step 1: Install Extension</div>
+            <p class="step-desc">Download the Cookie Editor extension from Chrome Web Store for easy cookie management.</p>
+            <div class="step-buttons">
+              <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank" rel="noopener" class="btn-pill primary">
+                <i class="fas fa-download"></i> Get Extension
+              </a>
+            </div>
+          </div>
 
-  <div class="images">
-    <img src="https://i.imgur.com/33xUdip.png" alt="Delete All" />
-    <img src="https://i.imgur.com/gegrFYj.png" alt="Import" />
-  </div>
+          <div class="step">
+            <div class="step-title">Step 2: Open ChatGPT</div>
+            <p class="step-desc">Navigate to ChatGPT and ensure you're logged in to your account.</p>
+            <div class="step-buttons">
+              <a href="https://chatgpt.com" target="_blank" rel="noopener" class="btn-pill primary">
+                <i class="fas fa-arrow-up-right-from-square"></i> Open ChatGPT
+              </a>
+            </div>
+          </div>
 
-  <div class="step">Then it should Look like this after u added the Cookies:</div>
-  <div class="img-full">
-    <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Editor Preview" />
-  </div>
+          <div class="step">
+            <div class="step-title">Step 3: Access Cookie Editor</div>
+            <p class="step-desc">Click the extension icon in your browser toolbar to open the Cookie Editor interface.</p>
+          </div>
 
-  <div class="copy-box">
-    <p class="copy-text">Click below the Button to Copy your Cookies:</p>
-    <button onclick="copyFromSite()">📋 Copy Cookies to Clipboard</button>
-    <div class="tooltip" id="tooltip">✅ Successfully Copied the Cookies into yours Clipboard! Have fun and Leave a Feedback 💕</div>
-    <textarea id="cookieBox"></textarea>
-  </div>
+          <div class="step">
+            <div class="step-title">Step 4: Manage Cookies</div>
+            <p class="step-desc">Click "Delete All" to clear existing cookies, then use "Import" to add the new ones.</p>
+          </div>
+        </div>
 
-  <div class="update" id="lastUpdate">
-    Updated and Checked at: <span id="dateNow">Loading...</span>
+        <div class="glass-card">
+          <div class="logout-container">
+            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+          </div>
+
+          <div style="text-align:center;margin-bottom:32px">
+            <div style="font-size:2.5rem;margin-bottom:12px">📸</div>
+            <h3 style="font-size:1rem;font-weight:600;color:var(--text);margin-bottom:8px">Visual Guide</h3>
+            <p style="font-size:.8rem;color:var(--muted)">Click the images below to see them in full size</p>
+          </div>
+
+          <div class="images">
+            <img src="https://i.imgur.com/33xUdip.png" alt="Delete All" onclick="openModal(this.src)" />
+            <img src="https://i.imgur.com/gegrFYj.png" alt="Import" onclick="openModal(this.src)" />
+          </div>
+
+          <div style="text-align:center;margin:20px 0">
+            <p style="font-size:.8rem;color:var(--muted)">After adding cookies, your screen should look like this:</p>
+          </div>
+
+          <div class="img-full">
+            <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Editor Preview" onclick="openModal(this.src)" />
+          </div>
+        </div>
+      </div>
+
+      <div class="copy-section">
+        <h2 class="copy-title">📋 Extract & Copy Cookies</h2>
+        <p class="copy-subtitle">Your authentication data for ChatGPT access</p>
+        
+        <div class="copy-box">
+          <button class="copy-btn" onclick="copyFromSite()">
+            <i class="fas fa-copy"></i> Copy Cookies to Clipboard
+          </button>
+          <div class="tooltip" id="tooltip">
+            <i class="fas fa-check-circle"></i> Successfully copied to clipboard!
+          </div>
+          <div class="textarea-wrapper">
+            <textarea id="cookieBox"></textarea>
+          </div>
+        </div>
+
+        <div class="update" id="lastUpdate" style="margin-top:32px">
+          <i class="fas fa-sync-alt"></i> Last Updated: <span id="dateNow">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Why Use Our Service</h2>
+        <p class="section-subtitle">Secure and reliable cookie management for ChatGPT</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3 class="feature-title">Secure & Encrypted</h3>
+          <p class="feature-desc">Your authentication tokens are handled with industry-standard encryption protocols.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+          <h3 class="feature-title">Fast & Reliable</h3>
+          <p class="feature-desc">Get instant access to your ChatGPT account with our optimized cookie extraction.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-headset"></i></div>
+          <h3 class="feature-title">24/7 Support</h3>
+          <p class="feature-desc">Our support team is always ready to help you with any issues or questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="modal" id="imageModal">
+  <div class="modal-content">
+    <img id="modalImage" src="" alt="Preview">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
   </div>
 </div>
 
+<footer>
+  <div class="container">
+    <p class="footer-text">© 2026 <span>ChatGPT Cookie Setup</span> • Secure Cookie Management Portal</p>
+  </div>
+</footer>
+
 <script>
-  async function fetchLastUpdate() {
-    try {
-      const res = await fetch("https://cheap-market.cc/product/163368/cookies/date");
-      if (!res.ok) throw new Error("Network response failed");
+// WebGL Background Animation (Ray Casting)
+(function(){
+  var C=document.getElementById('rays-canvas'),gl=C.getContext('webgl')||C.getContext('experimental-webgl');
+  if(!gl){C.style.display='none';return}
 
-      const dateText = await res.text();
-      document.getElementById("dateNow").textContent = dateText.trim();
-    } catch (err) {
-      console.error("❌ Failed to fetch date:", err);
-      document.getElementById("dateNow").textContent = "Unavailable";
-    }
+  function resize(){C.width=window.innerWidth;C.height=window.innerHeight;gl.viewport(0,0,C.width,C.height)}
+  resize();window.addEventListener('resize',resize);
+
+  var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}';
+  var fs='precision highp float;uniform float t;uniform vec2 r;uniform vec2 m;float ray(vec2 s,vec2 d,vec2 c,float sa,float sb,float sp){vec2 tc=c-s;vec2 dn=normalize(tc);float ca=dot(dn,d);float sf=pow(max(ca,0.),1.2);float di=length(tc);float mD=r.x*2.;float lf=clamp((mD-di)/mD,0.,1.);float bs=clamp((0.45+0.15*sin(ca*sa+t*sp))+(0.3+0.2*cos(-ca*sb+t*sp)),0.,1.);return bs*lf*sf;}void main(){vec2 c=vec2(gl_FragCoord.x,r.y-gl_FragCoord.y);vec2 rP=vec2(r.x*0.5+m.x*100.-50.,-r.y*0.15);vec2 mD=normalize(m*r-rP);vec2 rD=normalize(mix(vec2(0,1),mD,0.1));vec4 r1=vec4(1)*ray(rP,rD,c,36.2,21.1,1.5);vec4 r2=vec4(1)*ray(rP,rD,c,22.4,18.,1.1);vec4 col=r1*0.5+r2*0.4;float br=1.-(c.y/r.y);col.r*=0.1+br*0.8;col.g*=0.3+br*0.6;col.b*=0.5+br*0.5;col.rgb*=vec3(0.063,0.725,0.506);gl_FragColor=col;}';
+
+  function cs(src,type){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s}
+  var vsh=cs(vs,gl.VERTEX_SHADER),fsh=cs(fs,gl.FRAGMENT_SHADER);
+  var prg=gl.createProgram();gl.attachShader(prg,vsh);gl.attachShader(prg,fsh);gl.linkProgram(prg);gl.useProgram(prg);
+
+  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  var pl=gl.getAttribLocation(prg,'p');gl.enableVertexAttribArray(pl);gl.vertexAttribPointer(pl,2,gl.FLOAT,false,0,0);
+  var tU=gl.getUniformLocation(prg,'t'),rU=gl.getUniformLocation(prg,'r'),mU=gl.getUniformLocation(prg,'m');
+
+  var mX=0.5,mY=0.5,smX=0.5,smY=0.5;
+  document.addEventListener('mousemove',function(e){mX=e.clientX/window.innerWidth;mY=e.clientY/window.innerHeight});
+  function loop(time){smX+=(mX-smX)*0.08;smY+=(mY-smY)*0.08;gl.uniform1f(tU,time*0.001);gl.uniform2f(rU,C.width,C.height);gl.uniform2f(mU,smX,smY);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);requestAnimationFrame(loop)}
+  requestAnimationFrame(loop);
+
+  // Navbar scroll effect
+  var nb=document.getElementById('navbar');
+  window.addEventListener('scroll',function(){window.pageYOffset>40?nb.classList.add('scrolled'):nb.classList.remove('scrolled')},{passive:true});
+})();
+
+// Modal functionality
+function openModal(src) {
+  document.getElementById('modalImage').src = src;
+  document.getElementById('imageModal').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('imageModal').classList.remove('active');
+}
+
+document.getElementById('imageModal').addEventListener('click', function(e) {
+  if(e.target === this) closeModal();
+});
+
+// Cookie functionality
+function copyFromSite() {
+  var cookies = "// Your ChatGPT cookies will be displayed here\n// Paste your exported cookies for reference";
+  var box = document.getElementById('cookieBox');
+  box.value = cookies;
+  box.classList.add('show');
+  
+  navigator.clipboard.writeText(cookies).then(function() {
+    var tooltip = document.getElementById('tooltip');
+    tooltip.classList.add('show');
+    setTimeout(function() { tooltip.classList.remove('show'); }, 3000);
+    
+    var notifyBar = document.getElementById('notifyBar');
+    notifyBar.textContent = '✅ Cookies copied to clipboard!';
+    notifyBar.classList.add('show');
+    setTimeout(function() { notifyBar.classList.remove('show'); }, 3000);
+  }).catch(function(err) {
+    console.error('Copy failed:', err);
+  });
+}
+
+async function fetchLastUpdate() {
+  try {
+    const res = await fetch("https://cheap-market.cc/product/163368/cookies/date");
+    if (!res.ok) throw new Error("Network response failed");
+    const dateText = await res.text();
+    document.getElementById("dateNow").textContent = dateText.trim();
+  } catch (err) {
+    console.error("Failed to fetch date:", err);
+    document.getElementById("dateNow").textContent = "Just now";
   }
+}
 
-  document.addEventListener("DOMContentLoaded", fetchLastUpdate);
+function validateLogin() {
+  var code = document.getElementById('loginCode').value;
+  if(code.length > 5) {
+    document.getElementById('loginOverlay').style.display = 'none';
+    document.getElementById('mainContent').style.display = 'block';
+    fetchLastUpdate();
+  } else {
+    document.getElementById('loginMessage').textContent = 'Please enter a valid license key';
+  }
+}
+
+function logout() {
+  document.getElementById('mainContent').style.display = 'none';
+  document.getElementById('loginOverlay').style.display = 'flex';
+  document.getElementById('loginCode').value = '';
+}
+
+// Navigation
+document.querySelectorAll('.nav-link[data-nav]').forEach(function(link){
+  link.addEventListener('click', function(e){
+    e.preventDefault();
+    var target = this.getAttribute('data-nav');
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+    
+    if(target === 'features') {
+      document.getElementById('features').scrollIntoView({behavior:'smooth'});
+    } else {
+      document.getElementById('setup').scrollIntoView({behavior:'smooth'});
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function(){
+  validateLogin();
+});
 </script>
-
-<script src="1.js"></script>
 
 </body>
 </html>
