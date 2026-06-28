@@ -8,611 +8,162 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <style>
-/* ── Reset & tokens ─────────────────────────────────────────── */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
-:root {
-  --bg:     #050505;
-  --card:   rgba(12,12,12,0.72);
-  --border: rgba(120,0,210,0.14);
-  --accent: #7800d2;
-  --accent2:#b000d2;
-  --text:   #e5e5e5;
-  --muted:  #6b7280;
-  --glass:  rgba(10,10,10,0.82);
-  --gb:     rgba(255,255,255,0.06);
-  --radius: 16px;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  overflow-x: hidden;
-  line-height: 1.6;
-  user-select: none;
-  -webkit-user-select: none;
+:root{
+  --bg:#050505;
+  --card:rgba(12,12,12,0.7);
+  --border:rgba(16,185,129,0.12);
+  --accent:#10b981;
+  --accent2:#059669;
+  --text:#e5e5e5;
+  --muted:#6b7280;
+  --glass:rgba(10,10,10,0.8);
+  --gb:rgba(255,255,255,0.06);
+  --radius:16px;
 }
 
-/* ── WebGL background canvas ────────────────────────────────── */
-#rays-bg {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.45;
-}
-#rays-canvas { width: 100%; height: 100%; }
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.6;user-select:none;-webkit-user-select:none;}
 
-/* ── Notify bar ─────────────────────────────────────────────── */
-.notify-bar {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(18,18,28,0.95);
-  color: var(--text);
-  padding: 12px 26px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  box-shadow: 0 0 24px rgba(120,0,210,0.18);
-  font-size: .875rem;
-  font-weight: 500;
-  z-index: 10000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .35s ease;
-  white-space: nowrap;
-}
-.notify-bar.show { opacity: 1; pointer-events: auto; }
+#rays-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.5}
+#rays-canvas{width:100%;height:100%}
 
-/* ── Login overlay ──────────────────────────────────────────── */
-.login-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(5,5,5,0.96);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
+/* Notify */
+.notify-bar{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--glass);color:var(--text);padding:12px 26px;border-radius:999px;border:1px solid var(--gb);box-shadow:0 0 24px rgba(16,185,129,0.15);font-size:.875rem;font-weight:500;z-index:10000;opacity:0;pointer-events:none;transition:opacity .35s ease;white-space:nowrap}
+.notify-bar.show{opacity:1;pointer-events:auto}
 
-.login-box {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  box-shadow: 0 0 48px rgba(120,0,210,0.14), inset 0 1px 0 rgba(255,255,255,0.04);
-  width: 90%;
-  max-width: 420px;
-  padding: 36px 32px 28px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  animation: cardFadeIn .6s ease forwards;
-}
+/* Login overlay */
+.login-overlay{position:fixed;inset:0;background:rgba(5,5,5,0.96);z-index:9999;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.login-box{background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 0 48px rgba(16,185,129,0.1),inset 0 1px 0 rgba(255,255,255,0.04);width:90%;max-width:420px;padding:36px 32px 28px;text-align:center;position:relative;overflow:hidden;animation:cardFadeIn .6s ease forwards}
+.login-box::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(16,185,129,0.4),transparent)}
+.login-icon{width:52px;height:52px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);border-radius:14px}
+.login-icon i{font-size:1.2rem;color:var(--accent)}
+.login-title{font-size:1.5rem;font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:6px}
+.login-desc{font-size:.8rem;color:var(--muted);margin-bottom:26px;line-height:1.55}
 
-/* subtle top shimmer line */
-.login-box::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(120,0,210,.45), transparent);
-}
+.input-icon{position:relative;margin-bottom:14px;text-align:left}
+.input-icon .icon{position:absolute;top:50%;left:14px;transform:translateY(-50%);color:var(--muted);font-size:.85rem;pointer-events:none;transition:color .2s}
+.input-icon input{width:100%;padding:12px 14px 12px 38px;border:1px solid var(--gb);border-radius:10px;background:rgba(0,0,0,0.5);color:var(--text);font-family:inherit;font-size:.875rem;outline:none;transition:border-color .2s,box-shadow .2s;letter-spacing:.04em}
+.input-icon input::placeholder{color:var(--muted)}
+.input-icon input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(16,185,129,0.1)}
+.input-icon:focus-within .icon{color:var(--accent)}
 
-/* login icon badge */
-.login-icon {
-  width: 52px; height: 52px;
-  margin: 0 auto 20px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(120,0,210,.12);
-  border: 1px solid rgba(120,0,210,.25);
-  border-radius: 14px;
-}
-.login-icon i { font-size: 1.2rem; color: var(--accent2); }
+.checkbox{display:flex;align-items:center;margin-bottom:18px;text-align:left}
+.custom-checkbox{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:.8rem;color:var(--muted);user-select:none}
+.custom-checkbox input[type="checkbox"]{display:none}
+.custom-checkbox .checkmark{width:17px;height:17px;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.12);border-radius:5px;position:relative;flex-shrink:0;transition:all .2s}
+.custom-checkbox input:checked + .checkmark{background:rgba(16,185,129,0.15);border-color:var(--accent)}
+.custom-checkbox input:checked + .checkmark::after{content:'';position:absolute;top:50%;left:50%;width:5px;height:9px;border:2px solid var(--accent);border-width:0 2px 2px 0;transform:translate(-50%,-58%) rotate(45deg)}
 
-.login-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -.02em;
-  margin-bottom: 6px;
-}
-.login-desc {
-  font-size: .8rem;
-  color: var(--muted);
-  margin-bottom: 26px;
-  line-height: 1.55;
-}
+.login-box button[onclick="validateLogin()"]{width:100%;padding:12px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);color:#000;font-family:inherit;font-size:.875rem;font-weight:700;cursor:pointer;transition:all .2s ease}
+.login-box button[onclick="validateLogin()"]:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(16,185,129,0.35)}
+.login-box button[onclick="validateLogin()"]:active{transform:translateY(0)}
 
-/* input with icon */
-.input-icon {
-  position: relative;
-  margin-bottom: 14px;
-  text-align: left;
-}
-.input-icon .icon {
-  position: absolute;
-  top: 50%; left: 14px;
-  transform: translateY(-50%);
-  color: var(--muted);
-  font-size: .85rem;
-  pointer-events: none;
-  transition: color .2s;
-}
-.input-icon input {
-  width: 100%;
-  padding: 12px 14px 12px 38px;
-  border: 1px solid var(--gb);
-  border-radius: 10px;
-  background: rgba(0,0,0,.45);
-  color: var(--text);
-  font-family: inherit;
-  font-size: .875rem;
-  outline: none;
-  transition: border-color .2s, box-shadow .2s;
-  letter-spacing: .04em;
-}
-.input-icon input::placeholder { color: var(--muted); }
-.input-icon input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(120,0,210,.1);
-}
-.input-icon input:focus + .icon,
-.input-icon:focus-within .icon { color: var(--accent2); }
+.message{margin-top:12px;font-size:.8rem;min-height:18px;color:#fca5a5}
+.update{margin-top:18px;font-size:.72rem;color:var(--muted)}
+.update a{color:var(--accent);text-decoration:none;transition:color .2s}
+.update a:hover{color:#34d399;text-decoration:underline}
 
-/* checkbox */
-.checkbox {
-  display: flex;
-  align-items: center;
-  margin-bottom: 18px;
-  text-align: left;
-}
-.custom-checkbox {
-  display: flex; align-items: center;
-  gap: 10px; cursor: pointer;
-  font-size: .8rem; color: var(--muted);
-  user-select: none;
-}
-.custom-checkbox input[type="checkbox"] { display: none; }
-.custom-checkbox .checkmark {
-  width: 17px; height: 17px;
-  background: rgba(0,0,0,.4);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 5px;
-  position: relative;
-  flex-shrink: 0;
-  transition: all .2s;
-}
-.custom-checkbox input:checked + .checkmark {
-  background: rgba(120,0,210,.2);
-  border-color: var(--accent);
-}
-.custom-checkbox input:checked + .checkmark::after {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 5px; height: 9px;
-  border: 2px solid var(--accent2);
-  border-width: 0 2px 2px 0;
-  transform: translate(-50%,-58%) rotate(45deg);
-}
+/* Navbar */
+.navbar-container{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:center;pointer-events:none;transition:all .4s cubic-bezier(.4,0,.2,1)}
+.navbar{pointer-events:auto;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;width:100%;max-width:1200px;border:1px solid transparent;border-radius:0;background:transparent;backdrop-filter:blur(0);transition:all .4s cubic-bezier(.4,0,.2,1)}
+.navbar.scrolled{height:52px;width:min(800px,92%);padding:0 24px;border:1px solid var(--gb);border-radius:999px;background:var(--glass);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);margin-top:14px;box-shadow:0 8px 32px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03)}
+.logo{font-size:.95rem;font-weight:700;color:var(--accent);letter-spacing:-.01em;text-decoration:none;transition:opacity .2s}
+.logo:hover{opacity:.75}
 
-/* login button */
-.login-box button[onclick="validateLogin()"] {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-  color: #fff;
-  font-family: inherit;
-  font-size: .875rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all .2s ease;
-  letter-spacing: .01em;
-}
-.login-box button[onclick="validateLogin()"]:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(120,0,210,.4);
-}
-.login-box button[onclick="validateLogin()"]:active { transform: translateY(0); }
+/* Main */
+main{position:relative;z-index:1;padding-top:110px}
+.container{max-width:860px;margin:0 auto;padding:0 20px}
 
-.message {
-  margin-top: 12px;
-  font-size: .8rem;
-  min-height: 18px;
-  color: #fca5a5;
-}
+/* Glass card */
+.card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px 32px;overflow:hidden;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 32px rgba(0,0,0,.45);transition:border-color .3s,box-shadow .3s;animation:cardFadeIn .7s ease forwards}
+.card:hover{border-color:rgba(16,185,129,.28);box-shadow:0 0 40px rgba(16,185,129,.07)}
+.card::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(16,185,129,.04) 0%,transparent 40%);pointer-events:none}
+.card::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(16,185,129,.2),transparent);pointer-events:none}
 
-.update {
-  margin-top: 18px;
-  font-size: .72rem;
-  color: var(--muted);
-}
-.update a {
-  color: rgba(176,0,210,.8);
-  text-decoration: none;
-  transition: color .2s;
-}
-.update a:hover { color: var(--accent2); text-decoration: underline; }
+@keyframes cardFadeIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── Navbar ─────────────────────────────────────────────────── */
-.navbar-container {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-  transition: all .4s cubic-bezier(.4,0,.2,1);
-}
-.navbar {
-  pointer-events: auto;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
-  width: 100%;
-  max-width: 1200px;
-  border: 1px solid transparent;
-  border-radius: 0;
-  background: transparent;
-  backdrop-filter: blur(0);
-  transition: all .4s cubic-bezier(.4,0,.2,1);
-}
-.navbar.scrolled {
-  height: 52px;
-  width: min(800px, 92%);
-  padding: 0 24px;
-  border: 1px solid var(--gb);
-  border-radius: 999px;
-  background: var(--glass);
-  backdrop-filter: blur(24px) saturate(1.8);
-  -webkit-backdrop-filter: blur(24px) saturate(1.8);
-  margin-top: 14px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.03);
-}
-.logo {
-  font-size: .95rem;
-  font-weight: 700;
-  color: var(--accent2);
-  letter-spacing: -.01em;
-  text-decoration: none;
-  transition: opacity .2s;
-}
-.logo:hover { opacity: .75; }
+/* Card header */
+.card-header{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.card-icon-wrap{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);border-radius:10px;flex-shrink:0}
+.card-icon-wrap i{font-size:.95rem;color:var(--accent)}
+h1{font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-.01em}
 
-/* ── Main layout ────────────────────────────────────────────── */
-main {
-  position: relative;
-  z-index: 1;
-  padding-top: 110px;
-}
+/* Steps */
+.step{position:relative;padding-left:18px;margin-bottom:22px;opacity:0;animation:stepFadeIn .5s ease forwards}
+.step:nth-child(1){animation-delay:.1s}
+.step:nth-child(2){animation-delay:.22s}
+.step:nth-child(3){animation-delay:.34s}
+.step:nth-child(4){animation-delay:.46s}
+@keyframes stepFadeIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.step::before{content:'';position:absolute;left:0;top:5px;bottom:-16px;width:2px;background:var(--accent);border-radius:2px;opacity:.5}
+.step:last-child::before{bottom:5px}
+.step-title{font-size:.68rem;font-weight:700;color:var(--accent);margin-bottom:4px;letter-spacing:.08em;text-transform:uppercase}
+.step-desc{font-size:.82rem;color:var(--muted);line-height:1.65}
+.step-desc a{color:var(--accent);text-decoration:none;font-weight:500;transition:color .2s}
+.step-desc a:hover{color:#34d399;text-decoration:underline}
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+/* Images */
+.images{display:flex;gap:16px;justify-content:center;margin:24px 0;flex-wrap:wrap}
+.images img{width:155px;border:1px solid var(--gb);border-radius:10px;transition:transform .2s,border-color .2s}
+.images img:hover{transform:scale(1.04);border-color:rgba(16,185,129,.35)}
+.img-full{margin-top:18px;border:1px solid var(--gb);border-radius:10px;overflow:hidden}
+.img-full img{width:100%;display:block}
 
-/* ── Glass card ─────────────────────────────────────────────── */
-.card {
-  position: relative;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 36px 32px;
-  overflow: hidden;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 32px rgba(0,0,0,.45);
-  transition: border-color .3s, box-shadow .3s;
-  animation: cardFadeIn .7s ease forwards;
-}
-.card:hover {
-  border-color: rgba(120,0,210,.3);
-  box-shadow: 0 0 40px rgba(120,0,210,.08);
-}
-.card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(120,0,210,.04) 0%, transparent 40%);
-  pointer-events: none;
-}
-.card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(120,0,210,.22), transparent);
-  pointer-events: none;
-}
+/* Copy box */
+.copy-box{margin-top:32px;padding-top:24px;border-top:1px solid var(--gb);text-align:center}
+.copy-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.copy-box button{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);color:#000;border:none;border-radius:10px;cursor:pointer;font-family:inherit;font-size:.875rem;font-weight:700;transition:all .2s ease;position:relative;overflow:hidden}
+.copy-box button::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);transition:left .5s}
+.copy-box button:hover::before{left:100%}
+.copy-box button:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(16,185,129,.38)}
+.copy-box button:active{transform:translateY(0)}
 
-@keyframes cardFadeIn {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+.tooltip{margin-top:14px;font-size:.8rem;color:#86efac;font-weight:500;display:none;animation:fadeUp .3s ease}
+.tooltip.active{display:block}
 
-/* ── Card header ────────────────────────────────────────────── */
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 28px;
-}
-.card-icon-wrap {
-  width: 38px; height: 38px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(120,0,210,.12);
-  border: 1px solid rgba(120,0,210,.2);
-  border-radius: 10px;
-  flex-shrink: 0;
-}
-.card-icon-wrap i { font-size: .95rem; color: var(--accent2); }
-h1 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -.01em;
-}
+#cookieBox{font-family:'SF Mono',Monaco,Consolas,monospace;background:rgba(0,0,0,.55);border:1px solid var(--gb);border-radius:10px;color:var(--text);padding:12px 14px;font-size:.8rem;resize:vertical;margin-top:16px;width:100%;display:none;min-height:140px}
+@media(min-width:768px){#cookieBox{display:none !important}}
 
-/* ── Steps ──────────────────────────────────────────────────── */
-.step {
-  position: relative;
-  padding-left: 18px;
-  margin-bottom: 22px;
-  opacity: 0;
-  animation: stepFadeIn .5s ease forwards;
-}
-.step:nth-child(1) { animation-delay: .1s; }
-.step:nth-child(2) { animation-delay: .22s; }
-.step:nth-child(3) { animation-delay: .34s; }
-.step:nth-child(4) { animation-delay: .46s; }
-@keyframes stepFadeIn {
-  from { opacity: 0; transform: translateX(-10px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-.step::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 5px; bottom: -16px;
-  width: 2px;
-  background: var(--accent);
-  border-radius: 2px;
-  opacity: .6;
-}
-.step:last-child::before { bottom: 5px; }
+/* Badges */
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding-top:18px;border-top:1px solid var(--gb)}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;font-size:.7rem;font-weight:500;color:var(--muted);background:rgba(255,255,255,.03);border:1px solid var(--gb);border-radius:999px}
+.badge i{font-size:.65rem;color:var(--accent)}
 
-.step-title {
-  font-size: .8rem;
-  font-weight: 700;
-  color: var(--accent2);
-  margin-bottom: 4px;
-  letter-spacing: .01em;
-  text-transform: uppercase;
-  font-size: .68rem;
-  letter-spacing: .08em;
-}
-.step-desc {
-  font-size: .82rem;
-  color: var(--muted);
-  line-height: 1.65;
-}
-.step-desc a {
-  color: rgba(176,0,210,.85);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color .2s;
-}
-.step-desc a:hover { color: var(--accent2); text-decoration: underline; }
+/* Update bar */
+.update-bar{display:inline-flex;align-items:center;gap:7px;margin-top:20px;padding:7px 14px;background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.15);border-radius:999px;font-size:.72rem;color:var(--muted)}
+.update-bar i{font-size:.68rem;color:var(--accent)}
+#dateNow{color:var(--text);font-weight:500}
 
-/* ── Image grid ─────────────────────────────────────────────── */
-.images {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  margin: 24px 0;
-  flex-wrap: wrap;
-}
-.images img {
-  width: 155px;
-  border: 1px solid var(--gb);
-  border-radius: 10px;
-  transition: transform .2s, border-color .2s;
-}
-.images img:hover {
-  transform: scale(1.04);
-  border-color: rgba(120,0,210,.4);
-}
-.img-full {
-  margin-top: 18px;
-  border: 1px solid var(--gb);
-  border-radius: 10px;
-  overflow: hidden;
-}
-.img-full img { width: 100%; display: block; }
+/* Logout */
+.logout-container{display:flex;justify-content:flex-end;margin-bottom:18px}
+.logout-container button{display:inline-flex;align-items:center;gap:7px;background:rgba(220,38,38,.08);color:#fca5a5;border:1px solid rgba(220,38,38,.18);padding:8px 16px;border-radius:999px;cursor:pointer;font-family:inherit;font-size:.78rem;font-weight:600;transition:all .2s}
+.logout-container button:hover{background:rgba(220,38,38,.16);border-color:rgba(220,38,38,.35);color:#f87171}
 
-/* ── Copy section ───────────────────────────────────────────── */
-.copy-box {
-  margin-top: 32px;
-  padding-top: 24px;
-  border-top: 1px solid var(--gb);
-  text-align: center;
-}
-.copy-label {
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 14px;
-}
-.copy-box button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: .875rem;
-  font-weight: 600;
-  transition: all .2s ease;
-  position: relative;
-  overflow: hidden;
-}
-.copy-box button::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
-  transition: left .5s;
-}
-.copy-box button:hover::before { left: 100%; }
-.copy-box button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(120,0,210,.38);
-}
-.copy-box button:active { transform: translateY(0); }
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-.tooltip {
-  margin-top: 14px;
-  font-size: .8rem;
-  color: #86efac;
-  font-weight: 500;
-  display: none;
-  animation: fadeUp .3s ease;
-}
-.tooltip.active { display: block; }
-
-#cookieBox {
-  font-family: 'SF Mono', Monaco, Consolas, monospace;
-  background: rgba(0,0,0,.55);
-  border: 1px solid var(--gb);
-  border-radius: 10px;
-  color: var(--text);
-  padding: 12px 14px;
-  font-size: .8rem;
-  resize: vertical;
-  margin-top: 16px;
-  width: 100%;
-  display: none;
-  min-height: 140px;
-}
-@media (min-width: 768px) {
-  #cookieBox { display: none !important; }
-}
-
-/* ── Update bar ─────────────────────────────────────────────── */
-.update-bar {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  margin-top: 20px;
-  padding: 7px 14px;
-  background: rgba(120,0,210,.07);
-  border: 1px solid rgba(120,0,210,.15);
-  border-radius: 999px;
-  font-size: .72rem;
-  color: var(--muted);
-}
-.update-bar i { font-size: .68rem; color: var(--accent2); }
-#dateNow { color: var(--text); font-weight: 500; }
-
-/* ── Logout btn (top-right) ─────────────────────────────────── */
-.logout-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 18px;
-}
-.logout-container button {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(220,38,38,.1);
-  color: #fca5a5;
-  border: 1px solid rgba(220,38,38,.2);
-  padding: 8px 16px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: .78rem;
-  font-weight: 600;
-  transition: all .2s;
-}
-.logout-container button:hover {
-  background: rgba(220,38,38,.18);
-  border-color: rgba(220,38,38,.4);
-  color: #f87171;
-}
-
-/* ── Badges row ─────────────────────────────────────────────── */
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
-  padding-top: 18px;
-  border-top: 1px solid var(--gb);
-}
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  font-size: .7rem;
-  font-weight: 500;
-  color: var(--muted);
-  background: rgba(255,255,255,.03);
-  border: 1px solid var(--gb);
-  border-radius: 999px;
-}
-.badge i { font-size: .65rem; color: var(--accent2); }
-
-/* ── Animations ─────────────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Responsive ─────────────────────────────────────────────── */
-@media (max-width: 600px) {
-  .navbar { padding: 0 14px; }
-  .navbar.scrolled { padding: 0 14px; margin-top: 10px; }
-  .card { padding: 24px 18px; }
-  main { padding-top: 90px; }
-  .login-box { padding: 28px 20px 22px; }
+@media(max-width:600px){
+  .navbar{padding:0 14px}
+  .navbar.scrolled{padding:0 14px;margin-top:10px}
+  .card{padding:24px 18px}
+  main{padding-top:90px}
+  .login-box{padding:28px 20px 22px}
 }
 </style>
 </head>
 <body>
 
-<!-- WebGL background -->
 <div id="rays-bg"><canvas id="rays-canvas"></canvas></div>
-
 <div id="notifyBar" class="notify-bar"></div>
 
-<!-- ── Login overlay ───────────────────────────────────────── -->
+<!-- Login overlay -->
 <div class="login-overlay" id="loginOverlay">
   <div class="login-box">
     <div class="login-icon"><i class="fas fa-key"></i></div>
     <h2 class="login-title">Welcome Back</h2>
-    <p class="login-desc">Enter your license key to access your cookies.</p>
+    <p class="login-desc">Enter your license key to continue.</p>
 
     <div class="input-icon">
       <input type="text" id="loginCode" placeholder="license-xxxxx-xxxxx"
@@ -629,7 +180,6 @@ h1 {
     </div>
 
     <button onclick="validateLogin()">Unlock Access</button>
-
     <div class="message" id="loginMessage"></div>
 
     <div class="update">
@@ -640,21 +190,19 @@ h1 {
   </div>
 </div>
 
-<!-- ── Navbar ──────────────────────────────────────────────── -->
+<!-- Navbar -->
 <div class="navbar-container">
   <nav class="navbar" id="navbar">
     <a href="#" class="logo">cheap-market.cc</a>
   </nav>
 </div>
 
-<!-- ── Main content ────────────────────────────────────────── -->
+<!-- Main -->
 <main>
   <div class="container" id="mainContent" style="display:none;">
 
     <div class="logout-container">
-      <button onclick="logout()">
-        <i class="fas fa-lock"></i> Logout
-      </button>
+      <button onclick="logout()"><i class="fas fa-lock"></i> Logout</button>
     </div>
 
     <div class="card">
@@ -665,30 +213,19 @@ h1 {
 
       <div class="step">
         <div class="step-title">Step 1 — Install extension</div>
-        <p class="step-desc">
-          Download <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank">Cookie Editor</a> from the Chrome Web Store.
-        </p>
+        <p class="step-desc">Download <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank">Cookie Editor</a> from the Chrome Web Store.</p>
       </div>
-
       <div class="step">
         <div class="step-title">Step 2 — Open ChatGPT</div>
-        <p class="step-desc">
-          Navigate to <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> in your browser.
-        </p>
+        <p class="step-desc">Navigate to <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> in your browser.</p>
       </div>
-
       <div class="step">
         <div class="step-title">Step 3 — Open Cookie Editor</div>
-        <p class="step-desc">
-          Click the Cookie Editor icon in your browser toolbar to open it.
-        </p>
+        <p class="step-desc">Click the Cookie Editor icon in your browser toolbar to open it.</p>
       </div>
-
       <div class="step">
         <div class="step-title">Step 4 — Import cookies</div>
-        <p class="step-desc">
-          Press <strong style="color:var(--text)">Delete All</strong>, then click <strong style="color:var(--text)">Import</strong> and paste the cookies you copied below.
-        </p>
+        <p class="step-desc">Press <strong style="color:var(--text)">Delete All</strong>, then <strong style="color:var(--text)">Import</strong> and paste the cookies you copied below.</p>
       </div>
 
       <div class="images">
@@ -696,147 +233,73 @@ h1 {
         <img src="https://i.imgur.com/gegrFYj.png" alt="Import" />
       </div>
 
-      <p class="step-desc" style="color:var(--muted); font-size:.8rem; margin-bottom:10px;">
-        After importing, it should look like this:
-      </p>
+      <p style="font-size:.8rem;color:var(--muted);margin-bottom:10px;">After importing it should look like this:</p>
       <div class="img-full">
         <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Editor Preview" />
       </div>
 
-      <!-- Copy section -->
       <div class="copy-box">
         <p class="copy-label">Your cookies</p>
         <button onclick="copyFromSite()">
           <i class="fas fa-clipboard"></i> Copy Cookies to Clipboard
         </button>
-        <div class="tooltip" id="tooltip">
-          ✅ Copied! Have fun and leave a review 💜
-        </div>
+        <div class="tooltip" id="tooltip">✅ Copied! Have fun and leave a review 💚</div>
         <textarea id="cookieBox"></textarea>
       </div>
 
-      <!-- Badges -->
       <div class="badges">
         <span class="badge"><i class="fas fa-shield-halved"></i> Encrypted transfer</span>
         <span class="badge"><i class="fas fa-bolt"></i> Instant delivery</span>
         <span class="badge"><i class="fas fa-rotate"></i> Regularly updated</span>
       </div>
 
-      <!-- Last updated -->
       <div style="text-align:center;">
         <div class="update-bar">
           <i class="fas fa-circle-check"></i>
           Last verified: <span id="dateNow">Loading…</span>
         </div>
       </div>
+    </div>
 
-    </div><!-- /.card -->
-  </div><!-- /#mainContent -->
+  </div>
 </main>
 
-<!-- ── WebGL rays (identical logic, purple-tinted) ─────────── -->
+<!-- WebGL rays (green tint, matching reference) -->
 <script>
 (function(){
-  var C = document.getElementById('rays-canvas');
-  var gl = C.getContext('webgl') || C.getContext('experimental-webgl');
-  if (!gl) { C.style.display = 'none'; return; }
-
-  function resize() {
-    C.width  = window.innerWidth;
-    C.height = window.innerHeight;
-    gl.viewport(0, 0, C.width, C.height);
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  var vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}';
-  /* Purple-tinted variant of the reference shader */
-  var fs = 'precision highp float;uniform float t;uniform vec2 r;uniform vec2 m;'+
-    'float ray(vec2 s,vec2 d,vec2 c,float sa,float sb,float sp){'+
-      'vec2 tc=c-s;vec2 dn=normalize(tc);float ca=dot(dn,d);'+
-      'float sf=pow(max(ca,0.),1.2);float di=length(tc);'+
-      'float mD=r.x*2.;float lf=clamp((mD-di)/mD,0.,1.);'+
-      'float bs=clamp((0.45+0.15*sin(ca*sa+t*sp))+(0.3+0.2*cos(-ca*sb+t*sp)),0.,1.);'+
-      'return bs*lf*sf;}'+
-    'void main(){'+
-      'vec2 c=vec2(gl_FragCoord.x,r.y-gl_FragCoord.y);'+
-      'vec2 rP=vec2(r.x*0.5+m.x*100.-50.,-r.y*0.15);'+
-      'vec2 mD=normalize(m*r-rP);'+
-      'vec2 rD=normalize(mix(vec2(0,1),mD,0.1));'+
-      'vec4 r1=vec4(1)*ray(rP,rD,c,36.2,21.1,1.5);'+
-      'vec4 r2=vec4(1)*ray(rP,rD,c,22.4,18.,1.1);'+
-      'vec4 col=r1*0.5+r2*0.4;'+
-      'float br=1.-(c.y/r.y);'+
-      /* purple tint instead of green */
-      'col.r*=0.35+br*0.65;col.g*=0.0+br*0.1;col.b*=0.4+br*0.6;'+
-      'col.rgb*=vec3(0.47,0.0,0.82);'+
-      'gl_FragColor=col;}';
-
-  function cs(src, type) {
-    var s = gl.createShader(type);
-    gl.shaderSource(s, src);
-    gl.compileShader(s);
-    return s;
-  }
-  var vsh = cs(vs, gl.VERTEX_SHADER);
-  var fsh = cs(fs, gl.FRAGMENT_SHADER);
-  var prg = gl.createProgram();
-  gl.attachShader(prg, vsh); gl.attachShader(prg, fsh);
-  gl.linkProgram(prg); gl.useProgram(prg);
-
-  var buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
-  var pl = gl.getAttribLocation(prg, 'p');
-  gl.enableVertexAttribArray(pl);
-  gl.vertexAttribPointer(pl, 2, gl.FLOAT, false, 0, 0);
-
-  var tU = gl.getUniformLocation(prg, 't');
-  var rU = gl.getUniformLocation(prg, 'r');
-  var mU = gl.getUniformLocation(prg, 'm');
-
-  var mX = 0.5, mY = 0.5, smX = 0.5, smY = 0.5;
-  document.addEventListener('mousemove', function(e) {
-    mX = e.clientX / window.innerWidth;
-    mY = e.clientY / window.innerHeight;
-  });
-
-  function loop(time) {
-    smX += (mX - smX) * 0.08;
-    smY += (mY - smY) * 0.08;
-    gl.uniform1f(tU, time * 0.001);
-    gl.uniform2f(rU, C.width, C.height);
-    gl.uniform2f(mU, smX, smY);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    requestAnimationFrame(loop);
-  }
+  var C=document.getElementById('rays-canvas'),gl=C.getContext('webgl')||C.getContext('experimental-webgl');
+  if(!gl){C.style.display='none';return}
+  function resize(){C.width=window.innerWidth;C.height=window.innerHeight;gl.viewport(0,0,C.width,C.height)}
+  resize();window.addEventListener('resize',resize);
+  var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0,1);}';
+  var fs='precision highp float;uniform float t;uniform vec2 r;uniform vec2 m;float ray(vec2 s,vec2 d,vec2 c,float sa,float sb,float sp){vec2 tc=c-s;vec2 dn=normalize(tc);float ca=dot(dn,d);float sf=pow(max(ca,0.),1.2);float di=length(tc);float mD=r.x*2.;float lf=clamp((mD-di)/mD,0.,1.);float bs=clamp((0.45+0.15*sin(ca*sa+t*sp))+(0.3+0.2*cos(-ca*sb+t*sp)),0.,1.);return bs*lf*sf;}void main(){vec2 c=vec2(gl_FragCoord.x,r.y-gl_FragCoord.y);vec2 rP=vec2(r.x*0.5+m.x*100.-50.,-r.y*0.15);vec2 mD=normalize(m*r-rP);vec2 rD=normalize(mix(vec2(0,1),mD,0.1));vec4 r1=vec4(1)*ray(rP,rD,c,36.2,21.1,1.5);vec4 r2=vec4(1)*ray(rP,rD,c,22.4,18.,1.1);vec4 col=r1*0.5+r2*0.4;float br=1.-(c.y/r.y);col.r*=0.1+br*0.8;col.g*=0.3+br*0.6;col.b*=0.5+br*0.5;col.rgb*=vec3(0.063,0.725,0.506);gl_FragColor=col;}';
+  function cs(src,type){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s}
+  var vsh=cs(vs,gl.VERTEX_SHADER),fsh=cs(fs,gl.FRAGMENT_SHADER);
+  var prg=gl.createProgram();gl.attachShader(prg,vsh);gl.attachShader(prg,fsh);gl.linkProgram(prg);gl.useProgram(prg);
+  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  var pl=gl.getAttribLocation(prg,'p');gl.enableVertexAttribArray(pl);gl.vertexAttribPointer(pl,2,gl.FLOAT,false,0,0);
+  var tU=gl.getUniformLocation(prg,'t'),rU=gl.getUniformLocation(prg,'r'),mU=gl.getUniformLocation(prg,'m');
+  var mX=0.5,mY=0.5,smX=0.5,smY=0.5;
+  document.addEventListener('mousemove',function(e){mX=e.clientX/window.innerWidth;mY=e.clientY/window.innerHeight});
+  function loop(time){smX+=(mX-smX)*0.08;smY+=(mY-smY)*0.08;gl.uniform1f(tU,time*0.001);gl.uniform2f(rU,C.width,C.height);gl.uniform2f(mU,smX,smY);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);requestAnimationFrame(loop)}
   requestAnimationFrame(loop);
-
-  /* Scrolling navbar */
-  var nb = document.getElementById('navbar');
-  window.addEventListener('scroll', function() {
-    window.pageYOffset > 40 ? nb.classList.add('scrolled') : nb.classList.remove('scrolled');
-  }, { passive: true });
+  var nb=document.getElementById('navbar');
+  window.addEventListener('scroll',function(){window.pageYOffset>40?nb.classList.add('scrolled'):nb.classList.remove('scrolled')},{passive:true});
 })();
 </script>
 
-<!-- ── Date fetch ──────────────────────────────────────────── -->
 <script>
-async function fetchLastUpdate() {
-  try {
-    const res = await fetch("https://cheap-market.cc/product/163368/cookies/date");
-    if (!res.ok) throw new Error("Network response failed");
-    const dateText = await res.text();
-    document.getElementById("dateNow").textContent = dateText.trim();
-  } catch (err) {
-    document.getElementById("dateNow").textContent = "Unavailable";
-  }
+async function fetchLastUpdate(){
+  try{
+    const res=await fetch("https://cheap-market.cc/product/163368/cookies/date");
+    if(!res.ok)throw new Error();
+    const t=await res.text();
+    document.getElementById("dateNow").textContent=t.trim();
+  }catch(e){document.getElementById("dateNow").textContent="Unavailable"}
 }
-document.addEventListener("DOMContentLoaded", fetchLastUpdate);
+document.addEventListener("DOMContentLoaded",fetchLastUpdate);
 </script>
 
-<!-- ── Your original 1.js (all logic untouched) ───────────── -->
 <script src="1.js"></script>
-
 </body>
 </html>
