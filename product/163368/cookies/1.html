@@ -204,65 +204,67 @@ h1{font-size:1.15rem;font-weight:700;color:var(--text);letter-spacing:-.01em}
       <button onclick="logout()"><i class="fas fa-lock"></i> Logout</button>
     </div>
 
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon-wrap"><i class="fas fa-cookie-bite"></i></div>
-        <h1>ChatGPT Cookie Tutorial</h1>
-      </div>
+    <div class="content-grid">
 
-      <div class="content-grid">
-
-        <!-- Left: steps -->
-        <div class="steps-col">
-          <div class="step">
-            <div class="step-title">Step 1 — Install extension</div>
-            <p class="step-desc">Download <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank">Cookie Editor</a> from the Chrome Web Store.</p>
-          </div>
-          <div class="step">
-            <div class="step-title">Step 2 — Open ChatGPT</div>
-            <p class="step-desc">Navigate to <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> in your browser.</p>
-          </div>
-          <div class="step">
-            <div class="step-title">Step 3 — Open Cookie Editor</div>
-            <p class="step-desc">Click the Cookie Editor icon in your browser toolbar to open it.</p>
-          </div>
-          <div class="step">
-            <div class="step-title">Step 4 — Import cookies</div>
-            <p class="step-desc">Press <strong style="color:var(--text)">Delete All</strong>, then <strong style="color:var(--text)">Import</strong> and paste the cookies copied on the right.</p>
-          </div>
+      <!-- Left card: steps -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon-wrap"><i class="fas fa-list-ol"></i></div>
+          <h1>Instructions</h1>
         </div>
-
-        <!-- Right: images + copy -->
-        <div class="media-col">
-          <div class="images">
-            <img src="https://i.imgur.com/33xUdip.png" alt="Delete All" />
-            <img src="https://i.imgur.com/gegrFYj.png" alt="Import" />
-          </div>
-
-          <p style="font-size:.75rem;color:var(--muted);margin-bottom:8px;">After importing it should look like this:</p>
-          <div class="img-full">
-            <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Editor Preview" />
-          </div>
-
-          <div class="copy-box">
-            <p class="copy-label">Your cookies</p>
-            <button onclick="copyFromSite()">
-              <i class="fas fa-clipboard"></i> Copy Cookies to Clipboard
-            </button>
-            <div class="tooltip" id="tooltip">✅ Copied! Have fun and leave a review 💚</div>
-            <textarea id="cookieBox"></textarea>
-          </div>
+        <div class="step">
+          <div class="step-title">Step 1 — Install extension</div>
+          <p class="step-desc">Download <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm" target="_blank">Cookie Editor</a> from the Chrome Web Store.</p>
         </div>
-
-      </div><!-- /.content-grid -->
-
-      <div style="text-align:center;margin-top:20px;">
-        <div class="update-bar">
-          <i class="fas fa-circle-check"></i>
-          Last verified: <span id="dateNow">Loading…</span>
+        <div class="step">
+          <div class="step-title">Step 2 — Open ChatGPT</div>
+          <p class="step-desc">Navigate to <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> in your browser.</p>
+        </div>
+        <div class="step">
+          <div class="step-title">Step 3 — Open Cookie Editor</div>
+          <p class="step-desc">Click the Cookie Editor icon in your browser toolbar to open it.</p>
+        </div>
+        <div class="step">
+          <div class="step-title">Step 4 — Import cookies</div>
+          <p class="step-desc">Press <strong style="color:var(--text)">Delete All</strong>, then <strong style="color:var(--text)">Import</strong> and paste the cookies from the right card.</p>
         </div>
       </div>
-    </div>
+
+      <!-- Right card: images + copy -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon-wrap"><i class="fas fa-cookie-bite"></i></div>
+          <h1>ChatGPT Cookies</h1>
+        </div>
+
+        <div class="images">
+          <img src="https://i.imgur.com/33xUdip.png" alt="Delete All" />
+          <img src="https://i.imgur.com/gegrFYj.png" alt="Import" />
+        </div>
+
+        <p style="font-size:.75rem;color:var(--muted);margin:12px 0 8px;">After importing it should look like this:</p>
+        <div class="img-full">
+          <img src="https://i.imgur.com/nfCZbii.png" alt="Cookie Editor Preview" />
+        </div>
+
+        <div class="copy-box">
+          <p class="copy-label">Your cookies</p>
+          <button onclick="copyFromSite()">
+            <i class="fas fa-clipboard"></i> Copy Cookies to Clipboard
+          </button>
+          <div class="tooltip" id="tooltip">✅ Copied! Have fun and leave a review 💚</div>
+          <textarea id="cookieBox"></textarea>
+        </div>
+
+        <div style="text-align:center;margin-top:20px;">
+          <div class="update-bar">
+            <i class="fas fa-circle-check"></i>
+            Last verified: <span id="dateNow">Loading…</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.content-grid -->
 
   </div>
 </main>
