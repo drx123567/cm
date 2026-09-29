@@ -28,7 +28,6 @@ license-08r2v-alykh
 license-awzlm-pczg7
 license-382t2-ceegx
 license-c6644-dwtzs
-license-cf7dy-389gn
 license-t31et-03siq
 license-oq0nd-m4s8s
 license-lwn1h-j4awq
